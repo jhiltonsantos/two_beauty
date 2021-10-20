@@ -80,7 +80,6 @@ class _InitialPageState extends State<InitialPage> {
               padding: const EdgeInsets.only(top: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   cardLoginCadastro('Fazer\nCadastro', Icons.arrow_upward, () {
                     setState(() {
@@ -95,7 +94,7 @@ class _InitialPageState extends State<InitialPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                              builder: (context) => LoginPageWidget()));
                     });
                   }),
                 ],
