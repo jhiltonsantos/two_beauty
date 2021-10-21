@@ -4,6 +4,7 @@ import 'package:to_beauty_app/src/pages/home/home_page.dart';
 import 'package:to_beauty_app/src/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/src/pages/login/login_page.dart';
 import 'package:to_beauty_app/src/pages/sign_up/sign_up_page.dart';
+import 'package:to_beauty_app/src/shared/colors.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '2Beauty',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: primaryColor,
       ),
       initialRoute: '/',
       routes: {

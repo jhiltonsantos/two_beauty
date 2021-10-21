@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'package:to_beauty_app/src/shared/colors.dart';
+import 'package:to_beauty_app/src/shared/widgets/homeWidgets/slider_menu_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,20 +20,20 @@ class _HomePageState extends State<HomePage> {
     return SideMenu(
       key: _endSideMenuKey,
       inverse: true,
-      background: Colors.green,
+      background: shiniessYellow,
       type: SideMenuType.slide,
-      menu: buildMenu(),
+      menu: BuildMenu(),
       radius: BorderRadius.circular(5),
       child: SideMenu(
         key: _sideMenuKey,
-        menu: buildMenu(),
+        menu: BuildMenu(),
         type: SideMenuType.slide,
         inverse: true,
-        background: Colors.green,
+        background: shiniessYellow,
         radius: BorderRadius.circular(5),
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: const Color(0xFFF5F5F5),
+          backgroundColor: backgroudColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(35, 0, 35, 0),
@@ -97,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                                 width: 340,
                                 height: 90,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF9E9E9E),
+                                  color: shiniessYellow,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: const Align(
@@ -332,49 +334,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
-
-Widget buildMenu() {
-  return SingleChildScrollView(
-    padding: const EdgeInsets.symmetric(vertical: 50.0),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 22.0,
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                "lead{Hello},\nlead.bold{Johnie}",
-                style: TextStyle(color: Colors.white),
-              ),
-              SizedBox(height: 20.0),
-            ],
-          ),
-        ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(Icons.home, size: 20.0, color: Colors.white),
-          title: const Text("Home"),
-          dense: true,
-        ),
-        ListTile(
-          onTap: () {},
-          leading:
-              const Icon(Icons.verified_user, size: 20.0, color: Colors.white),
-          title: const Text("Profile"),
-          dense: true,
-
-          // padding: EdgeInsets.zero,
-        ),
-      ],
-    ),
-  );
 }

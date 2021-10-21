@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/src/models/establishment_models.dart';
 import 'package:to_beauty_app/src/pages/create_estabelecimento/estabelecimento_controller.dart';
+import 'package:to_beauty_app/src/shared/colors.dart';
+import 'package:to_beauty_app/src/shared/widgets/appBar/icon_back_appbar_widget.dart';
+import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart';
+import 'package:to_beauty_app/src/shared/widgets/forms/input_form_from_login_widget.dart';
 
 class CreateEstabelecimentoPage extends StatefulWidget {
   const CreateEstabelecimentoPage({Key? key}) : super(key: key);
@@ -50,25 +54,16 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                     padding: const EdgeInsetsDirectional.fromSTEB(30, 30, 0, 0),
                     child: InkWell(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, '/home');
                       },
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                        size: 40,
+                      child: const IconBackAppBar(
+                        icon: Icons.arrow_back,
                       ),
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                    child: Text(
-                      'Cadastre seu negócio',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 26,
-                      ),
-                    ),
-                  )
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
+                      child: TextAppBar(text: 'Cadastre seu negócio'))
                 ],
               ),
               Padding(
@@ -83,9 +78,10 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                         child: Text(
                           'Começar',
                           style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 24,
-                          ),
+                              fontFamily: 'Roboto',
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: shiniessBrown),
                         ),
                       ),
                     ),
@@ -100,40 +96,17 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                             child: Text(
                               'Nome do estabelecimento',
                               style: TextStyle(
-                                fontFamily: 'Poppins',
-                              ),
+                                  fontFamily: 'Roboto', color: shiniessBrown),
                             ),
                           ),
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                          child: TextFormField(
-                            controller: _nameController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              filled: true,
-                              fillColor: const Color(0xFF9E9E9E),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        )
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: InputFormFromLogin(
+                              controller: _nameController,
+                              obscureText: false,
+                              typeKeyboard: TextInputType.text),
+                        ),
                       ],
                     ),
                     const Align(
@@ -145,6 +118,8 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: shiniessBrown,
                           ),
                         ),
                       ),
@@ -159,40 +134,17 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                             child: Text(
                               'Rua',
                               style: TextStyle(
-                                fontFamily: 'Roboto',
-                              ),
+                                  fontFamily: 'Roboto', color: shiniessBrown),
                             ),
                           ),
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                          child: TextFormField(
-                            controller: _streetController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              filled: true,
-                              fillColor: const Color(0xFF9E9E9E),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        )
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: InputFormFromLogin(
+                              controller: _streetController,
+                              obscureText: false,
+                              typeKeyboard: TextInputType.text),
+                        ),
                       ],
                     ),
                     Column(
@@ -206,21 +158,17 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: const [
-                              Text(
-                                'Bairro',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                ),
-                              ),
+                              Text('Bairro',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      color: shiniessBrown)),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    120, 0, 0, 0),
-                                child: Text(
-                                  'Cidade',
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
+                                    140, 0, 0, 0),
+                                child: Text('Cidade',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        color: shiniessBrown)),
                               )
                             ],
                           ),
@@ -232,30 +180,10 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0, 0, 10, 0),
-                                child: TextFormField(
+                                child: InputFormFromLogin(
                                   controller: _districtController,
                                   obscureText: false,
-                                  decoration: InputDecoration(
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    filled: true,
-                                    fillColor: const Color(0xFF9E9E9E),
-                                  ),
-                                  style: const TextStyle(
-                                    fontFamily: 'Roboto',
-                                  ),
+                                  typeKeyboard: TextInputType.text,
                                 ),
                               ),
                             ),
@@ -263,30 +191,10 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     10, 0, 0, 0),
-                                child: TextFormField(
+                                child: InputFormFromLogin(
                                   controller: _cityController,
                                   obscureText: false,
-                                  decoration: InputDecoration(
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    filled: true,
-                                    fillColor: const Color(0xFF9E9E9E),
-                                  ),
-                                  style: const TextStyle(
-                                    fontFamily: 'Roboto',
-                                  ),
+                                  typeKeyboard: TextInputType.text,
                                 ),
                               ),
                             )
@@ -305,21 +213,17 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: const [
-                              Text(
-                                'Número',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                ),
-                              ),
+                              Text('Número',
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      color: shiniessBrown)),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     105, 0, 0, 0),
-                                child: Text(
-                                  'CEP',
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                  ),
-                                ),
+                                child: Text('CEP',
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        color: shiniessBrown)),
                               )
                             ],
                           ),
@@ -333,30 +237,10 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 10, 0),
-                                  child: TextFormField(
+                                  child: InputFormFromLogin(
                                     controller: _numberController,
                                     obscureText: false,
-                                    decoration: InputDecoration(
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: const BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      filled: true,
-                                      fillColor: const Color(0xFF9E9E9E),
-                                    ),
-                                    style: const TextStyle(
-                                      fontFamily: 'Roboto',
-                                    ),
+                                    typeKeyboard: TextInputType.text,
                                   ),
                                 ),
                               ),
@@ -365,30 +249,10 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     10, 0, 0, 0),
-                                child: TextFormField(
+                                child: InputFormFromLogin(
                                   controller: _cepController,
                                   obscureText: false,
-                                  decoration: InputDecoration(
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: const BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    filled: true,
-                                    fillColor: const Color(0xFF9E9E9E),
-                                  ),
-                                  style: const TextStyle(
-                                    fontFamily: 'Roboto',
-                                  ),
+                                  typeKeyboard: TextInputType.text,
                                 ),
                               ),
                             )
@@ -404,41 +268,19 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                           child: Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                            child: Text(
-                              'Telefone',
-                              style: TextStyle(
-                                fontFamily: 'Roboto',
-                              ),
-                            ),
+                            child: Text('Telefone',
+                                style: TextStyle(
+                                    fontFamily: 'Roboto',
+                                    color: shiniessBrown)),
                           ),
                         ),
                         Padding(
                           padding:
                               const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                          child: TextFormField(
+                          child: InputFormFromLogin(
                             controller: _phoneController,
                             obscureText: false,
-                            decoration: InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              filled: true,
-                              fillColor: const Color(0xFF9E9E9E),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Roboto',
-                            ),
+                            typeKeyboard: TextInputType.text,
                           ),
                         )
                       ],
@@ -467,10 +309,16 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                 Navigator.pop(context);
                               });
                             },
-                            child: const Text('Criar'),
+                            child: const Text(
+                              'Criar',
+                              style: TextStyle(
+                                color: shiniessBrown,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                             style: ElevatedButton.styleFrom(
                               fixedSize: const Size(260, 50),
-                              primary: Colors.blue,
+                              primary: secondaryColor,
                               textStyle: const TextStyle(
                                 fontFamily: 'Roboto',
                                 fontSize: 19,
