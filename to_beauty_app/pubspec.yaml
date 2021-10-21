@@ -13,13 +13,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.1.0
   font_awesome_flutter:
-  geolocator: 7.6.2
   google_fonts: ^2.1.0
   intl:
   page_transition:
   timeago:
   url_launcher:
   flutter_svg: ^0.23.0+1
+  shrink_sidemenu: ^2.0.0+1-null-safety
+  carousel_slider: ^4.0.0
   
 
 dev_dependencies:
