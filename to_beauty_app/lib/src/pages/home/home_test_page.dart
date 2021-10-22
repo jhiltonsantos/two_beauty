@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/src/models/store_models.dart';
-import 'package:to_beauty_app/src/pages/store/get_all_store.dart';
 import 'package:to_beauty_app/src/pages/store/store_controller.dart';
+import 'package:to_beauty_app/src/pages/store/store_get_all_controller.dart';
 
 class HomeTest extends StatefulWidget {
   const HomeTest({Key? key}) : super(key: key);

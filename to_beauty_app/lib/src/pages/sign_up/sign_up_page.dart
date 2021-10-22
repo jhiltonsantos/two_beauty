@@ -174,20 +174,18 @@ class _SignUpPageState extends State<SignUpPage> {
                                   0, 30, 0, 0),
                               child: ElevatedButton(
                                 onPressed: () async {
-
                                   var pass = await api.createUser(UserClass(
                                       username: _nameController.text,
                                       email: _emailController.text,
-                                      first_name: 'Santos',
+                                      firstName: 'Santos',
                                       password: _passwordController.text));
 
                                   if (pass == true) {
-                                    Navigator.popAndPushNamed(
-                                        context, '/');
+                                    Navigator.popAndPushNamed(context, '/');
                                   } else {
-                                    alertSignup(context, 'Não foi possível realizar o cadastro. Verifique seus dados.');
+                                    alertSignup(context,
+                                        'Não foi possível realizar o cadastro. Verifique seus dados.');
                                   }
-
                                 },
                                 child: const Text(
                                   'Criar Conta',

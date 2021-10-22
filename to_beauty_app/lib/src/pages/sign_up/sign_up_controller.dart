@@ -12,7 +12,7 @@ class ApiController {
     Map data = {
       'username': user.username,
       'email': user.email,
-      'first_name': user.first_name,
+      'first_name': user.firstName,
       'password': user.password
     };
 
