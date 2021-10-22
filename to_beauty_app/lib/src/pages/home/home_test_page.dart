@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/src/models/establishment_models.dart';
-import 'package:to_beauty_app/src/pages/estabelecimento/get_all_estabelecimentos.dart';
+import 'package:to_beauty_app/src/models/store_models.dart';
+import 'package:to_beauty_app/src/pages/store/get_all_store.dart';
+import 'package:to_beauty_app/src/pages/store/store_controller.dart';
 
 class HomeTest extends StatefulWidget {
   const HomeTest({Key? key}) : super(key: key);
@@ -22,10 +23,9 @@ class _HomeTestState extends State<HomeTest> {
 }
 
 _body() {
-  Future<List<Estabelecimento>> estabelecimentos =
-      EstabelecimentoApi.getAllEstabelecimentos();
+  Future<List<Store>> store = StoreGetController.getAllEstabelecimentos();
   return FutureBuilder(
-    future: estabelecimentos,
+    future: store,
     builder: (context, snapshot) {
       if (snapshot.hasError) {
         return const Text("Erro ao acessar os dados");
@@ -45,13 +45,13 @@ _listView(estabelecimentos) {
   return ListView.builder(
     itemCount: estabelecimentos != null ? estabelecimentos.length : 0,
     itemBuilder: (context, index) {
-      Estabelecimento estab = estabelecimentos[index];
+      Store store = estabelecimentos[index];
       return Card(
         child: Column(children: <Widget>[
-          Text(estab.nome),
-          Text(estab.rua),
-          Text(estab.bairro),
-          Text(estab.cidade),
+          Text(store.name),
+          Text(store.street),
+          Text(store.district),
+          Text(store.city),
         ]),
       );
     },

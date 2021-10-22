@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/src/pages/estabelecimento/create_estabelecimento_page.dart';
 import 'package:to_beauty_app/src/pages/home/home_page.dart';
 import 'package:to_beauty_app/src/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/src/pages/login/login_page.dart';
 import 'package:to_beauty_app/src/pages/sign_up/sign_up_page.dart';
+import 'package:to_beauty_app/src/pages/store/create_store_page.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 
 class AppWidget extends StatelessWidget {
@@ -22,7 +22,7 @@ class AppWidget extends StatelessWidget {
         '/': (context) => const InitialPage(),
         '/signup': (context) => const SignUpPage(),
         '/login': (context) => const LoginPage(),
-        '/create_estab': (context) => const CreateEstabelecimentoPage(),
+        '/create_estab': (context) => const CreateStorePage(),
         '/home': (context) => const HomePage(),
       },
     );

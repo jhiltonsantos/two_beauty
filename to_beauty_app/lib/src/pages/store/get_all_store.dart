@@ -2,14 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/src/models/establishment_models.dart';
+import 'package:to_beauty_app/src/models/store_models.dart';
 import 'package:to_beauty_app/src/shared/constants.dart';
 
-class EstabelecimentoApi {
-  static Future<List<Estabelecimento>> getAllEstabelecimentos() async {
-    final Uri estabelecimentoUrl = Uri.parse(ESTABELECIMENTO);
-    int id = 1;
-    final Uri estabelecimentoById = Uri.parse('$ESTABELECIMENTO/$id');
+class StoreGetController {
+  static Future<List<Store>> getAllEstabelecimentos() async {
+    final Uri storeUrl = Uri.parse(STORE_URL);
 
     // Recuperando o token do login
     var prefs = await SharedPreferences.getInstance();
@@ -21,16 +19,16 @@ class EstabelecimentoApi {
       'Authorization': 'Bearer $token'
     };
 
-    var response = await http.get(estabelecimentoUrl, headers: header);
+    var response = await http.get(storeUrl, headers: header);
     print("Status code: ${response.statusCode}");
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);
-      final estabelecimentos = <Estabelecimento>[];
+      final estabelecimentos = <Store>[];
 
       for (Map<String, dynamic> map in listResponse) {
-        Estabelecimento estab = Estabelecimento.fromJson(map);
-        estabelecimentos.add(estab);
+        Store store = Store.fromJson(map);
+        estabelecimentos.add(store);
       }
       return estabelecimentos;
     } else {

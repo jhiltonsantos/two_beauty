@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/src/models/establishment_models.dart';
-import 'package:to_beauty_app/src/pages/estabelecimento/estabelecimento_controller.dart';
+import 'package:to_beauty_app/src/models/store_models.dart';
+import 'package:to_beauty_app/src/pages/store/store_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/icon_back_appbar_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/input_form_from_login_widget.dart';
 
-class CreateEstabelecimentoPage extends StatefulWidget {
-  const CreateEstabelecimentoPage({Key? key}) : super(key: key);
+class CreateStorePage extends StatefulWidget {
+  const CreateStorePage({Key? key}) : super(key: key);
 
   @override
-  _CreateEstabelecimentoPageState createState() =>
-      _CreateEstabelecimentoPageState();
+  _CreateStorePageState createState() => _CreateStorePageState();
 }
 
-class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
-  final EstabelecimentoController estabelecimentoAPI =
-      EstabelecimentoController();
+class _CreateStorePageState extends State<CreateStorePage> {
+  final StorePostController storeAPI = StorePostController();
   final _nameController = TextEditingController();
   final _cityController = TextEditingController();
   final _districtController = TextEditingController();
@@ -26,8 +24,9 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
   final _phoneController = TextEditingController();
   final _latitudeController = "2323";
   final _longitudeController = "2123";
+  //TODO: Pegar o usuario logado
   final _userController = 1;
-  bool _loadingButton = false;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -303,18 +302,17 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                           child: ElevatedButton(
                             onPressed: () async {
                               setState(() {
-                                estabelecimentoAPI.postEstabelecimento(
-                                    Estabelecimento(
-                                        nome: _nameController.text,
-                                        cidade: _cityController.text,
-                                        bairro: _districtController.text,
-                                        rua: _streetController.text,
-                                        numero: _numberController.text,
-                                        cep: _cepController.text,
-                                        telefone: _phoneController.text,
-                                        latitude: _latitudeController,
-                                        longitude: _longitudeController,
-                                        user: _userController));
+                                storeAPI.postStore(Store(
+                                    name: _nameController.text,
+                                    city: _cityController.text,
+                                    district: _districtController.text,
+                                    street: _streetController.text,
+                                    number: _numberController.text,
+                                    cep: _cepController.text,
+                                    phone: _phoneController.text,
+                                    latitude: _latitudeController,
+                                    longitude: _longitudeController,
+                                    user: _userController));
                                 Navigator.pushReplacementNamed(
                                     context, '/home');
                               });
