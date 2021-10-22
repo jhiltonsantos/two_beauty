@@ -38,7 +38,7 @@ class _CreateStorePageState extends State<CreateStorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: backgroudColor,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

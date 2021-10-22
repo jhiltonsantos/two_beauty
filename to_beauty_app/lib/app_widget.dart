@@ -16,6 +16,7 @@ class AppWidget extends StatelessWidget {
       title: '2Beauty',
       theme: ThemeData(
         primaryColor: primaryColor,
+        backgroundColor: Colors.white,
       ),
       initialRoute: '/',
       routes: {

@@ -57,7 +57,7 @@ class _InitialPageState extends State<InitialPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: backgroudColor,
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(170.0),
           child: Container(

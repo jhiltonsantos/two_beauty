@@ -45,7 +45,6 @@ class InputFormFromLogin extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         filled: true,
-        fillColor: backgroudColor,
         hoverColor: shiniessBrown,
       ),
       style: const TextStyle(

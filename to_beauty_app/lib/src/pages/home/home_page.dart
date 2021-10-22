@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
         radius: BorderRadius.circular(5),
         child: Scaffold(
           key: scaffoldKey,
-          backgroundColor: backgroudColor,
+          backgroundColor: Colors.white,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(35, 0, 35, 0),

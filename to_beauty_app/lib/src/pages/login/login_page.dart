@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       key: _formKey,
-      backgroundColor: backgroudColor,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
           scrollDirection: Axis.vertical,

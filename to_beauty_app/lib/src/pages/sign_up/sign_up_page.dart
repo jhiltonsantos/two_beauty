@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       key: scaffoldKey,
-      backgroundColor: backgroudColor,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
           scrollDirection: Axis.vertical,
