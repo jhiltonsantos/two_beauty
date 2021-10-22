@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-alert(BuildContext context, String msg) {
+alertLogin(BuildContext context, String msg) {
   showDialog(
       context: context,
       builder: (context) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../colors.dart';
+
 class TextAppBar extends StatelessWidget {
   const TextAppBar({
     Key? key,
@@ -16,6 +18,7 @@ class TextAppBar extends StatelessWidget {
         fontFamily: 'Roboto',
         fontSize: 26,
         fontWeight: FontWeight.normal,
+        color: shiniessBrown
       ),
     );
   }

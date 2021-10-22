@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_beauty_app/src/pages/home/home_test_page.dart';
 import 'package:to_beauty_app/src/pages/login/login_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
-import 'package:to_beauty_app/src/shared/widgets/alert_error_login_widget.dart';
+import 'package:to_beauty_app/src/shared/widgets/login/alert_error_login_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/account_type_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/input_form_from_login_widget.dart';
@@ -184,15 +184,15 @@ class _LoginPageState extends State<LoginPage> {
                                           user: login, password: password);
 
                                   if (userLogin == true) {
-                                    /*Navigator.pushReplacementNamed(
-                                        context, '/home');*/
-                                    Navigator.push(
+                                    Navigator.pushReplacementNamed(
+                                        context, '/home');
+                                    /*Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const HomeTest()));
+                                                const HomeTest()));*/
                                   } else {
-                                    alert(
+                                    alertLogin(
                                         context, 'Usuário ou senha incorretos');
                                   }
                                 },

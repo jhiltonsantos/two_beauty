@@ -9,6 +9,7 @@ import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart'
 import 'package:to_beauty_app/src/shared/widgets/forms/account_type_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/input_form_from_login_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/text_form_from_login_widget.dart';
+import 'package:to_beauty_app/src/shared/widgets/signup/alert_error_signup_widget.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -173,13 +174,20 @@ class _SignUpPageState extends State<SignUpPage> {
                                   0, 30, 0, 0),
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  api.createUser(UserClass(
+
+                                  var pass = await api.createUser(UserClass(
                                       username: _nameController.text,
                                       email: _emailController.text,
                                       first_name: 'Santos',
                                       password: _passwordController.text));
-                                  Navigator.pushReplacementNamed(
-                                      context, '/home');
+
+                                  if (pass == true) {
+                                    Navigator.popAndPushNamed(
+                                        context, '/');
+                                  } else {
+                                    alertSignup(context, 'Não foi possível realizar o cadastro. Verifique seus dados.');
+                                  }
+
                                 },
                                 child: const Text(
                                   'Criar Conta',

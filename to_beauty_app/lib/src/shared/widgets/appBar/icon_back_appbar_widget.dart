@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_beauty_app/src/shared/colors.dart';
 
 class IconBackAppBar extends StatelessWidget {
   const IconBackAppBar({
@@ -12,7 +13,7 @@ class IconBackAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       icon,
-      color: Colors.black,
+      color: shiniessBrown,
       size: 40,
     );
   }

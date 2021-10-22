@@ -8,7 +8,7 @@ class ApiController {
   final Uri apiUri = Uri.parse(API_URL);
   final Uri apiCreate = Uri.parse(USER_CREATE);
 
-  Future<UserClass> createUser(UserClass user) async {
+  Future<bool> createUser(UserClass user) async {
     Map data = {
       'username': user.username,
       'email': user.email,
@@ -26,10 +26,12 @@ class ApiController {
     print('Response: ${response.body}');
 
     if (response.statusCode == 201) {
-      return UserClass.fromJson(json.decode(response.body));
+      UserClass.fromJson(json.decode(response.body));
+      return true;
     } else {
       print("ERROR: ${response.statusCode}");
-      throw Exception('Falha ao criar usuario');
+      print('Falha ao criar usuario');
+      return false;
     }
   }
 }
