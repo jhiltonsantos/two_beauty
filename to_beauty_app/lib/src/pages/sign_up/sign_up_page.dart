@@ -128,6 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 controller: _nameController,
                                 obscureText: false,
                                 typeKeyboard: TextInputType.text,
+                                value: _passwordController.text,
                               ),
                             ],
                           ),
@@ -143,6 +144,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 controller: _emailController,
                                 obscureText: false,
                                 typeKeyboard: TextInputType.emailAddress,
+                                value: _passwordController.text,
                               ),
                             ],
                           ),
@@ -158,6 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 controller: _passwordController,
                                 obscureText: true,
                                 typeKeyboard: TextInputType.visiblePassword,
+                                value: _passwordController.text,
                               )
                             ],
                           ),

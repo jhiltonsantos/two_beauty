@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_beauty_app/src/pages/home/home_test_page.dart';
+import 'package:to_beauty_app/src/pages/login/login_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
+import 'package:to_beauty_app/src/shared/widgets/alert_error_login_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/account_type_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/forms/input_form_from_login_widget.dart';
@@ -15,23 +18,38 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late TextEditingController _emailController;
+  late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
+    _usernameController = TextEditingController();
     _passwordController = TextEditingController();
+  }
+
+  String? _validateUser(String text) {
+    if (text.isEmpty) {
+      return "Digite o login";
+    }
+    return "";
+  }
+
+  String? _validatePassword(String password) {
+    if (password.isEmpty) {
+      return "Digite a Senha";
+    }
+    return "";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      key: scaffoldKey,
+      key: _formKey,
       backgroundColor: backgroudColor,
       body: SafeArea(
         child: ListView(
@@ -124,29 +142,30 @@ class _LoginPageState extends State<LoginPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              const TextFormFromLogin(text: 'Email'),
+                              const TextFormFromLogin(text: 'Usuário'),
                               InputFormFromLogin(
-                                  controller: _emailController,
-                                  obscureText: false,
-                                  typeKeyboard: TextInputType.emailAddress),
+                                controller: _usernameController,
+                                obscureText: false,
+                                typeKeyboard: TextInputType.emailAddress,
+                                value: _usernameController.text,
+                              ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              35, 20, 35, 0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              const TextFormFromLogin(text: 'Senha'),
-                              InputFormFromLogin(
-                                controller: _passwordController,
-                                obscureText: true,
-                                typeKeyboard: TextInputType.visiblePassword,
-                              )
-                            ],
-                          ),
-                        ),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                35, 20, 35, 0),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  const TextFormFromLogin(text: 'Senha'),
+                                  InputFormFromLogin(
+                                    controller: _passwordController,
+                                    obscureText: true,
+                                    typeKeyboard: TextInputType.visiblePassword,
+                                    value: _passwordController.text,
+                                  )
+                                ])),
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -155,12 +174,26 @@ class _LoginPageState extends State<LoginPage> {
                                   0, 30, 0, 0),
                               child: ElevatedButton(
                                 onPressed: () async {
-                                  setState(() => _loadingButton = true);
-                                  try {
-                                    await Navigator.pushReplacementNamed(
-                                        context, '/home');
-                                  } finally {
-                                    setState(() => _loadingButton = false);
+                                  String login = _usernameController.text;
+                                  String password = _passwordController.text;
+
+                                  print("login: $login senha: $password");
+
+                                  var userLogin =
+                                      await LoginController.loginUser(
+                                          user: login, password: password);
+
+                                  if (userLogin == true) {
+                                    /*Navigator.pushReplacementNamed(
+                                        context, '/home');*/
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeTest()));
+                                  } else {
+                                    alert(
+                                        context, 'Usuário ou senha incorretos');
                                   }
                                 },
                                 child: const Text(

@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
+import 'package:to_beauty_app/src/shared/widgets/card_initial_widget.dart';
 
 final List<String> imgList = [
   'assets/images/intro1.jpg',
@@ -72,10 +74,15 @@ class _InitialPageState extends State<InitialPage> {
                             fontSize: 38.0, fontWeight: FontWeight.w400),
                       ),
                       trailing: Container(
+                          child: SvgPicture.asset(
+                            'assets/images/logo.svg',
+                            color: Colors.yellowAccent,
+                            fit: BoxFit.scaleDown,
+                          ),
                           height: 60,
                           width: 60,
                           decoration: BoxDecoration(
-                            color: Colors.yellow,
+                            color: secondaryColor,
                             borderRadius: BorderRadius.circular(10),
                           )),
                     ),
@@ -147,48 +154,5 @@ class _InitialPageState extends State<InitialPage> {
             ),
           ],
         ));
-  }
-
-  Card cardLoginCadastro(String text, IconData icon, ontap) {
-    return Card(
-      elevation: 5.0,
-      color: secondaryColor,
-      child: InkWell(
-        onTap: ontap,
-        child: SizedBox(
-          height: 120,
-          width: 140,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      icon,
-                      size: 38,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      text,
-                      style: const TextStyle(fontSize: 18.0),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

@@ -1,4 +1,5 @@
-const API_URL = 'https://790e-177-72-216-245.ngrok.io/';
-const API_CREATE = '$API_URL/user/';
+const API_URL = 'https://beauty-2.herokuapp.com';
+const USER_CREATE = '$API_URL/user/';
+const LOGIN_USER = '$API_URL/api/token/';
 
-const ESTABELECIMENTO_CREATE = '$API_URL/estabelecimento/';
+const ESTABELECIMENTO = '$API_URL/estabelecimento/';

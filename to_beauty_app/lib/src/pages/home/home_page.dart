@@ -19,14 +19,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SideMenu(
       key: _endSideMenuKey,
-      inverse: true,
       background: shiniessYellow,
       type: SideMenuType.slide,
-      menu: BuildMenu(),
+      menu: const BuildMenu(),
       radius: BorderRadius.circular(5),
       child: SideMenu(
         key: _sideMenuKey,
-        menu: BuildMenu(),
+        menu: const BuildMenu(),
         type: SideMenuType.slide,
         inverse: true,
         background: shiniessYellow,

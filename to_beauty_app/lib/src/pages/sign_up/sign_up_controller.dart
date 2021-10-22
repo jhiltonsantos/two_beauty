@@ -6,7 +6,7 @@ import 'package:to_beauty_app/src/shared/constants.dart';
 
 class ApiController {
   final Uri apiUri = Uri.parse(API_URL);
-  final Uri apiCreate = Uri.parse(API_CREATE);
+  final Uri apiCreate = Uri.parse(USER_CREATE);
 
   Future<UserClass> createUser(UserClass user) async {
     Map data = {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/src/models/establishment_models.dart';
-import 'package:to_beauty_app/src/pages/create_estabelecimento/estabelecimento_controller.dart';
+import 'package:to_beauty_app/src/pages/estabelecimento/estabelecimento_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/icon_back_appbar_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart';
@@ -24,9 +24,9 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
   final _numberController = TextEditingController();
   final _cepController = TextEditingController();
   final _phoneController = TextEditingController();
-  final _latitudeController = TextEditingController();
-  final _longitudeController = TextEditingController();
-  final _userController = 4;
+  final _latitudeController = "2323";
+  final _longitudeController = "2123";
+  final _userController = 1;
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -39,7 +39,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: backgroudColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -103,9 +103,11 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: InputFormFromLogin(
-                              controller: _nameController,
-                              obscureText: false,
-                              typeKeyboard: TextInputType.text),
+                            controller: _nameController,
+                            obscureText: false,
+                            typeKeyboard: TextInputType.text,
+                            value: _nameController.text,
+                          ),
                         ),
                       ],
                     ),
@@ -141,9 +143,11 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 5.0),
                           child: InputFormFromLogin(
-                              controller: _streetController,
-                              obscureText: false,
-                              typeKeyboard: TextInputType.text),
+                            controller: _streetController,
+                            obscureText: false,
+                            typeKeyboard: TextInputType.text,
+                            value: _nameController.text,
+                          ),
                         ),
                       ],
                     ),
@@ -164,7 +168,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                       color: shiniessBrown)),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    140, 0, 0, 0),
+                                    135, 0, 0, 0),
                                 child: Text('Cidade',
                                     style: TextStyle(
                                         fontFamily: 'Roboto',
@@ -184,6 +188,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                   controller: _districtController,
                                   obscureText: false,
                                   typeKeyboard: TextInputType.text,
+                                  value: _districtController.text,
                                 ),
                               ),
                             ),
@@ -195,6 +200,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                   controller: _cityController,
                                   obscureText: false,
                                   typeKeyboard: TextInputType.text,
+                                  value: _cityController.text,
                                 ),
                               ),
                             )
@@ -219,7 +225,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                       color: shiniessBrown)),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    105, 0, 0, 0),
+                                    120, 0, 0, 0),
                                 child: Text('CEP',
                                     style: TextStyle(
                                         fontFamily: 'Roboto',
@@ -241,6 +247,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                     controller: _numberController,
                                     obscureText: false,
                                     typeKeyboard: TextInputType.text,
+                                    value: _numberController.text,
                                   ),
                                 ),
                               ),
@@ -253,6 +260,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                   controller: _cepController,
                                   obscureText: false,
                                   typeKeyboard: TextInputType.text,
+                                  value: _numberController.text,
                                 ),
                               ),
                             )
@@ -281,6 +289,7 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                             controller: _phoneController,
                             obscureText: false,
                             typeKeyboard: TextInputType.text,
+                            value: _phoneController.text,
                           ),
                         )
                       ],
@@ -303,10 +312,11 @@ class _CreateEstabelecimentoPageState extends State<CreateEstabelecimentoPage> {
                                         numero: _numberController.text,
                                         cep: _cepController.text,
                                         telefone: _phoneController.text,
-                                        latitude: _latitudeController.text,
-                                        longitude: _longitudeController.text,
+                                        latitude: _latitudeController,
+                                        longitude: _longitudeController,
                                         user: _userController));
-                                Navigator.pop(context);
+                                Navigator.pushReplacementNamed(
+                                    context, '/home');
                               });
                             },
                             child: const Text(

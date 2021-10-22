@@ -28,23 +28,23 @@ class _BuildMenuState extends State<BuildMenu> {
               SizedBox(height: 16.0),
             ],
           ),
-          const SizedBox(
-            height: 60.0,
-          ),
-          ListTile(
-            onTap: () {},
-            trailing:
-                const Icon(Icons.account_circle, size: 60.0, color: blueColor),
-            title: const Text(
-              "Perfil",
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 24,
-                color: blueColor,
-                fontWeight: FontWeight.w500,
+          Padding(
+            padding: const EdgeInsets.only(top: 60.0),
+            child: ListTile(
+              onTap: () {},
+              trailing: const Icon(Icons.account_circle,
+                  size: 60.0, color: blueColor),
+              title: const Text(
+                "Perfil",
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 24,
+                  color: blueColor,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
+              dense: false,
             ),
-            dense: false,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 30.0),

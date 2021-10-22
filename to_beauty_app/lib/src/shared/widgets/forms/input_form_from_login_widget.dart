@@ -2,20 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 
 class InputFormFromLogin extends StatelessWidget {
-  const InputFormFromLogin({
-    Key? key,
-    required this.controller,
-    required this.obscureText,
-    required this.typeKeyboard,
-  }) : super(key: key);
+  const InputFormFromLogin(
+      {Key? key,
+      required this.controller,
+      required this.obscureText,
+      required this.typeKeyboard,
+      required this.value})
+      : super(key: key);
 
   final TextEditingController controller;
   final bool obscureText;
   final TextInputType typeKeyboard;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'Campo obrigatório';
+        }
+        return null;
+      },
       autofocus: false,
       cursorColor: shiniessBrown,
       controller: controller,

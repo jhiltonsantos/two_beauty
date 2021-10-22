@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/src/pages/create_estabelecimento/create_estabelecimento_page.dart';
+import 'package:to_beauty_app/src/pages/estabelecimento/create_estabelecimento_page.dart';
 import 'package:to_beauty_app/src/pages/home/home_page.dart';
 import 'package:to_beauty_app/src/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/src/pages/login/login_page.dart';

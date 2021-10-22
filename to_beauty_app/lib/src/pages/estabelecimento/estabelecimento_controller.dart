@@ -6,7 +6,7 @@ import 'package:to_beauty_app/src/shared/constants.dart';
 
 class EstabelecimentoController {
   final Uri apiUri = Uri.parse(API_URL);
-  final Uri estabelecimentoCreate = Uri.parse(ESTABELECIMENTO_CREATE);
+  final Uri estabelecimentoCreate = Uri.parse(ESTABELECIMENTO);
 
   Future<Estabelecimento> postEstabelecimento(
       Estabelecimento estabelecimento) async {
