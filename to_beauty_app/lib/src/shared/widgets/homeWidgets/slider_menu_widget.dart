@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:to_beauty_app/src/pages/home/home_page.dart';
+import 'package:to_beauty_app/src/pages/profile/profile_page.dart';
+import 'package:to_beauty_app/src/pages/store/create_store_page.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 
 class BuildMenu extends StatefulWidget {
-  const BuildMenu({Key? key}) : super(key: key);
+  final String username;
+
+  const BuildMenu({Key? key, required this.username}) : super(key: key);
 
   @override
   State<BuildMenu> createState() => _BuildMenuState();
+
+  //final SharedPreferences sharedPreferences;
 }
 
 class _BuildMenuState extends State<BuildMenu> {
@@ -22,7 +30,7 @@ class _BuildMenuState extends State<BuildMenu> {
           Column(
             children: const [
               CircleAvatar(
-                backgroundColor: blueColor,
+                backgroundColor: shiniessBrown,
                 radius: 50.0,
               ),
               SizedBox(height: 16.0),
@@ -31,15 +39,20 @@ class _BuildMenuState extends State<BuildMenu> {
           Padding(
             padding: const EdgeInsets.only(top: 60.0),
             child: ListTile(
-              onTap: () {},
-              trailing: const Icon(Icons.account_circle,
-                  size: 60.0, color: blueColor),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()));
+              },
+              trailing:
+                  const Icon(Icons.person, size: 60.0, color: shiniessBrown),
               title: const Text(
                 "Perfil",
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 24,
-                  color: blueColor,
+                  color: shiniessBrown,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -49,38 +62,49 @@ class _BuildMenuState extends State<BuildMenu> {
           Padding(
             padding: const EdgeInsets.only(top: 30.0),
             child: ListTile(
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/create_estab');
-              },
-              trailing: const Icon(Icons.store, size: 60.0, color: blueColor),
               title: const Text(
                 "Criar negócio",
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 24,
-                  color: blueColor,
+                  color: shiniessBrown,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return CreateStorePage(
+                    username: widget.username,
+                  );
+                }));
+              },
+              trailing:
+                  const Icon(Icons.store, size: 60.0, color: shiniessBrown),
               dense: false,
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 30.0),
             child: ListTile(
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/');
-              },
-              trailing: const Icon(Icons.logout, size: 60.0, color: blueColor),
               title: const Text(
                 "Sair",
                 style: TextStyle(
                   fontFamily: 'Roboto',
                   fontSize: 24,
-                  color: blueColor,
+                  color: shiniessBrown,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              onTap: () async {
+                var prefs = await SharedPreferences.getInstance();
+                prefs.setBool('isLogged', false);
+                prefs.clear();
+                prefs.commit();
+
+                Navigator.pushReplacementNamed(context, '/');
+              },
+              trailing:
+                  const Icon(Icons.logout, size: 60.0, color: shiniessBrown),
               dense: false,
             ),
           ),

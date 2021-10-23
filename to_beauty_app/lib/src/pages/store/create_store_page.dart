@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/src/models/store_models.dart';
+import 'package:to_beauty_app/src/pages/home/home_page.dart';
 import 'package:to_beauty_app/src/pages/store/store_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/icon_back_appbar_widget.dart';
@@ -7,10 +8,12 @@ import 'package:to_beauty_app/src/shared/widgets/appBar/text_appBar_widget.dart'
 import 'package:to_beauty_app/src/shared/widgets/forms/input_form_from_login_widget.dart';
 
 class CreateStorePage extends StatefulWidget {
-  const CreateStorePage({Key? key}) : super(key: key);
+  const CreateStorePage({Key? key, required this.username}) : super(key: key);
 
   @override
   _CreateStorePageState createState() => _CreateStorePageState();
+
+  final String username;
 }
 
 class _CreateStorePageState extends State<CreateStorePage> {
@@ -53,7 +56,12 @@ class _CreateStorePageState extends State<CreateStorePage> {
                     padding: const EdgeInsetsDirectional.fromSTEB(30, 30, 0, 0),
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage(
+                                      username: widget.username,
+                                    )));
                       },
                       child: const IconBackAppBar(
                         icon: Icons.arrow_back,
@@ -313,8 +321,15 @@ class _CreateStorePageState extends State<CreateStorePage> {
                                     latitude: _latitudeController,
                                     longitude: _longitudeController,
                                     user: _userController));
-                                Navigator.pushReplacementNamed(
-                                    context, '/home');
+                                Future.delayed(const Duration(seconds: 1))
+                                    .then((value) {
+                                  Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => HomePage(
+                                                  username: widget.username)))
+                                      .then((value) => setState(() {}));
+                                });
                               });
                             },
                             child: const Text(

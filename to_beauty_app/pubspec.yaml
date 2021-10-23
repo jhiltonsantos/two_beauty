@@ -22,6 +22,8 @@ dependencies:
   shrink_sidemenu: ^2.0.0+1-null-safety
   carousel_slider: ^4.0.0
   shared_preferences: ^2.0.8
+  splash_screen_view: ^3.0.0
+  flare_flutter: ^3.0.2
   
 
 dev_dependencies:

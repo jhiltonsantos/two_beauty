@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_beauty_app/src/pages/home/home_page.dart';
 import 'package:to_beauty_app/src/pages/home/home_test_page.dart';
 import 'package:to_beauty_app/src/pages/login/login_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
@@ -184,8 +185,12 @@ class _LoginPageState extends State<LoginPage> {
                                           user: login, password: password);
 
                                   if (userLogin == true) {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/home');
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage(
+                                                  username: login,
+                                                )));
                                     /*Navigator.push(
                                         context,
                                         MaterialPageRoute(

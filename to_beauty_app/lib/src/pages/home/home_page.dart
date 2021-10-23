@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/src/models/login_user_models.dart';
 import 'package:to_beauty_app/src/models/store_models.dart';
-import 'package:to_beauty_app/src/models/user_models.dart';
-import 'package:to_beauty_app/src/pages/login/login_controller.dart';
 import 'package:to_beauty_app/src/pages/store/store_get_all_controller.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
+import 'package:to_beauty_app/src/shared/constants.dart';
 import 'package:to_beauty_app/src/shared/widgets/appBar/custom_app_bar_widget.dart';
 import 'package:to_beauty_app/src/shared/widgets/homeWidgets/slider_menu_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.username}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
+
+  final String username;
 }
 
 class _HomePageState extends State<HomePage> {
@@ -23,16 +23,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<List<UserClass>> user = LoginController.getUser();
     return SideMenu(
       key: _endSideMenuKey,
       background: shiniessYellow,
       type: SideMenuType.slide,
-      menu: const BuildMenu(),
+      menu: BuildMenu(username: widget.username),
       radius: BorderRadius.circular(5),
       child: SideMenu(
         key: _sideMenuKey,
-        menu: const BuildMenu(),
+        menu: BuildMenu(username: widget.username),
         type: SideMenuType.slide,
         inverse: true,
         background: shiniessYellow,
@@ -41,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           appBar: CustomAppBar(
             sideMenuKey: _sideMenuKey,
             endSideMenuKey: _endSideMenuKey,
-            name: 'hilton',
+            name: widget.username,
           ),
           key: scaffoldKey,
           backgroundColor: Colors.white,
@@ -113,8 +112,8 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.network(
-                                  'https://picsum.photos/seed/200/300',
-                                  fit: BoxFit.scaleDown,
+                                  IMAGE_SALON,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                               Padding(
@@ -124,12 +123,19 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      store.name,
-                                      style: const TextStyle(
-                                        fontFamily: 'Roboto',
-                                        fontSize: 18,
-                                      ),
+                                    Wrap(
+                                      children: [
+                                        Text(
+                                          store.name,
+                                          overflow: TextOverflow.ellipsis,
+                                          softWrap: false,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            fontFamily: 'Roboto',
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     Text(
                                       '${store.district}, ${store.city}',

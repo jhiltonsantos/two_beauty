@@ -74,17 +74,16 @@ class _InitialPageState extends State<InitialPage> {
                             fontSize: 38.0, fontWeight: FontWeight.w400),
                       ),
                       trailing: Container(
-                          child: SvgPicture.asset(
-                            'assets/images/logo.svg',
-                            color: Colors.yellowAccent,
-                            fit: BoxFit.scaleDown,
+                        height: 50,
+                        width: 50,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/logo.png'),
+                            fit: BoxFit.contain,
                           ),
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            color: secondaryColor,
-                            borderRadius: BorderRadius.circular(10),
-                          )),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(

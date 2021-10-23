@@ -23,8 +23,6 @@ class AppWidget extends StatelessWidget {
         '/': (context) => const InitialPage(),
         '/signup': (context) => const SignUpPage(),
         '/login': (context) => const LoginPage(),
-        '/create_estab': (context) => const CreateStorePage(),
-        '/home': (context) => const HomePage(),
       },
     );
   }

@@ -18,4 +18,6 @@ class UserClass {
       password: json['password'] as String,
     );
   }
+
+  get data => null;
 }
