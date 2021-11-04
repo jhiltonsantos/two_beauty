@@ -123,18 +123,19 @@ class _InitialPageState extends State<InitialPage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 30.0),
-              child: Container(
-                child: CarouselSlider(
-                  items: imageSliders,
-                  options: CarouselOptions(
-                      enlargeCenterPage: true,
-                      scrollDirection: Axis.horizontal,
-                      autoPlay: true),
+              child: CarouselSlider(
+                items: imageSliders,
+                options: CarouselOptions(
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                  autoPlay: true,
+                  pauseAutoPlayOnTouch: true,
+                  autoPlayCurve: Curves.decelerate,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
+              padding: const EdgeInsets.only(top: 50.0, bottom: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
