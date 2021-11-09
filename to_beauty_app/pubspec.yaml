@@ -24,7 +24,7 @@ dependencies:
   shared_preferences: ^2.0.8
   splash_screen_view: ^3.0.0
   flare_flutter: ^3.0.2
-  
+  google_maps_flutter: ^1.0.6
 
 dev_dependencies:
   flutter_test:

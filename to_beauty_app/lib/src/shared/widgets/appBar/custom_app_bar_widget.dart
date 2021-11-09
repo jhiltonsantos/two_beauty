@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'package:to_beauty_app/src/pages/maps/test_maps.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
 import 'package:to_beauty_app/src/shared/widgets/login/alert_error_login_widget.dart';
 
@@ -80,7 +81,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                     child: InkWell(
                       onTap: () {
-                        alertLogin(context, 'Ainda não implementado');
+                        //alertLogin(context, 'Ainda não implementado');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const TestMap()));
                       },
                       child: Container(
                         width: 340,
