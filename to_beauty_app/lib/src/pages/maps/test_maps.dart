@@ -9,21 +9,37 @@ class TestMap extends StatefulWidget {
 }
 
 class _TestMapState extends State<TestMap> {
+  late GoogleMapController mapController;
+
+  var latitude = -5.083702;
+  var longitude = -42.803676;
+
+  void _onMapCreated(controller) {
+    setState(() {
+      mapController = controller;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Interactive Maps Marker'),
+        title: const Text("Perto de Você"),
+        centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text('Hilton'),
-          ],
+      body: Stack(children: <Widget>[
+        Container(
+          height: MediaQuery.of(context).size.height - 50.0,
+          width: MediaQuery.of(context).size.width,
+          child: GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: LatLng(latitude, longitude),
+              zoom: 15,
+            ),
+          ),
         ),
-      ),
+      ]),
     );
   }
 }

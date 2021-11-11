@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:to_beauty_app/src/pages/maps/test_maps.dart';
 import 'package:to_beauty_app/src/shared/colors.dart';
-import 'package:to_beauty_app/src/shared/widgets/login/alert_error_login_widget.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar(

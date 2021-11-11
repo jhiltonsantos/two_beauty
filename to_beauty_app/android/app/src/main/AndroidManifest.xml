@@ -4,6 +4,11 @@
    <application
         android:label="to_beauty_app"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+            android:name="com.google.anroi.geo.API_KEY"
+            android:value="AIzaSyBX1_F8wcDA8-YE81xmJTBz2MpHKNmWj1A"/>
+
         <activity
             android:name=".MainActivity"
             
@@ -39,5 +44,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        
+        
     </application>
 </manifest>
