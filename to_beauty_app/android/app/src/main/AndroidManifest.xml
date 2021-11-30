@@ -1,17 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.to_beauty_app">
-    <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
    <application
         android:label="to_beauty_app"
         android:icon="@mipmap/ic_launcher">
-
-        <meta-data
-            android:name="com.google.anroi.geo.API_KEY"
-            android:value="AIzaSyBX1_F8wcDA8-YE81xmJTBz2MpHKNmWj1A"/>
-
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyD0qBxYechVt9ibozWktY8tfsdEQaIkgX4"/>
         <activity
             android:name=".MainActivity"
-            
+
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

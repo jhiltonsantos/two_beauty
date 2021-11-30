@@ -22,10 +22,9 @@ dependencies:
   shrink_sidemenu: ^2.0.0+1-null-safety
   carousel_slider: ^4.0.0
   shared_preferences: ^2.0.8
-  splash_screen_view: ^3.0.0
   flare_flutter: ^3.0.2
-  google_maps_flutter: ^0.5.25+1
-  flutter_polyline_points: ^1.0.0
+  google_maps_flutter: ^2.1.1
+  geolocator: ^8.0.0
 
 dev_dependencies:
   flutter_test:
