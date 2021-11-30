@@ -20,13 +20,20 @@ class _TestMapState extends State<TestMap> {
   @override
   void initState() {
     super.initState();
-    _getCurrentPosition();
   }
 
-  Future<void> _getCurrentPosition() async {
+  Future<void> _onMapCreated(GoogleMapController controller) async {
+    _controller.complete(controller);
     final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    print(position);
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(position.latitude, position.longitude),
+          zoom: 14,
+        ),
+      ),
+    );
   }
 
   @override
@@ -39,13 +46,12 @@ class _TestMapState extends State<TestMap> {
         children: <Widget>[
           GoogleMap(
             mapType: MapType.normal,
+            myLocationButtonEnabled: true,
             initialCameraPosition: CameraPosition(
               target: LatLng(_latitude, _longitude),
               zoom: 19.151926040649414,
             ),
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
+            onMapCreated: _onMapCreated,
           ),
         ],
       ),
