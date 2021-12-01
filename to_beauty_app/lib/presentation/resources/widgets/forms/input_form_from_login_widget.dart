@@ -7,13 +7,15 @@ class InputFormFromLogin extends StatelessWidget {
       required this.controller,
       required this.obscureText,
       required this.typeKeyboard,
-      required this.value})
+      required this.value,
+      this.focusNode})
       : super(key: key);
 
   final TextEditingController controller;
   final bool obscureText;
   final TextInputType typeKeyboard;
   final String value;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,8 @@ class InputFormFromLogin extends StatelessWidget {
         }
         return null;
       },
-      autofocus: false,
+      autofocus: true,
+      focusNode: focusNode,
       cursorColor: ColorManager.shiniessBrown,
       controller: controller,
       obscureText: obscureText,

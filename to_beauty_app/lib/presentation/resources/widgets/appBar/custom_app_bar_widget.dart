@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/presentation/pages/maps/test_maps.dart';
+import 'package:to_beauty_app/presentation/pages/maps/map_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar(
@@ -79,10 +80,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child: InkWell(
                     onTap: () {
                       //alertLogin(context, 'Ainda não implementado');
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const TestMap()));
+                      Navigator.pushReplacementNamed(context, Routes.mapRoute);
                     },
                     child: Container(
                       width: 340,

@@ -186,12 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                                           user: login, password: password);
 
                                   if (userLogin == true) {
-                                    /*Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => HomePage(
-                                                  username: login,
-                                                )));*/
+                                    /* CHAMAR GET PARA PEGAR INFORMACOES DO CLIENTE */
                                     Navigator.pushNamed(
                                         context, Routes.homeRoute);
                                   } else {

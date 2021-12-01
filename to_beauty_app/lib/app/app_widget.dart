@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/pages/splash/splash_page.dart';
+import 'package:provider/provider.dart';
+import 'package:to_beauty_app/presentation/pages/maps/map_page.dart';
+import 'package:to_beauty_app/presentation/pages/maps/place_list_viewmodel.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
@@ -19,7 +21,7 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.testMap,
+      initialRoute: Routes.mapRoute,
       title: AppStrings.nameAppUpper,
       theme: ThemeData(
         primaryColor: ColorManager.primaryColor,
