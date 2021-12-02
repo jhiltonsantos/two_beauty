@@ -6,7 +6,7 @@ import 'package:to_beauty_app/domain/user_models.dart';
 
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class HomePageController {
+class HomeService {
   static Future<UserClass?> getUser(
       {required String username, required String email}) async {
     final Uri userURL =

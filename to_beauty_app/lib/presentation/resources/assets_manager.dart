@@ -2,6 +2,8 @@ const String IMAGE_PATH = "assets/images";
 
 class ImageAssets {
   static const String logoImage = "$IMAGE_PATH/logo.png";
+  static const String logoRemoveBgImage = "$IMAGE_PATH/logo-removebg.png";
+  static const String logoCoquinhaImage = "$IMAGE_PATH/logo-coquinha.png";
   static const String introImage1 = "$IMAGE_PATH/intro1.jpg";
   static const String introImage2 = "$IMAGE_PATH/intro2.jpg";
   static const String introImage3 = "$IMAGE_PATH/intro3.jpg";

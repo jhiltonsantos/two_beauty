@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';

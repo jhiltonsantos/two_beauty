@@ -21,7 +21,7 @@ class _AppWidgetState extends State<AppWidget> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.mapRoute,
+      initialRoute: Routes.splashRoute,
       title: AppStrings.nameAppUpper,
       theme: ThemeData(
         primaryColor: ColorManager.primaryColor,

@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:map_launcher/map_launcher.dart';
+import 'package:map_launcher/map_launcher.dart' as prefix0;
 import 'package:to_beauty_app/presentation/pages/maps/place_list_viewmodel.dart';
 import 'package:to_beauty_app/presentation/pages/maps/place_viewmodel.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/map/place_list_widget.dart';
 
@@ -55,7 +56,17 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Future<void> _openMapsFor(PlaceViewModel view) async {}
+  // Vai para o mapa ao clicar no estabelecimento
+  Future<void> _openMapsFor(PlaceViewModel view) async {
+    if (await prefix0.MapLauncher.isMapAvailable(prefix0.MapType.google) !=
+        null) {
+      await prefix0.MapLauncher.showMarker(
+          mapType: prefix0.MapType.google,
+          coords: prefix0.Coords(view.latitude, view.longitude),
+          title: view.name,
+          description: view.name);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +90,25 @@ class _MapPageState extends State<MapPage> {
           ),
           SafeArea(
               child: Padding(
-            padding: const EdgeInsets.only(top: 5.0, left: 20.0, right: 65.0),
+            padding: const EdgeInsets.only(top: 5.0, left: 10.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(1, 55),
+                primary: ColorManager.whiteColor,
+                shadowColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                elevation: 5.0,
+              ),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, Routes.homeRoute);
+              },
+              child: const Text("Voltar"),
+            ),
+          )),
+          SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.only(top: 5.0, left: 60.0, right: 65.0),
             child: TextField(
               onSubmitted: (value) {
                 viewModel.fetchPlacesByKeywordAndPosition(value,

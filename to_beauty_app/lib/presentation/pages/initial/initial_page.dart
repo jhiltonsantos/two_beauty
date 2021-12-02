@@ -66,7 +66,7 @@ class _InitialPageState extends State<InitialPage> {
     return Scaffold(
       backgroundColor: ColorManager.whiteColor,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
+        preferredSize: const Size.fromHeight(170),
         child: Container(
           margin: const EdgeInsets.only(top: 50),
           child: Center(
@@ -78,18 +78,6 @@ class _InitialPageState extends State<InitialPage> {
                     title: Text(
                       _mainModel.title,
                       style: textAppName(),
-                    ),
-                    trailing: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        image: DecorationImage(
-                          image: AssetImage(_mainModel.image),
-                          fit: BoxFit.contain,
-                        ),
-                      ),
                     ),
                   ),
                 ),
@@ -148,10 +136,14 @@ class _InitialPageState extends State<InitialPage> {
                 cardLoginCadastro(AppStrings.signupText, Icons.arrow_upward,
                     () {
                   setState(() {
+                    /* Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUpPage())); */
                     Navigator.pushNamed(context, Routes.registerRoute);
                   });
                 }),
-                cardLoginCadastro(AppStrings.signupText, Icons.east, () {
+                cardLoginCadastro(AppStrings.loginText, Icons.east, () {
                   setState(() {
                     Navigator.pushNamed(context, Routes.loginRoute);
                   });

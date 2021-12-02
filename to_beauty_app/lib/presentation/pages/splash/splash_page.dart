@@ -6,14 +6,14 @@ import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+class SplashScreenWidget extends StatefulWidget {
+  const SplashScreenWidget({Key? key}) : super(key: key);
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  State<SplashScreenWidget> createState() => _SplashScreenWidgetState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashScreenWidgetState extends State<SplashScreenWidget> {
   Timer? _timer;
 
   _goNextScreen() {
@@ -27,6 +27,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    _startDelay();
     /* _startDelay(); */
   }
 
@@ -38,48 +39,56 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreenWidget(),
-    );
-  }
-}
-
-class SplashScreenWidget extends StatelessWidget {
-  const SplashScreenWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorManager.splashBackgroud,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 100.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Center(
+                      child: Container(
+                    height: 260,
+                    width: 800,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(28)),
+                      image: DecorationImage(
+                        image: AssetImage(ImageAssets.logoRemoveBgImage),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  )),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Center(
+                    child: SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: FlareActor(
+                        ImageFlareAssets.loadingFlare,
+                        animation: 'loading',
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Center(
                 child: Container(
-              height: 180,
-              width: 180,
+              width: 120,
+              height: 120,
               decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(28)),
                 image: DecorationImage(
-                  image: AssetImage(ImageAssets.logoImage),
+                  image: AssetImage(ImageAssets.logoCoquinhaImage),
                   fit: BoxFit.contain,
                 ),
               ),
-            )),
-            const SizedBox(
-              height: 65,
-            ),
-            const Center(
-              child: SizedBox(
-                width: 80,
-                height: 80,
-                child: FlareActor(
-                  ImageFlareAssets.loadingFlare,
-                  animation: 'loading',
-                  fit: BoxFit.contain,
-                ),
-              ),
-            )
+            ))
           ],
         ));
   }

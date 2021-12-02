@@ -12,7 +12,7 @@ class StoreGetController {
     // Recuperando o token do login
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
-    print("Token API: $token");
+    print("Token API Estabelecimento: $token");
 
     var header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
