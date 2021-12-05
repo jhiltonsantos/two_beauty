@@ -3,6 +3,8 @@ import 'package:to_beauty_app/domain/store_models.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
 import 'package:to_beauty_app/presentation/pages/store_create/store_controller.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_create_store.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/text_appBar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
@@ -48,27 +50,9 @@ class _CreateStorePageState extends State<CreateStorePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(30, 30, 0, 0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()));
-                      },
-                      child: const IconBackAppBar(
-                        icon: Icons.arrow_back,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                      child: TextAppBar(text: 'Cadastre seu negócio'))
-                ],
+              const AppBarPersonalize(
+                text: AppStrings.appBarCreateStore,
+                route: HomePage(),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(35, 0, 35, 0),

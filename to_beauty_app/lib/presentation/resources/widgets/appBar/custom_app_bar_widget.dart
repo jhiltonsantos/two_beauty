@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
+import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar(
@@ -46,11 +47,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     alignment: const AlignmentDirectional(-0.75, 0.55),
                     child: Text(
                       'Olá, ${widget.name}',
-                      style: const TextStyle(
-                        fontFamily: 'Roboto',
-                        color: Colors.black,
-                        fontSize: 24,
-                      ),
+                      style: styleTitleNameUser(),
                     ),
                   ),
                   InkWell(

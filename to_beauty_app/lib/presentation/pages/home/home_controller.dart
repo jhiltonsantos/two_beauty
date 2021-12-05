@@ -2,12 +2,35 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/domain/store_models.dart';
+import 'package:to_beauty_app/domain/store_get_models.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
+class UserData {
+  int id;
+  String username;
+  String email;
+  String firstName;
+
+  UserData(
+      {required this.id,
+      required this.username,
+      required this.email,
+      required this.firstName});
+
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(
+        id: json['id'] as int,
+        username: json['username'] as String,
+        email: json['email'] as String,
+        firstName: json['first_name'] as String);
+  }
+
+  get data => null;
+}
+
 class StoreGetController {
-  static Future<List<Store>> getAllEstabelecimentos() async {
-    final Uri storeUrl = Uri.parse(AppConstants.STORE_URL);
+  static Future<List<GetStore>> getAllEstabelecimentos() async {
+    final Uri storeUrl = Uri.parse(AppConstants.STORE_ALL_URL);
 
     // Recuperando o token do login
     var prefs = await SharedPreferences.getInstance();
@@ -24,11 +47,12 @@ class StoreGetController {
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);
-      final estabelecimentos = <Store>[];
+      final estabelecimentos = <GetStore>[];
 
       for (Map<String, dynamic> map in listResponse) {
-        Store store = Store.fromJson(map);
+        GetStore store = GetStore.fromJson(map);
         estabelecimentos.add(store);
+        print(store);
       }
       return estabelecimentos;
     } else {
@@ -38,7 +62,7 @@ class StoreGetController {
 }
 
 class HomeController {
-  static Future<String> getUserName() async {
+  static Future<String> getUserData() async {
     final Uri getName = Uri.parse(AppConstants.USER_GET_NAME);
 
     var prefs = await SharedPreferences.getInstance();

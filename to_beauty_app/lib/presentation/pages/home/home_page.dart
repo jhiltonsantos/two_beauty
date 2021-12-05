@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+import 'package:to_beauty_app/domain/store_get_models.dart';
 
-import 'package:to_beauty_app/domain/store_models.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_controller.dart';
+import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/custom_app_bar_widget.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 _appBarData(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
-  Future<String> user = HomeController.getUserName();
+  Future<String> user = HomeController.getUserData();
   return FutureBuilder(
       future: user,
       builder: (context, snapshot) {
@@ -73,7 +74,6 @@ _viewAppBar(users, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
 }
 
 _body(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
-  /* Future<List<Store>> store = StoreGetController.getAllEstabelecimentos(); */
   Future<List> store = StoreGetController.getAllEstabelecimentos();
   return FutureBuilder(
       future: store,
@@ -95,7 +95,7 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
   return ListView.builder(
       itemCount: stores != null ? stores.length : 0,
       itemBuilder: (context, index) {
-        Store store = stores[index];
+        GetStore store = stores[index];
         return Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(35, 0, 35, 0),
           child: SingleChildScrollView(
@@ -173,11 +173,12 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
                           ),
                           InkWell(
                             onTap: () {
-                              scaffoldKey.currentState!
-                                  .showSnackBar(const SnackBar(
-                                content: Text('Ainda não implementado'),
-                                backgroundColor: Colors.red,
-                              ));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => StoreDetail(
+                                            id: store.id,
+                                          )));
                             },
                             child: const Icon(
                               Icons.arrow_forward,

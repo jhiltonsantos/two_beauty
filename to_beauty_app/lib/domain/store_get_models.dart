@@ -1,4 +1,5 @@
-class Store {
+class GetStore {
+  int id;
   String name;
   String cnpj;
   String city;
@@ -12,7 +13,8 @@ class Store {
   String latitude;
   String longitude;
 
-  Store({
+  GetStore({
+    required this.id,
     required this.name,
     required this.city,
     required this.cnpj,
@@ -27,8 +29,9 @@ class Store {
     required this.longitude,
   });
 
-  factory Store.fromJson(Map<String, dynamic> json) {
-    return Store(
+  factory GetStore.fromJson(Map<String, dynamic> json) {
+    return GetStore(
+      id: json['id'] as int,
       name: json['nome'] as String,
       cnpj: json['cnpj'] as String,
       city: json['cidade'] as String,

@@ -48,3 +48,32 @@ TextStyle subtitleTextButtonAccent() {
   return const TextStyle(
       fontFamily: 'Roboto', color: Colors.blueAccent, fontSize: 14.0);
 }
+
+TextStyle styleTitleNameUser() {
+  return const TextStyle(
+      fontFamily: 'Roboto', color: Colors.black, fontSize: 24);
+}
+
+TextStyle styleTitleAgenda() {
+  return const TextStyle(
+      fontFamily: 'Roboto',
+      color: Colors.black,
+      fontSize: 26,
+      fontWeight: FontWeight.w800);
+}
+
+TextStyle styleTitleStoreDetailPage() {
+  return const TextStyle(
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: 28,
+  );
+}
+
+TextStyle styleSubtitleStoreDetailPage() {
+  return const TextStyle(
+    fontFamily: 'Roboto',
+    color: Colors.black,
+    fontSize: 22,
+  );
+}

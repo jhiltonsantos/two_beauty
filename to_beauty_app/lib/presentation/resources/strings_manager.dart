@@ -5,8 +5,11 @@ class AppConstants {
   static const USER_CREATE = '$API_URL/user/';
   static const USER_GET = '$API_URL/';
   static const LOGIN_USER = '$API_URL/api/token/';
-  static const STORE_URL = '$API_URL/estabelecimento/';
+  static const STORE_URL = '$API_URL/estabelecimento';
+  static const STORE_ALL_URL = '$API_URL/estabelecimento/';
+  static const SERVICE_ALL_URL = '$API_URL/servico';
   static const USER_GET_NAME = '$API_URL/user/get/';
+  static const AGENDA_CREATE = '$API_URL/horario/';
 
   static const String API_LOCATION_KEY =
       "AIzaSyD0qBxYechVt9ibozWktY8tfsdEQaIkgX4";
@@ -50,4 +53,7 @@ class AppStrings {
       "Não foi possível realizar o cadastro. Verifique seus dados.";
   static const String failLoginDataUser = "Usuário ou senha incorretos";
   static const String listMap = "Lista de Salões";
+  static const String appBarCreateStore = "Cadastre seu negócio";
+  static const String appBarAgenda = "Agendamento";
+  static const String titleService = "Qual serviço\nvocê deseja?";
 }
