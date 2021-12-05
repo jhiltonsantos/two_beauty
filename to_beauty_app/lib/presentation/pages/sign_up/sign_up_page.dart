@@ -1,9 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_beauty_app/domain/user_models.dart';
 import 'package:to_beauty_app/presentation/pages/sign_up/sign_up_controller.dart';
+import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
+import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/text_appBar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/account_type_widget.dart';
@@ -61,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         splashColor: ColorManager.primaryColor,
                         onTap: () {
                           setState(() {
-                            Navigator.pushNamed(context, '/');
+                            Navigator.pushNamed(context, Routes.mainRoute);
                           });
                         },
                         child: const IconBackAppBar(icon: Icons.arrow_back),
@@ -69,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(20, 35, 0, 0),
-                      child: TextAppBar(text: 'Cadastre-se'),
+                      child: TextAppBar(text: AppStrings.signupPageRegister),
                     ),
                   ],
                 ),
@@ -87,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(36, 30, 0, 0),
                             child: Text(
-                              'Faça seu login com as seguintes opções:',
+                              AppStrings.chooseOptionSignUp,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontFamily: 'Roboto',
@@ -105,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   0, 15, 0, 0),
                               child: AccountTypeButton(
                                   image: SvgPicture.asset(
-                                      'assets/images/google-logo.svg',
+                                      ImageAssets.logoGoogle,
                                       color: ColorManager.shiniessBrown)),
                             ),
                             Padding(
@@ -113,7 +116,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   0, 15, 0, 0),
                               child: AccountTypeButton(
                                   image: SvgPicture.asset(
-                                      'assets/images/facebook-logo.svg',
+                                      ImageAssets.logoFacebook,
                                       color: ColorManager.shiniessBrown)),
                             )
                           ],
@@ -181,14 +184,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                       password: _passwordController.text));
 
                                   if (pass == true) {
-                                    Navigator.popAndPushNamed(context, '/');
+                                    Navigator.popAndPushNamed(
+                                        context, Routes.mainRoute);
                                   } else {
-                                    alertSignup(context,
-                                        'Não foi possível realizar o cadastro. Verifique seus dados.');
+                                    alertSignup(
+                                        context, AppStrings.failCreateDataUser);
                                   }
                                 },
                                 child: const Text(
-                                  'Criar Conta',
+                                  AppStrings.createAccount,
                                   style: TextStyle(
                                     color: ColorManager.shiniessBrown,
                                     fontWeight: FontWeight.w500,
@@ -197,10 +201,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 style: ElevatedButton.styleFrom(
                                   fixedSize: const Size(260, 50),
                                   primary: ColorManager.secondaryColor,
-                                  textStyle: const TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 19,
-                                  ),
+                                  textStyle: textButtonLoginSignup(),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
@@ -211,24 +212,15 @@ class _SignUpPageState extends State<SignUpPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Text(
-                                  'Já possui uma conta?',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontSize: 14.0),
-                                ),
+                                Text(AppStrings.haveAnAccountSingUp,
+                                    style: subtitleTextButton()),
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/login');
+                                      Navigator.pushNamed(
+                                          context, Routes.loginRoute);
                                     },
-                                    child: const Text(
-                                      'Faça login',
-                                      style: TextStyle(
-                                          color: Colors.blueAccent,
-                                          fontFamily: 'Roboto',
-                                          fontSize: 14.0),
-                                    ))
+                                    child: Text(AppStrings.doLoginPage,
+                                        style: subtitleTextButtonAccent())),
                               ],
                             )
                           ],

@@ -10,7 +10,7 @@ class LoginController {
   static Future<bool?> loginUser(
       {required String user, required String password}) async {
     bool value;
-    final Uri loginUri = Uri.parse(AppStrings.LOGIN_USER);
+    final Uri loginUri = Uri.parse(AppConstants.LOGIN_USER);
 
     Map data = {
       "username": user,
@@ -41,7 +41,7 @@ class LoginController {
   }
 
   static Future<List<UserClass>> getUser() async {
-    final Uri userUrl = Uri.parse(AppStrings.USER_GET);
+    final Uri userUrl = Uri.parse(AppConstants.USER_GET);
 
     // Recuperando o token do login
     var prefs = await SharedPreferences.getInstance();

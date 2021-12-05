@@ -11,6 +11,8 @@ import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/map/place_list_widget.dart';
+import 'package:to_beauty_app/presentation/pages/locations/locations_test.dart'
+    as locations;
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -42,8 +44,9 @@ class _MapPageState extends State<MapPage> {
     }).toSet();
   }
 
+  final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    _controller.complete(controller);
+    /* _controller.complete(controller);
     _currentPosition = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     controller.animateCamera(
@@ -53,7 +56,22 @@ class _MapPageState extends State<MapPage> {
           zoom: 14,
         ),
       ),
-    );
+    ); */
+    final googleOffices = await locations.getGoogleOffices();
+    setState(() {
+      _markers.clear();
+      for (final office in googleOffices.offices) {
+        final marker = Marker(
+          markerId: MarkerId(office.name),
+          position: LatLng(office.lat, office.lng),
+          infoWindow: InfoWindow(
+            title: office.name,
+            snippet: office.address,
+          ),
+        );
+        _markers[office.name] = marker;
+      }
+    });
   }
 
   // Vai para o mapa ao clicar no estabelecimento
@@ -80,7 +98,8 @@ class _MapPageState extends State<MapPage> {
               myLocationEnabled: true,
               myLocationButtonEnabled: true,
               mapType: viewModel.mapType,
-              markers: _getPlaceMarkers(viewModel.places),
+              //markers: _getPlaceMarkers(viewModel.places),
+              markers: _markers.values.toSet(),
               initialCameraPosition: CameraPosition(
                 target: LatLng(_latitude, _longitude),
                 zoom: 14,
@@ -103,7 +122,10 @@ class _MapPageState extends State<MapPage> {
               onPressed: () {
                 Navigator.pushReplacementNamed(context, Routes.homeRoute);
               },
-              child: const Text("Voltar"),
+              child: const Icon(
+                Icons.keyboard_backspace,
+                color: ColorManager.blueGreyColor,
+              ),
             ),
           )),
           SafeArea(
@@ -126,36 +148,33 @@ class _MapPageState extends State<MapPage> {
               ),
             ),
           )),
-          Visibility(
-            visible: viewModel.places.isNotEmpty ? true : false,
-            child: SafeArea(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 7.0, vertical: 20.0),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: ElevatedButton(
-                    child: const Text(
-                      AppStrings.listMap,
-                      style: TextStyle(color: ColorManager.blueGreyColor),
-                    ),
-                    onPressed: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) => PlaceListWidget(
-                          places: viewModel.places,
-                          onSelected: _openMapsFor,
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(140, 50),
-                      primary: ColorManager.whiteColor,
-                      shadowColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      elevation: 5.0,
-                    ),
+          SafeArea(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 7.0, vertical: 20.0),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: ElevatedButton(
+                  child: const Text(
+                    AppStrings.listMap,
+                    style: TextStyle(color: ColorManager.blueGreyColor),
+                  ),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => PlaceListWidget(
+                        places: viewModel.places,
+                        onSelected: _openMapsFor,
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(140, 50),
+                    primary: ColorManager.whiteColor,
+                    shadowColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    elevation: 5.0,
                   ),
                 ),
               ),

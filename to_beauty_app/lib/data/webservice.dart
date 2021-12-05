@@ -8,7 +8,7 @@ class WebService {
   Future<List<PlaceModel>> fetchPlacesByKeywordAndPosition(
       String keyword, double latitude, double longitude) async {
     final url =
-        AppStrings.urlPlaceKeywordLocation(keyword, latitude, longitude);
+        AppConstants.urlPlaceKeywordLocation(keyword, latitude, longitude);
 
     final response = await http.get(Uri.parse(url));
 

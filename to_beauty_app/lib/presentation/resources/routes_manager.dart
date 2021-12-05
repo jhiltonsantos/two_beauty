@@ -6,7 +6,7 @@ import 'package:to_beauty_app/presentation/pages/maps/map_page.dart';
 import 'package:to_beauty_app/presentation/pages/maps/place_list_viewmodel.dart';
 import 'package:to_beauty_app/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:to_beauty_app/presentation/pages/splash/splash_page.dart';
-import 'package:to_beauty_app/presentation/pages/store/create_store_page.dart';
+import 'package:to_beauty_app/presentation/pages/store_create/create_store_page.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -41,15 +41,9 @@ class RouteGenerator {
           ),
         );
       case Routes.homeRoute:
-        return MaterialPageRoute(
-            builder: (_) => const HomePage(
-                  username: 'Hilton',
-                ));
+        return MaterialPageRoute(builder: (_) => const HomePage());
       case Routes.registerStoreRoute:
-        return MaterialPageRoute(
-            builder: (_) => const CreateStorePage(
-                  username: 'Hilton',
-                ));
+        return MaterialPageRoute(builder: (_) => const CreateStorePage());
       default:
         return unDefinedRoute();
     }

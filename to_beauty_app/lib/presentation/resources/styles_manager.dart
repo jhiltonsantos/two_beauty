@@ -33,3 +33,18 @@ TextStyle textHelloProfile() {
   return const TextStyle(
       fontFamily: 'Roboto', color: Colors.black, fontSize: 24);
 }
+
+TextStyle textButtonLoginSignup() {
+  return const TextStyle(
+      fontFamily: 'Roboto', color: Colors.black, fontSize: 19.0);
+}
+
+TextStyle subtitleTextButton() {
+  return const TextStyle(
+      fontFamily: 'Roboto', color: Colors.black, fontSize: 14.0);
+}
+
+TextStyle subtitleTextButtonAccent() {
+  return const TextStyle(
+      fontFamily: 'Roboto', color: Colors.blueAccent, fontSize: 14.0);
+}

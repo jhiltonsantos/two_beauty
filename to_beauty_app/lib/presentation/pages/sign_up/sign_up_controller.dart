@@ -5,8 +5,8 @@ import 'package:to_beauty_app/domain/user_models.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
 class ApiController {
-  final Uri apiUri = Uri.parse(AppStrings.API_URL);
-  final Uri apiCreate = Uri.parse(AppStrings.USER_CREATE);
+  final Uri apiUri = Uri.parse(AppConstants.API_URL);
+  final Uri apiCreate = Uri.parse(AppConstants.USER_CREATE);
 
   Future<bool> createUser(UserClass user) async {
     Map data = {

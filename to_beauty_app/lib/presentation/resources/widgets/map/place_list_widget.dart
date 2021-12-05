@@ -32,7 +32,7 @@ class PlaceListWidget extends StatelessWidget {
                         fit: BoxFit.cover,
                       )
                     : Image.network(
-                        AppStrings.urlForReferenceImage(place.photoURL),
+                        AppConstants.urlForReferenceImage(place.photoURL),
                         fit: BoxFit.cover,
                       )),
           ),

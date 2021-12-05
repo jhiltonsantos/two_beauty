@@ -26,8 +26,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
   @override
   void initState() {
-    super.initState();
     _startDelay();
+    super.initState();
+
     /* _startDelay(); */
   }
 
@@ -44,39 +45,37 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 100.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                      child: Container(
-                    height: 260,
-                    width: 800,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(28)),
-                      image: DecorationImage(
-                        image: AssetImage(ImageAssets.logoRemoveBgImage),
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  )),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Center(
-                    child: SizedBox(
-                      width: 80,
-                      height: 80,
-                      child: FlareActor(
-                        ImageFlareAssets.loadingFlare,
-                        animation: 'loading',
-                        fit: BoxFit.contain,
-                      ),
+            const SafeArea(child: SizedBox(height: 50)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                    child: Container(
+                  height: 260,
+                  width: 800,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(28)),
+                    image: DecorationImage(
+                      image: AssetImage(ImageAssets.logoRemoveBgImage),
+                      fit: BoxFit.contain,
                     ),
                   ),
-                ],
-              ),
+                )),
+                const SizedBox(
+                  height: 100,
+                ),
+                const Center(
+                  child: SizedBox(
+                    width: 80,
+                    height: 80,
+                    child: FlareActor(
+                      ImageFlareAssets.loadingFlare,
+                      animation: 'loading',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ],
             ),
             Center(
                 child: Container(

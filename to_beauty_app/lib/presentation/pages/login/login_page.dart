@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
+import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/text_appBar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/account_type_widget.dart';
@@ -74,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                         splashColor: ColorManager.primaryColor,
                         onTap: () {
                           setState(() {
-                            Navigator.pushNamed(context, '/');
+                            Navigator.pushNamed(context, Routes.mainRoute);
                           });
                         },
                         child: const IconBackAppBar(icon: Icons.arrow_back),
@@ -100,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(36, 30, 0, 0),
                             child: Text(
-                              'Faça seu login com as seguintes opções:',
+                              AppStrings.chooseOptionLogin,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontFamily: 'Roboto',
@@ -120,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                                   0, 15, 0, 0),
                               child: AccountTypeButton(
                                 image: SvgPicture.asset(
-                                  'assets/images/google-logo.svg',
+                                  ImageAssets.logoGoogle,
                                   color: ColorManager.shiniessBrown,
                                 ),
                               ),
@@ -130,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                                   0, 15, 0, 0),
                               child: AccountTypeButton(
                                 image: SvgPicture.asset(
-                                  'assets/images/facebook-logo.svg',
+                                  ImageAssets.logoFacebook,
                                   color: ColorManager.shiniessBrown,
                                 ),
                               ),
@@ -185,16 +188,15 @@ class _LoginPageState extends State<LoginPage> {
                                           user: login, password: password);
 
                                   if (userLogin == true) {
-                                    /* CHAMAR GET PARA PEGAR INFORMACOES DO CLIENTE */
                                     Navigator.pushNamed(
                                         context, Routes.homeRoute);
                                   } else {
                                     alertLogin(
-                                        context, 'Usuário ou senha incorretos');
+                                        context, AppStrings.failLoginDataUser);
                                   }
                                 },
                                 child: const Text(
-                                  'Log In',
+                                  AppStrings.entryAccount,
                                   style: TextStyle(
                                     color: ColorManager.shiniessBrown,
                                     fontWeight: FontWeight.w500,
@@ -217,23 +219,18 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const Text(
-                                  'Não possui uma conta?',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontSize: 14.0),
+                                Text(
+                                  AppStrings.dontHaveAccount,
+                                  style: subtitleTextButton(),
                                 ),
                                 TextButton(
                                     onPressed: () {
-                                      Navigator.pushNamed(context, '/signup');
+                                      Navigator.pushNamed(
+                                          context, Routes.registerRoute);
                                     },
-                                    child: const Text(
-                                      'Inscrever-se',
-                                      style: TextStyle(
-                                          color: Colors.blueAccent,
-                                          fontFamily: 'Roboto',
-                                          fontSize: 14.0),
+                                    child: Text(
+                                      AppStrings.doCreatePage,
+                                      style: subtitleTextButtonAccent(),
                                     ))
                               ],
                             )

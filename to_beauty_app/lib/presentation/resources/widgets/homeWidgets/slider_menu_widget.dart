@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
-import 'package:to_beauty_app/presentation/pages/store/create_store_page.dart';
+import 'package:to_beauty_app/presentation/pages/store_create/create_store_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 
 class BuildMenu extends StatefulWidget {
-  final String username;
-
-  const BuildMenu({Key? key, required this.username}) : super(key: key);
+  const BuildMenu({Key? key}) : super(key: key);
 
   @override
   State<BuildMenu> createState() => _BuildMenuState();
@@ -72,9 +71,7 @@ class _BuildMenuState extends State<BuildMenu> {
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return CreateStorePage(
-                    username: widget.username,
-                  );
+                  return const CreateStorePage();
                 }));
               },
               trailing: const Icon(Icons.store,
@@ -98,9 +95,8 @@ class _BuildMenuState extends State<BuildMenu> {
                 var prefs = await SharedPreferences.getInstance();
                 prefs.setBool('isLogged', false);
                 prefs.clear();
-                prefs.commit();
 
-                Navigator.pushReplacementNamed(context, '/');
+                Navigator.pushReplacementNamed(context, Routes.mainRoute);
               },
               trailing: const Icon(Icons.logout,
                   size: 60.0, color: ColorManager.shiniessBrown),

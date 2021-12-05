@@ -10,7 +10,7 @@ class HomeService {
   static Future<UserClass?> getUser(
       {required String username, required String email}) async {
     final Uri userURL =
-        Uri.parse('${AppStrings.USER_GET}/?username=$username&email=$email');
+        Uri.parse('${AppConstants.USER_GET}/?username=$username&email=$email');
 
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');

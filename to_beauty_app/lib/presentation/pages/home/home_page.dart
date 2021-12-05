@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
+
 import 'package:to_beauty_app/domain/store_models.dart';
-import 'package:to_beauty_app/presentation/pages/store/store_get_all_controller.dart';
+import 'package:to_beauty_app/presentation/pages/home/home_controller.dart';
+import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/custom_app_bar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/homeWidgets/slider_menu_widget.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.username}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
-
-  final String username;
 }
 
 class _HomePageState extends State<HomePage> {
@@ -23,32 +22,54 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SideMenu(
-      key: _endSideMenuKey,
-      background: ColorManager.shiniessYellow,
-      type: SideMenuType.slide,
-      menu: BuildMenu(username: widget.username),
-      radius: BorderRadius.circular(5),
-      child: SideMenu(
-        key: _sideMenuKey,
-        menu: BuildMenu(username: widget.username),
-        type: SideMenuType.slide,
-        inverse: true,
-        background: ColorManager.shiniessYellow,
-        radius: BorderRadius.circular(5),
-        child: Scaffold(
-          appBar: CustomAppBar(
-            sideMenuKey: _sideMenuKey,
-            endSideMenuKey: _endSideMenuKey,
-            name: widget.username,
-          ),
-          key: scaffoldKey,
-          backgroundColor: Colors.white,
-          body: _body(scaffoldKey, _sideMenuKey, _endSideMenuKey),
-        ),
-      ),
-    );
+    return _appBarData(scaffoldKey, _sideMenuKey, _endSideMenuKey);
   }
+}
+
+_appBarData(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
+  Future<String> user = HomeController.getUserName();
+  return FutureBuilder(
+      future: user,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Scaffold(
+            backgroundColor: ColorManager.whiteColor,
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        Object? users = snapshot.data;
+        return _viewAppBar(users, scaffoldKey, _sideMenuKey, _endSideMenuKey);
+      });
+}
+
+_viewAppBar(users, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
+  return SideMenu(
+    key: _endSideMenuKey,
+    background: ColorManager.shiniessYellow,
+    type: SideMenuType.slide,
+    menu: const BuildMenu(),
+    radius: BorderRadius.circular(5),
+    child: SideMenu(
+      key: _sideMenuKey,
+      menu: const BuildMenu(),
+      type: SideMenuType.slide,
+      inverse: true,
+      background: ColorManager.shiniessYellow,
+      radius: BorderRadius.circular(5),
+      child: Scaffold(
+        appBar: CustomAppBar(
+          sideMenuKey: _sideMenuKey,
+          endSideMenuKey: _endSideMenuKey,
+          name: users,
+        ),
+        key: scaffoldKey,
+        backgroundColor: Colors.white,
+        body: _body(scaffoldKey, _sideMenuKey, _endSideMenuKey),
+      ),
+    ),
+  );
 }
 
 _body(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
@@ -112,8 +133,8 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
-                                child: Image.network(
-                                  AppStrings.IMAGE_SALON,
+                                child: Image.asset(
+                                  ImageAssets.introImage1,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -175,20 +196,3 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
         );
       });
 }
-/*
-const Align(
-              alignment: AlignmentDirectional(-1, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                child: Text(
-                  'Próximos a você',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontFamily: 'Roboto',
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-            ),
-            
-*/
