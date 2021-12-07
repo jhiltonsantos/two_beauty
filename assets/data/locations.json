@@ -1,0 +1,23 @@
+{
+    "offices": [
+      {
+          "address": "Promorar, Teresina",
+          "id": "ChIJDW1RzIQxjgcR7FXZCpOGuf0",
+          "image": "https://lh3.googleusercontent.com/tpBMFN5os8K-qXIHiAX5SZEmN5fCzIGrj9FdJtbZPUkC91ookSoY520NYn7fK5yqmh1L1m3F2SJA58v6Qps3JusdrxoFSwk6Ajv2K88",
+          "lat": -5.145014199999999,
+          "lng": -42.7785503,
+          "name": "Barbearia Yuri do corte",
+          "phone": ""
+      },
+      {
+          "address": "R. do Telégrafo - Santo Antonio, Teresina",
+          "id": "ChIJsY2RDv4zjgcRtp8tQRcKpTA",
+          "image": "https://lh3.googleusercontent.com/tpBMFN5os8K-qXIHiAX5SZEmN5fCzIGrj9FdJtbZPUkC91ookSoY520NYn7fK5yqmh1L1m3F2SJA58v6Qps3JusdrxoFSwk6Ajv2K88",
+          "lat": -5.155221399999999,
+          "lng": -42.78129149999999,
+          "name": "Barbearia A.S Cortes",
+          "phone": ""
+      }
+
+    ]
+}
