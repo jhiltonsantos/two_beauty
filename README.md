@@ -1,1 +1,0 @@
-# 2beauty-app
