@@ -6,6 +6,7 @@ import 'package:to_beauty_app/presentation/pages/home/home_controller.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/custom_app_bar_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/homeWidgets/slider_menu_widget.dart';
 
@@ -152,19 +153,13 @@ _listView(stores, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
                                           overflow: TextOverflow.ellipsis,
                                           softWrap: false,
                                           maxLines: 1,
-                                          style: const TextStyle(
-                                            fontFamily: 'Roboto',
-                                            fontSize: 18,
-                                          ),
+                                          style: TextStyles.styleNameStore(),
                                         ),
                                       ],
                                     ),
                                     Text(
                                       '${store.district}, ${store.city}',
-                                      style: const TextStyle(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xFF9E9E9E),
-                                      ),
+                                      style: TextStyles.stylePlaceStore(),
                                     )
                                   ],
                                 ),

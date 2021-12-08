@@ -7,7 +7,7 @@ import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_contr
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_create_store.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class StoreDetail extends StatefulWidget {
   const StoreDetail({Key? key, required this.id}) : super(key: key);
@@ -67,7 +67,7 @@ _body(storeData, id) {
         Center(
           child: Text(
             store.name,
-            style: styleTitleStoreDetailPage(),
+            style: TextStyles.styleTitleStoreDetailPage(),
           ),
         ),
         Row(
@@ -77,7 +77,7 @@ _body(storeData, id) {
               padding: const EdgeInsetsDirectional.fromSTEB(35, 30, 35, 20),
               child: Text(
                 AppStrings.titleService,
-                style: styleSubtitleStoreDetailPage(),
+                style: TextStyles.styleSubtitleStoreDetailPage(),
               ),
             ),
           ],

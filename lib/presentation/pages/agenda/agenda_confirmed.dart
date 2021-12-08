@@ -6,7 +6,7 @@ import 'package:to_beauty_app/presentation/pages/agenda/agenda_page.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_create_store.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class AgendaConfirmed extends StatefulWidget {
   const AgendaConfirmed({
@@ -146,7 +146,8 @@ _body(
           Card(
             elevation: 5,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
             borderOnForeground: true,
             shadowColor: Colors.grey,
             color: ColorManager.silverColor,
@@ -167,11 +168,11 @@ _body(
                           Text(
                             service.name,
                             overflow: TextOverflow.ellipsis,
-                            style: styleSubtitleStoreDetailPage(),
+                            style: TextStyles.styleSubtitleStoreDetailPage(),
                           ),
                           Text(
                             "R\$ ${service.price.toStringAsFixed(2)}",
-                            style: styleSubtitleStoreDetailPage(),
+                            style: TextStyles.styleSubtitleStoreDetailPage(),
                           ),
                         ],
                       ),

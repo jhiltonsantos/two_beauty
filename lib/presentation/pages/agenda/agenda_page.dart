@@ -8,7 +8,7 @@ import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_create_store.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class AgendaPage extends StatefulWidget {
   const AgendaPage(
@@ -93,7 +93,7 @@ class _AgendaPageState extends State<AgendaPage> {
                           left: 15.0, top: 20.0, bottom: 5.0),
                       child: Text(
                         "Horários disponíveis",
-                        style: styleSubtitleStoreDetailPage(),
+                        style: TextStyles.styleSubtitleStoreDetailPage(),
                       ),
                     ),
                     for (int i = 8; i <= 19; i++)
@@ -190,7 +190,7 @@ _body(serviceData, DateTime selectedDate, String hour) {
             children: [
               Text(
                 service.name,
-                style: styleTitleAgenda(),
+                style: TextStyles.styleTitleAgenda(),
               ),
             ],
           ),
@@ -199,7 +199,7 @@ _body(serviceData, DateTime selectedDate, String hour) {
             children: [
               Text(
                 service.description,
-                style: styleSubtitleStoreDetailPage(),
+                style: TextStyles.styleSubtitleStoreDetailPage(),
               ),
             ],
           ),
@@ -208,7 +208,7 @@ _body(serviceData, DateTime selectedDate, String hour) {
             children: [
               Text(
                 "R\$ ${service.price.toStringAsFixed(2)}",
-                style: styleSubtitleStoreDetailPage(),
+                style: TextStyles.styleSubtitleStoreDetailPage(),
               ),
             ],
           )

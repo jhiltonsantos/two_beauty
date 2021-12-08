@@ -5,7 +5,6 @@ import 'package:to_beauty_app/domain/user_models.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
 class ApiController {
-  final Uri apiUri = Uri.parse(AppConstants.API_URL);
   final Uri apiCreate = Uri.parse(AppConstants.USER_CREATE);
 
   Future<bool> createUser(UserClass user) async {
@@ -23,14 +22,11 @@ class ApiController {
       },
       body: jsonEncode(data),
     );
-    print('Response: ${response.body}');
 
     if (response.statusCode == 201) {
       UserClass.fromJson(json.decode(response.body));
       return true;
     } else {
-      print("ERROR: ${response.statusCode}");
-      print('Falha ao criar usuario');
       return false;
     }
   }

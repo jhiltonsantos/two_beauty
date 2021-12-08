@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:to_beauty_app/domain/main_model.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
@@ -57,12 +56,6 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   Widget build(BuildContext context) {
-    MainModel _mainModel = MainModel(
-      title: AppStrings.nameAppUpper,
-      subtitle: AppStrings.subtitleMainScreen,
-      image: ImageAssets.logoImage,
-    );
-
     return Scaffold(
       backgroundColor: ColorManager.whiteColor,
       appBar: PreferredSize(
@@ -76,8 +69,8 @@ class _InitialPageState extends State<InitialPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListTile(
                     title: Text(
-                      _mainModel.title,
-                      style: textAppName(),
+                      InitialStrings.nameAppUpper,
+                      style: TextStyles.textAppName(),
                     ),
                   ),
                 ),
@@ -91,8 +84,8 @@ class _InitialPageState extends State<InitialPage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        _mainModel.subtitle,
-                        style: subtitleMainScreen(),
+                        InitialStrings.subtitleMainScreen,
+                        style: TextStyles.subtitleMainScreen(),
                         textAlign: TextAlign.end,
                       ),
                       const Padding(
@@ -133,17 +126,13 @@ class _InitialPageState extends State<InitialPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                cardLoginCadastro(AppStrings.signupText, Icons.arrow_upward,
+                cardLoginCadastro(InitialStrings.signupText, Icons.arrow_upward,
                     () {
                   setState(() {
-                    /* Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpPage())); */
                     Navigator.pushNamed(context, Routes.registerRoute);
                   });
                 }),
-                cardLoginCadastro(AppStrings.loginText, Icons.east, () {
+                cardLoginCadastro(InitialStrings.loginText, Icons.east, () {
                   setState(() {
                     Navigator.pushNamed(context, Routes.loginRoute);
                   });

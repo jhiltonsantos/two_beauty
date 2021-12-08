@@ -17,7 +17,7 @@ class _AppWidgetState extends State<AppWidget> {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.getRoute,
       initialRoute: Routes.splashRoute,
-      title: AppStrings.nameAppUpper,
+      title: InitialStrings.nameAppUpper,
       theme: ThemeData(
         primaryColor: ColorManager.primaryColor,
         backgroundColor: Colors.white,

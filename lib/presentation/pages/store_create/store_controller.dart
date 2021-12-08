@@ -6,7 +6,7 @@ import 'package:to_beauty_app/domain/store_models.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
 class StorePostController {
-  final Uri estabelecimentoCreate = Uri.parse(AppConstants.STORE_POST_URL);
+  final Uri estabelecimentoCreate = Uri.parse(AppConstants.STORE_GET_POST);
 
   Future<Store> postStore(Store store) async {
     Map data = {

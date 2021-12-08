@@ -1,79 +1,159 @@
 import 'package:flutter/material.dart';
+
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 
-TextStyle textAppBar() {
-  return const TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 26,
-    fontWeight: FontWeight.normal,
-    color: ColorManager.shiniessBrown,
-  );
-}
+class TextStyles {
+  static TextStyle textAppBar() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 26,
+      fontWeight: FontWeight.normal,
+      color: ColorManager.shiniessBrown,
+    );
+  }
 
-TextStyle textAppName() {
-  return const TextStyle(fontSize: 38.0, fontWeight: FontWeight.w400);
-}
+  static TextStyle textAppName() {
+    return const TextStyle(fontSize: 38.0, fontWeight: FontWeight.w400);
+  }
 
-TextStyle subtitleMainScreen() {
-  return const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400);
-}
+  static TextStyle subtitleMainScreen() {
+    return const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400);
+  }
 
-TextStyle textCardLoginRegister() {
-  return const TextStyle(
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600,
-      color: ColorManager.shiniessBrown);
-}
+  static TextStyle textCardLoginRegister() {
+    return const TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.w600,
+        color: ColorManager.shiniessBrown);
+  }
 
-TextStyle textCardMap() {
-  return const TextStyle(fontFamily: 'Roboto', fontSize: 24);
-}
+  static TextStyle textCardMap() {
+    return const TextStyle(fontFamily: 'Roboto', fontSize: 24);
+  }
 
-TextStyle textHelloProfile() {
-  return const TextStyle(
-      fontFamily: 'Roboto', color: Colors.black, fontSize: 24);
-}
+  static TextStyle textHelloProfile() {
+    return const TextStyle(
+        fontFamily: 'Roboto', color: Colors.black, fontSize: 24);
+  }
 
-TextStyle textButtonLoginSignup() {
-  return const TextStyle(
-      fontFamily: 'Roboto', color: Colors.black, fontSize: 19.0);
-}
+  static TextStyle textButtonLoginSignup() {
+    return const TextStyle(
+        fontFamily: 'Roboto', color: Colors.black, fontSize: 19.0);
+  }
 
-TextStyle subtitleTextButton() {
-  return const TextStyle(
-      fontFamily: 'Roboto', color: Colors.black, fontSize: 14.0);
-}
+  static TextStyle subtitleTextButton() {
+    return const TextStyle(
+        fontFamily: 'Roboto', color: Colors.black, fontSize: 14.0);
+  }
 
-TextStyle subtitleTextButtonAccent() {
-  return const TextStyle(
-      fontFamily: 'Roboto', color: Colors.blueAccent, fontSize: 14.0);
-}
+  static TextStyle subtitleTextButtonAccent() {
+    return const TextStyle(
+        fontFamily: 'Roboto', color: Colors.blueAccent, fontSize: 14.0);
+  }
 
-TextStyle styleTitleNameUser() {
-  return const TextStyle(
-      fontFamily: 'Roboto', color: Colors.black, fontSize: 24);
-}
+  static TextStyle styleTitleNameUser() {
+    return const TextStyle(
+        fontFamily: 'Roboto', color: Colors.black, fontSize: 24);
+  }
 
-TextStyle styleTitleAgenda() {
-  return const TextStyle(
+  static TextStyle styleTitleAgenda() {
+    return const TextStyle(
+        fontFamily: 'Roboto',
+        color: Colors.black,
+        fontSize: 26,
+        fontWeight: FontWeight.w800);
+  }
+
+  static TextStyle styleTitleStoreDetailPage() {
+    return const TextStyle(
       fontFamily: 'Roboto',
       color: Colors.black,
-      fontSize: 26,
-      fontWeight: FontWeight.w800);
+      fontSize: 28,
+    );
+  }
+
+  static TextStyle styleSubtitleStoreDetailPage() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      color: Colors.black,
+      fontSize: 22,
+    );
+  }
+
+  static TextStyle styleLoginSignUpOptions() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      color: ColorManager.shiniessBrown,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle styleButton() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      color: ColorManager.shiniessBrown,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle styleNameStore() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 18,
+    );
+  }
+
+  static TextStyle stylePlaceStore() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      color: Color(0xFF9E9E9E),
+    );
+  }
+
+  static TextStyle styleSideMenu() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 22,
+      color: ColorManager.shiniessBrown,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle initFormCreateStore() {
+    return const TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: ColorManager.shiniessBrown);
+  }
+
+  static TextStyle fieldForm() {
+    return const TextStyle(
+        fontFamily: 'Roboto', color: ColorManager.shiniessBrown);
+  }
+
+  static TextStyle addressForm() {
+    return const TextStyle(
+      fontFamily: 'Roboto',
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      color: ColorManager.shiniessBrown,
+    );
+  }
 }
 
-TextStyle styleTitleStoreDetailPage() {
-  return const TextStyle(
-    fontFamily: 'Roboto',
-    color: Colors.black,
-    fontSize: 28,
-  );
-}
-
-TextStyle styleSubtitleStoreDetailPage() {
-  return const TextStyle(
-    fontFamily: 'Roboto',
-    color: Colors.black,
-    fontSize: 22,
-  );
+class ButtonStyles {
+  static ButtonStyle buttonStyleLoginSignUp() {
+    return ElevatedButton.styleFrom(
+      fixedSize: const Size(260, 50),
+      primary: ColorManager.secondaryColor,
+      textStyle: const TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: 19,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
+  }
 }

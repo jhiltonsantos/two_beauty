@@ -9,7 +9,6 @@ import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 class LoginController {
   static Future<bool?> loginUser(
       {required String user, required String password}) async {
-    bool value;
     final Uri loginUri = Uri.parse(AppConstants.LOGIN_USER);
 
     Map data = {
@@ -17,44 +16,35 @@ class LoginController {
       "password": password,
     };
 
-    final http.Response response = await http.post(loginUri,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(data));
-
-    print('Response status: ${response.statusCode}');
-
     var prefs = await SharedPreferences.getInstance();
+    final http.Response response = await http.post(
+      loginUri,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(data),
+    );
 
     if (response.statusCode == 200) {
       Map<String, dynamic> mapResponse = json.decode(response.body);
       LoginUser.fromJson(mapResponse);
-      //Persistindo o token
       prefs.setString('token', mapResponse["access"]);
-      value = true;
+      return true;
     } else {
-      print('Falha ao realizar login');
-      value = false;
+      throw Exception('Falha ao realizar login');
     }
-    return value;
   }
 
   static Future<List<UserClass>> getUser() async {
     final Uri userUrl = Uri.parse(AppConstants.USER_GET);
 
-    // Recuperando o token do login
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
-    print("Token API: $token");
-
     var header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
     };
-
     var response = await http.get(userUrl, headers: header);
-    print("Status code: ${response.statusCode}");
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);

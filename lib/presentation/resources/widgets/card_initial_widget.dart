@@ -34,7 +34,7 @@ Card cardLoginCadastro(String text, IconData icon, ontap) {
                 children: <Widget>[
                   Text(
                     text,
-                    style: textCardLoginRegister(),
+                    style: TextStyles.textCardLoginRegister(),
                   ),
                 ],
               ),

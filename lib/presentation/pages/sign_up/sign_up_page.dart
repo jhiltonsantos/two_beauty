@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_beauty_app/domain/user_models.dart';
+import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/presentation/pages/sign_up/sign_up_controller.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/text_appBar_widget.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/account_type_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/text_form_from_login_widget.dart';
@@ -47,31 +47,9 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(36, 30, 0, 0),
-                      child: InkWell(
-                        focusColor: Colors.transparent,
-                        hoverColor: ColorManager.primaryColor,
-                        splashColor: ColorManager.primaryColor,
-                        onTap: () {
-                          setState(() {
-                            Navigator.pushNamed(context, Routes.mainRoute);
-                          });
-                        },
-                        child: const IconBackAppBar(icon: Icons.arrow_back),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 35, 0, 0),
-                      child: TextAppBar(text: AppStrings.signupPageRegister),
-                    ),
-                  ],
+                const AppBarPersonalize(
+                  text: SingUpStrings.titleSingUp,
+                  route: InitialPage(),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
@@ -81,17 +59,15 @@ class _SignUpPageState extends State<SignUpPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Align(
-                          alignment: AlignmentDirectional(-0.85, 0),
+                        Align(
+                          alignment: const AlignmentDirectional(-0.85, 0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(36, 30, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                36, 30, 0, 0),
                             child: Text(
-                              AppStrings.chooseOptionSignUp,
+                              SingUpStrings.chooseOptionSignUp,
                               textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Roboto',
-                              ),
+                              style: TextStyles.styleLoginSignUpOptions(),
                             ),
                           ),
                         ),
@@ -124,7 +100,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              const TextFormFromLogin(text: 'Nome de Usuário'),
+                              const TextFormFromLogin(
+                                  text: SingUpStrings.userNameTextField),
                               InputFormFromLogin(
                                 controller: _nameController,
                                 obscureText: false,
@@ -140,7 +117,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              const TextFormFromLogin(text: 'Email'),
+                              const TextFormFromLogin(
+                                  text: SingUpStrings.emailTextField),
                               InputFormFromLogin(
                                 controller: _emailController,
                                 obscureText: false,
@@ -156,7 +134,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              const TextFormFromLogin(text: 'Senha'),
+                              const TextFormFromLogin(
+                                  text: SingUpStrings.passwordTextField),
                               InputFormFromLogin(
                                 controller: _passwordController,
                                 obscureText: true,
@@ -192,42 +171,34 @@ class _SignUpPageState extends State<SignUpPage> {
                                     Navigator.popAndPushNamed(
                                         context, Routes.mainRoute);
                                   } else {
-                                    alertSignup(
-                                        context, AppStrings.failCreateDataUser);
+                                    alertSignup(context,
+                                        SingUpStrings.failCreateDataUser);
                                   }
                                 },
-                                child: const Text(
-                                  AppStrings.createAccount,
-                                  style: TextStyle(
-                                    color: ColorManager.shiniessBrown,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                child: Text(
+                                  SingUpStrings.createAccount,
+                                  style: TextStyles.styleButton(),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                  fixedSize: const Size(260, 50),
-                                  primary: ColorManager.secondaryColor,
-                                  textStyle: textButtonLoginSignup(),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
+                                style: ButtonStyles.buttonStyleLoginSignUp(),
                               ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(AppStrings.haveAnAccountSingUp,
-                                    style: subtitleTextButton()),
+                                Text(SingUpStrings.haveAnAccountSingUp,
+                                    style: TextStyles.subtitleTextButton()),
                                 TextButton(
                                     onPressed: () {
                                       Navigator.pushNamed(
                                           context, Routes.loginRoute);
                                     },
-                                    child: Text(AppStrings.doLoginPage,
-                                        style: subtitleTextButtonAccent())),
+                                    child: Text(SingUpStrings.doLoginPage,
+                                        style: TextStyles
+                                            .subtitleTextButtonAccent())),
                               ],
-                            )
+                            ),
+                            const SizedBox(height: 50),
                           ],
                         )
                       ],

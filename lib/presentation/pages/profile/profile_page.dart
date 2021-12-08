@@ -6,7 +6,7 @@ import 'package:to_beauty_app/presentation/pages/profile/profile_controller.dart
 import 'package:to_beauty_app/presentation/pages/profile/profile_new_owner.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_create_store.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           alignment: const AlignmentDirectional(-0.70, 0.55),
                           child: Text(
                             'Olá, ${user.username}',
-                            style: styleTitleStoreDetailPage(),
+                            style: TextStyles.styleTitleStoreDetailPage(),
                           ),
                         ),
                         Padding(

@@ -30,7 +30,7 @@ class ProfileController {
   }
 
   static Future<List<GetAgenda>> getAgendaUserData() async {
-    final Uri profileAgendaUrl = Uri.parse(AppConstants.AGENDA_GET);
+    final Uri profileAgendaUrl = Uri.parse(AppConstants.AGENDA_URL);
 
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');

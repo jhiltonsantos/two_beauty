@@ -3,11 +3,11 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:to_beauty_app/domain/store_models.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
-import 'package:to_beauty_app/presentation/pages/locations/locations_test.dart';
 import 'package:to_beauty_app/presentation/pages/store_create/store_controller.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_create_store.dart';
+import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
+import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
 
 class CreateStorePage extends StatefulWidget {
@@ -34,7 +34,6 @@ class _CreateStorePageState extends State<CreateStorePage> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  late LatLng _center;
   late Position currentLocation;
 
   Future<Position> locateUser() async {
@@ -48,7 +47,6 @@ class _CreateStorePageState extends State<CreateStorePage> {
       _latitudeController = currentLocation.latitude.toString();
       _longitudeController = currentLocation.longitude.toString();
     });
-    print("Latitude: $_latitudeController} e longitude: $_longitudeController");
   }
 
   @override
@@ -69,7 +67,7 @@ class _CreateStorePageState extends State<CreateStorePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const AppBarPersonalize(
-                text: AppStrings.appBarCreateStore,
+                text: CreateStoreStrings.appBarCreateStore,
                 route: HomePage(),
               ),
               Padding(
@@ -77,115 +75,34 @@ class _CreateStorePageState extends State<CreateStorePage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const Align(
-                      alignment: AlignmentDirectional(-1, 0),
+                    Align(
+                      alignment: const AlignmentDirectional(-1, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                         child: Text(
-                          'Começar',
-                          style: TextStyle(
-                              fontFamily: 'Roboto',
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: ColorManager.shiniessBrown),
+                          CreateStoreStrings.initForm,
+                          style: TextStyles.initFormCreateStore(),
                         ),
                       ),
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Text(
-                              'Nome do estabelecimento',
-                              style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: ColorManager.shiniessBrown),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: InputFormFromLogin(
-                            controller: _nameController,
-                            obscureText: false,
-                            typeKeyboard: TextInputType.text,
-                            value: _nameController.text,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Text(
-                              'CNPJ do estabelecimento',
-                              style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: ColorManager.shiniessBrown),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: InputFormFromLogin(
-                            controller: _cnpjController,
-                            obscureText: false,
-                            typeKeyboard: TextInputType.number,
-                            value: _cnpjController.text,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Align(
-                      alignment: AlignmentDirectional(-1, 0),
+                    fieldForm(CreateStoreStrings.nameStoreField,
+                        _nameController, TextInputType.text),
+                    fieldForm(CreateStoreStrings.cnpjStoreField,
+                        _cnpjController, TextInputType.number),
+                    Align(
+                      alignment: const AlignmentDirectional(-1, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                         child: Text(
-                          'Endereço',
-                          style: TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: ColorManager.shiniessBrown,
-                          ),
+                          CreateStoreStrings.addressForm,
+                          style: TextStyles.addressForm(),
                         ),
                       ),
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                            child: Text(
-                              'Rua',
-                              style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  color: ColorManager.shiniessBrown),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5.0),
-                          child: InputFormFromLogin(
-                            controller: _streetController,
-                            obscureText: false,
-                            typeKeyboard: TextInputType.text,
-                            value: _nameController.text,
-                          ),
-                        ),
-                      ],
-                    ),
+                    fieldForm(CreateStoreStrings.streetStoreField,
+                        _streetController, TextInputType.streetAddress),
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -196,18 +113,14 @@ class _CreateStorePageState extends State<CreateStorePage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Text('Bairro',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      color: ColorManager.shiniessBrown)),
+                            children: [
+                              Text(CreateStoreStrings.districtStoreField,
+                                  style: TextStyles.fieldForm()),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     135, 0, 0, 0),
-                                child: Text('Cidade',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        color: ColorManager.shiniessBrown)),
+                                child: Text(CreateStoreStrings.cityStoreField,
+                                    style: TextStyles.fieldForm()),
                               )
                             ],
                           ),
@@ -253,18 +166,14 @@ class _CreateStorePageState extends State<CreateStorePage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Text('Número',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      color: ColorManager.shiniessBrown)),
+                            children: [
+                              Text(CreateStoreStrings.numberStoreField,
+                                  style: TextStyles.fieldForm()),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     120, 0, 0, 0),
-                                child: Text('CEP',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        color: ColorManager.shiniessBrown)),
+                                child: Text(CreateStoreStrings.cepStoreField,
+                                    style: TextStyles.fieldForm()),
                               )
                             ],
                           ),
@@ -281,7 +190,7 @@ class _CreateStorePageState extends State<CreateStorePage> {
                                   child: InputFormFromLogin(
                                     controller: _numberController,
                                     obscureText: false,
-                                    typeKeyboard: TextInputType.text,
+                                    typeKeyboard: TextInputType.number,
                                     value: _numberController.text,
                                   ),
                                 ),
@@ -294,7 +203,7 @@ class _CreateStorePageState extends State<CreateStorePage> {
                                 child: InputFormFromLogin(
                                   controller: _cepController,
                                   obscureText: false,
-                                  typeKeyboard: TextInputType.text,
+                                  typeKeyboard: TextInputType.number,
                                   value: _numberController.text,
                                 ),
                               ),
@@ -313,18 +222,14 @@ class _CreateStorePageState extends State<CreateStorePage> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                              Text('Abre',
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      color: ColorManager.shiniessBrown)),
+                            children: [
+                              Text(CreateStoreStrings.openStoreField,
+                                  style: TextStyles.fieldForm()),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     135, 0, 0, 0),
-                                child: Text('Fecha',
-                                    style: TextStyle(
-                                        fontFamily: 'Roboto',
-                                        color: ColorManager.shiniessBrown)),
+                                child: Text(CreateStoreStrings.closeStoreField,
+                                    style: TextStyles.fieldForm()),
                               )
                             ],
                           ),
@@ -360,58 +265,31 @@ class _CreateStorePageState extends State<CreateStorePage> {
                         )
                       ],
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Align(
-                          alignment: AlignmentDirectional(-1, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                            child: Text('Telefone',
-                                style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    color: ColorManager.shiniessBrown)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: ElevatedButton(
+                        child: Text(
+                          CreateStoreStrings.currentLocationButton,
+                          style: TextStyles.styleButton(),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(250, 50),
+                          primary: ColorManager.secondaryColor,
+                          textStyle: const TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 19,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                          child: InputFormFromLogin(
-                            controller: _phoneController,
-                            obscureText: false,
-                            typeKeyboard: TextInputType.text,
-                            value: _phoneController.text,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: ElevatedButton(
-                            child: const Text(
-                              'Pegar localizaçao',
-                              style: TextStyle(
-                                color: ColorManager.shiniessBrown,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(260, 50),
-                              primary: ColorManager.secondaryColor,
-                              textStyle: const TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 19,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            onPressed: () {
-                              getUserLocation();
-                            },
-                          ),
-                        ),
-                      ],
+                        onPressed: () {
+                          getUserLocation();
+                        },
+                      ),
                     ),
+                    fieldForm(CreateStoreStrings.phoneStoreField,
+                        _phoneController, TextInputType.phone),
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -434,7 +312,6 @@ class _CreateStorePageState extends State<CreateStorePage> {
                                   phone: _phoneController.text,
                                   latitude: _latitudeController,
                                   longitude: _longitudeController,
-                                  //user: _userController
                                 ));
                                 Future.delayed(const Duration(seconds: 1))
                                     .then((value) {
@@ -447,12 +324,9 @@ class _CreateStorePageState extends State<CreateStorePage> {
                                 });
                               });
                             },
-                            child: const Text(
-                              'Criar',
-                              style: TextStyle(
-                                color: ColorManager.shiniessBrown,
-                                fontWeight: FontWeight.w500,
-                              ),
+                            child: Text(
+                              CreateStoreStrings.saveButton,
+                              style: TextStyles.styleButton(),
                             ),
                             style: ElevatedButton.styleFrom(
                               fixedSize: const Size(260, 50),
@@ -481,4 +355,32 @@ class _CreateStorePageState extends State<CreateStorePage> {
       ),
     );
   }
+}
+
+Widget fieldForm(String title, TextEditingController textController,
+    TextInputType inputType) {
+  return Column(
+    mainAxisSize: MainAxisSize.max,
+    children: [
+      Align(
+        alignment: const AlignmentDirectional(-1, 0),
+        child: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+          child: Text(
+            title,
+            style: TextStyles.fieldForm(),
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 5.0),
+        child: InputFormFromLogin(
+          controller: textController,
+          obscureText: false,
+          typeKeyboard: inputType,
+          value: textController.text,
+        ),
+      ),
+    ],
+  );
 }

@@ -7,7 +7,7 @@ import 'package:to_beauty_app/domain/service.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
 class AgendaController {
-  final Uri agendaCreateUrl = Uri.parse(AppConstants.AGENDA_CREATE);
+  final Uri agendaCreateUrl = Uri.parse(AppConstants.AGENDA_URL);
 
   Future<Agenda> postAgenda(Agenda agenda) async {
     Map data = {
@@ -19,8 +19,6 @@ class AgendaController {
 
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
-    print("Token API Create Agenda: $token");
-
     final http.Response response = await http.post(
       agendaCreateUrl,
       headers: <String, String>{
@@ -30,12 +28,9 @@ class AgendaController {
       body: jsonEncode(data),
     );
 
-    print('Response agenda: ${response.body}');
-
     if (response.statusCode == 201) {
       return Agenda.fromJson(json.decode(response.body));
     } else {
-      print("Error Agenda: ${response.statusCode}");
       throw Exception('Falha ao criar agenda');
     }
   }
