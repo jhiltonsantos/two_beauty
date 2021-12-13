@@ -18,8 +18,6 @@ class UserClass {
       password: json['password'] as String,
     );
   }
-
-  get data => null;
 }
 
 class UserData {
@@ -30,9 +28,9 @@ class UserData {
 
   UserData(
       {required this.id,
-        required this.username,
-        required this.email,
-        required this.firstName});
+      required this.username,
+      required this.email,
+      required this.firstName});
 
   factory UserData.fromJson(Map<String, dynamic> json) {
     return UserData(
@@ -41,6 +39,4 @@ class UserData {
         email: json['email'] as String,
         firstName: json['first_name'] as String);
   }
-
-  get data => null;
 }

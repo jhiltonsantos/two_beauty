@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/domain/owner_model.dart';
+import 'package:to_beauty_app/presentation/controllers/owner_controller.dart';
 import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
@@ -15,6 +16,7 @@ class ProfileNewOwner extends StatefulWidget {
 
 class _ProfileNewOwnerState extends State<ProfileNewOwner> {
   final ProfileController profileController = ProfileController();
+  final OwnerController ownerController = OwnerController();
   final _cpfController = TextEditingController();
   final _birthdayController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -159,7 +161,7 @@ class _ProfileNewOwnerState extends State<ProfileNewOwner> {
                         ),
                         onPressed: () async {
                           setState(() {
-                            profileController.postOwner(
+                            ownerController.postData(
                               Owner(
                                   cpf: _cpfController.text,
                                   birthday: _birthdayController.text,

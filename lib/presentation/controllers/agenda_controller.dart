@@ -38,12 +38,30 @@ class AgendaController implements ControllerGeral {
   }
 
   @override
-  Future<List> getData(id) async {
-    throw UnimplementedError();
+  Future<List<GetAgenda>> getAllData() async {
+    var prefs = await SharedPreferences.getInstance();
+    String token = (prefs.getString('token') ?? '');
+    var header = <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token'
+    };
+    var response = await http.get(urlController, headers: header);
+
+    if (response.statusCode == 200) {
+      List listResponse = json.decode(response.body);
+      final listAgenda = <GetAgenda>[];
+      for (Map<String, dynamic> map in listResponse) {
+        GetAgenda agenda = GetAgenda.fromJson(map);
+        listAgenda.add(agenda);
+      }
+      return listAgenda;
+    } else {
+      throw Exception('Falha ao carregar agenda do usuario');
+    }
   }
 
   @override
-  Future<List> getAllData() {
+  Future<List> getData(id) {
     throw UnimplementedError();
   }
 }

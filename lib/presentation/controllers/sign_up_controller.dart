@@ -35,14 +35,12 @@ class ApiController implements ControllerGeral {
   }
 
   @override
-  Future<List> getData(id) {
-    // TODO: implement getData
+  Future<List> getAllData() {
     throw UnimplementedError();
   }
 
   @override
-  Future<List> getAllData() {
-    // TODO: implement getAllData
+  Future<List> getData(id) {
     throw UnimplementedError();
   }
 }

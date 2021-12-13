@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/domain/service_model.dart';
 import 'package:to_beauty_app/domain/store_models.dart';
+import 'package:to_beauty_app/presentation/controllers/service_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/store_controller.dart';
 import 'package:to_beauty_app/presentation/pages/agenda/agenda_page.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
-import 'package:to_beauty_app/presentation/controllers/store_detail_controller.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
@@ -18,9 +19,10 @@ class StoreDetail extends StatefulWidget {
 }
 
 class _StoreDetailState extends State<StoreDetail> {
+  StoreController storeController = StoreController();
   @override
   Widget build(BuildContext context) {
-    Future<List> store = StoreDetailController.getAllData(widget.id);
+    Future<List> store = storeController.getData(widget.id);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -89,7 +91,8 @@ _body(storeData, id) {
 }
 
 _services(id, address) {
-  Future<List> services = StoreDetailController.getAllServices();
+  ServiceController serviceController = ServiceController();
+  Future<List> services = serviceController.getAllData();
   return FutureBuilder(
       future: services,
       builder: (context, snapshot) {

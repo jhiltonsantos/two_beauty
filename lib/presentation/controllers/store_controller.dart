@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/domain/store_get_models.dart';
 import 'package:to_beauty_app/domain/store_models.dart';
 import 'package:to_beauty_app/presentation/controllers/controller_general.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
@@ -70,7 +69,26 @@ class StoreController implements ControllerGeral {
   }
 
   @override
-  Future<List> getData(int id) {
-    throw UnimplementedError();
+  Future<List<GetStore>> getData(id) async {
+    final Uri storeDetailUrl = Uri.parse("${AppConstants.STORE_URL}/$id");
+
+    var prefs = await SharedPreferences.getInstance();
+    String token = (prefs.getString('token') ?? '');
+
+    var header = <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $token'
+    };
+    var response = await http.get(storeDetailUrl, headers: header);
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = json.decode(response.body);
+      final listStore = <GetStore>[];
+      GetStore store = GetStore.fromJson(map);
+      listStore.add(store);
+      return listStore;
+    } else {
+      throw Exception('Falha ao carregar estabelecimento');
+    }
   }
 }

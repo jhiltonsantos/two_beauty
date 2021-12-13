@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:to_beauty_app/domain/agenda_models.dart';
-import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
+import 'package:to_beauty_app/presentation/controllers/agenda_controller.dart';
 import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
-import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/custom_app_bar_widget.dart';
 
 class ProfileAgendaPage extends StatefulWidget {
   const ProfileAgendaPage({Key? key}) : super(key: key);
@@ -17,14 +13,11 @@ class ProfileAgendaPage extends StatefulWidget {
 }
 
 class _ProfileAgendaPageState extends State<ProfileAgendaPage> {
-  Future<List> agenda = ProfileController.getAgendaUserData();
+  AgendaController agendaController = AgendaController();
+
   @override
   Widget build(BuildContext context) {
-    return _appData();
-  }
-
-  _appData() {
-    Future<List> agenda = ProfileController.getAgendaUserData();
+    Future<List> agenda = agendaController.getAllData();
     return FutureBuilder(
         future: agenda,
         builder: (context, snapshot) {

@@ -11,7 +11,7 @@ class ServiceController implements ControllerGeral {
   Uri urlController = Uri.parse(AppConstants.SERVICE_ALL_URL);
 
   @override
-  Future<List<GetService>> getData(int id) async {
+  Future<List<GetService>> getData(id) async {
     final Uri servicesUrl = Uri.parse('${AppConstants.SERVICE_ALL_URL}/$id');
 
     var prefs = await SharedPreferences.getInstance();
@@ -59,7 +59,31 @@ class ServiceController implements ControllerGeral {
   }
 
   @override
-  Future postData(modelClass) {
-    throw UnimplementedError();
+  Future<Service> postData(modelClass) async {
+    Map data = {
+      "estabelecimento": modelClass.store,
+      "nome": modelClass.name,
+      "descricao": modelClass.description,
+      "preco": modelClass.price,
+      "qtd_atendentes": modelClass.countAttendants,
+      "duracao": modelClass.durationMinutes,
+    };
+
+    var prefs = await SharedPreferences.getInstance();
+    String token = (prefs.getString('token') ?? '');
+    final http.Response response = await http.post(
+      urlController,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token'
+      },
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 201) {
+      return Service.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Falha ao criar servico');
+    }
   }
 }
