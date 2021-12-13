@@ -6,7 +6,7 @@ import 'package:to_beauty_app/domain/store_models.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
 class StorePostController {
-  final Uri estabelecimentoCreate = Uri.parse(AppConstants.STORE_GET_POST);
+  final Uri storeCreateUrl = Uri.parse(AppConstants.STORE_GET_POST);
 
   Future<Store> postStore(Store store) async {
     Map data = {
@@ -28,7 +28,7 @@ class StorePostController {
     String token = (prefs.getString('token') ?? '');
 
     final http.Response response = await http.post(
-      estabelecimentoCreate,
+      storeCreateUrl,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': 'Bearer $token'
