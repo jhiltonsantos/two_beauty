@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_beauty_app/domain/user_models.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_agenda_page.dart';
-import 'package:to_beauty_app/presentation/pages/profile/profile_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_new_owner.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/domain/store_get_models.dart';
-
-import 'package:to_beauty_app/presentation/pages/home/home_controller.dart';
+import 'package:to_beauty_app/domain/store_models.dart';
+import 'package:to_beauty_app/presentation/controllers/home_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/store_controller.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
@@ -75,7 +75,8 @@ _viewAppBar(users, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
 }
 
 _body(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
-  Future<List> store = StoreGetController.getAllEstabelecimentos();
+  StoreController storeController = StoreController();
+  Future<List> store = storeController.getAllData();
   return FutureBuilder(
       future: store,
       builder: (context, snapshot) {

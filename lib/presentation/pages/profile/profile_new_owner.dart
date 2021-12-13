@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/domain/owner_model.dart';
-import 'package:to_beauty_app/presentation/pages/profile/profile_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';

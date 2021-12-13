@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:intl/intl.dart';
-import 'package:to_beauty_app/domain/service.dart';
+import 'package:to_beauty_app/domain/service_model.dart';
+import 'package:to_beauty_app/presentation/controllers/service_controller.dart';
 import 'package:to_beauty_app/presentation/pages/agenda/agenda_confirmed.dart';
-import 'package:to_beauty_app/presentation/pages/agenda/agenda_controller.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
@@ -26,9 +26,11 @@ class AgendaPage extends StatefulWidget {
 }
 
 class _AgendaPageState extends State<AgendaPage> {
-  int _value = 8;
+  final ServiceController serviceController = ServiceController();
 
+  int _value = 8;
   DateTime _selectedValue = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     //Formatando Hora
@@ -41,7 +43,7 @@ class _AgendaPageState extends State<AgendaPage> {
     final DateFormat formatterExt = DateFormat("dd 'de' MMMM \n'de' yyyy");
     final String dateFormattedExt = formatterExt.format(_selectedValue);
 
-    Future<List> service = AgendaController.getService(widget.idService);
+    Future<List> service = serviceController.getData(widget.idService);
 
     return Scaffold(
       backgroundColor: Colors.white,

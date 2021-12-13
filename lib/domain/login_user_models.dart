@@ -23,3 +23,16 @@ class LoginUser {
     return 'loginUser{refresh: $refresh, access: $access}';
   }
 }
+
+class LoginGetToken {
+  String username;
+  String password;
+
+  LoginGetToken({required this.username, required this.password});
+  factory LoginGetToken.fromJson(Map<String, dynamic> json) {
+    return LoginGetToken(
+      username: json['username'],
+      password: json['password'],
+    );
+  }
+}

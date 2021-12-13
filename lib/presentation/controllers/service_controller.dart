@@ -2,13 +2,17 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/domain/service.dart';
-import 'package:to_beauty_app/domain/store_get_models.dart';
+import 'package:to_beauty_app/domain/service_model.dart';
+import 'package:to_beauty_app/presentation/controllers/controller_general.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class StoreDetailController {
-  static Future<List<GetStore>> getAllData(int id) async {
-    final Uri storeDetailUrl = Uri.parse("${AppConstants.STORE_URL}/$id");
+class ServiceController implements ControllerGeral {
+  @override
+  Uri urlController = Uri.parse(AppConstants.SERVICE_ALL_URL);
+
+  @override
+  Future<List<GetService>> getData(int id) async {
+    final Uri servicesUrl = Uri.parse('${AppConstants.SERVICE_ALL_URL}/$id');
 
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
@@ -17,29 +21,29 @@ class StoreDetailController {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
     };
-    var response = await http.get(storeDetailUrl, headers: header);
+
+    var response = await http.get(servicesUrl, headers: header);
 
     if (response.statusCode == 200) {
       Map<String, dynamic> map = json.decode(response.body);
-      final listStore = <GetStore>[];
-      GetStore store = GetStore.fromJson(map);
-      listStore.add(store);
-      return listStore;
+      final listService = <GetService>[];
+      GetService service = GetService.fromJson(map);
+      listService.add(service);
+      return listService;
     } else {
-      throw Exception('Falha ao carregar estabelecimento');
+      throw Exception('Falha ao carregar servico');
     }
   }
 
-  static Future<List<GetService>> getAllServices() async {
-    final Uri servicesUrl = Uri.parse(AppConstants.SERVICE_ALL_URL);
-
+  @override
+  Future<List<GetService>> getAllData() async {
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
     var header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
     };
-    var response = await http.get(servicesUrl, headers: header);
+    var response = await http.get(urlController, headers: header);
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);
@@ -52,5 +56,10 @@ class StoreDetailController {
     } else {
       throw Exception('Falha ao carregar servicos');
     }
+  }
+
+  @override
+  Future postData(modelClass) {
+    throw UnimplementedError();
   }
 }

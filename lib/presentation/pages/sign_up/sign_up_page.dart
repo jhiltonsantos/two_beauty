@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_beauty_app/domain/user_models.dart';
 import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
-import 'package:to_beauty_app/presentation/pages/sign_up/sign_up_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/sign_up_controller.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
@@ -161,7 +161,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       ),
                                     );
                                   });
-                                  var pass = await api.createUser(UserClass(
+                                  var pass = await api.postData(UserClass(
                                       username: _nameController.text,
                                       email: _emailController.text,
                                       firstName: 'Santos',

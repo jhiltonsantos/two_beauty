@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:to_beauty_app/domain/agenda_models.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
-import 'package:to_beauty_app/presentation/pages/profile/profile_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/domain/agenda_models.dart';
-import 'package:to_beauty_app/domain/service.dart';
-import 'package:to_beauty_app/presentation/pages/agenda/agenda_controller.dart';
+import 'package:to_beauty_app/domain/service_model.dart';
+import 'package:to_beauty_app/presentation/controllers/agenda_controller.dart';
+import 'package:to_beauty_app/presentation/controllers/service_controller.dart';
 import 'package:to_beauty_app/presentation/pages/agenda/agenda_page.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
@@ -32,10 +33,11 @@ class AgendaConfirmed extends StatefulWidget {
 
 class _AgendaConfirmedState extends State<AgendaConfirmed> {
   final AgendaController agendaController = AgendaController();
+  final ServiceController serviceController = ServiceController();
 
   @override
   Widget build(BuildContext context) {
-    Future<List> service = AgendaController.getService(widget.serviceId);
+    Future<List> service = serviceController.getData(widget.serviceId);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -81,7 +83,7 @@ class _AgendaConfirmedState extends State<AgendaConfirmed> {
                   child: ElevatedButton(
                     onPressed: () async {
                       setState(() {
-                        agendaController.postAgenda(Agenda(
+                        agendaController.postData(Agenda(
                             store: widget.storeId,
                             service: widget.serviceId,
                             date: widget.date,

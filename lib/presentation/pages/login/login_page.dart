@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_beauty_app/domain/login_user_models.dart';
 import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
@@ -12,7 +13,7 @@ import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_fr
 import 'package:to_beauty_app/presentation/resources/widgets/forms/text_form_from_login_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/login/alert_error_login_widget.dart';
 
-import 'login_controller.dart';
+import '../../controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final LoginController loginController = LoginController();
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -151,9 +153,13 @@ class _LoginPageState extends State<LoginPage> {
                                     String login = _usernameController.text;
                                     String password = _passwordController.text;
 
-                                    var userLogin =
+                                    /* var userLogin =
                                         await LoginController.loginUser(
-                                            user: login, password: password);
+                                            user: login, password: password); */
+                                    var userLogin = await loginController
+                                        .postData(LoginGetToken(
+                                            username: login,
+                                            password: password));
 
                                     if (userLogin == true) {
                                       Navigator.pushNamed(
