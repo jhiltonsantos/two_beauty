@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/domain/store_models.dart';
-import 'package:to_beauty_app/presentation/controllers/home_controller.dart';
-import 'package:to_beauty_app/presentation/controllers/store_controller.dart';
+import 'package:to_beauty_app/domain/entities/store_models.dart';
+import 'package:to_beauty_app/data/repositories/home_repository.dart';
+import 'package:to_beauty_app/data/repositories/store_repository.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';

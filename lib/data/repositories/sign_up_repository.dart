@@ -1,16 +1,20 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:to_beauty_app/domain/user_models.dart';
-import 'package:to_beauty_app/presentation/controllers/controller_general.dart';
+import 'package:to_beauty_app/domain/entities/user_models.dart';
+import 'package:to_beauty_app/domain/repositories/sign_up_repository.dart';
+import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class ApiController implements ControllerGeral {
+class SignUpController implements ISignUpRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.USER_CREATE);
 
   @override
-  Future<bool> postData(modelClass) async {
+  ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
+
+  @override
+  Future<bool> postNewUser(modelClass) async {
     Map data = {
       'username': modelClass.username,
       'email': modelClass.email,

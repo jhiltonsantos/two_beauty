@@ -1,14 +1,17 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/domain/store_models.dart';
-import 'package:to_beauty_app/presentation/controllers/controller_general.dart';
+import 'package:to_beauty_app/domain/entities/store_models.dart';
+import 'package:to_beauty_app/domain/repositories/store_repository.dart';
+import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class StoreController implements ControllerGeral {
+class StoreController implements IStoreRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.STORE_GET_POST);
+
+  @override
+  ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
   Future<Store> postData(modelClass) async {
@@ -27,17 +30,9 @@ class StoreController implements ControllerGeral {
       'longitude': modelClass.longitude,
     };
 
-    var prefs = await SharedPreferences.getInstance();
-    String token = (prefs.getString('token') ?? '');
+    http.Response response =
+        await connectionHeaderApi.postResponse(urlController, data);
 
-    final http.Response response = await http.post(
-      urlController,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token'
-      },
-      body: jsonEncode(data),
-    );
     if (response.statusCode == 201) {
       return Store.fromJson(json.decode(response.body));
     } else {
@@ -47,13 +42,8 @@ class StoreController implements ControllerGeral {
 
   @override
   Future<List<GetStore>> getAllData() async {
-    var prefs = await SharedPreferences.getInstance();
-    String token = (prefs.getString('token') ?? '');
-    var header = <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token'
-    };
-    var response = await http.get(urlController, headers: header);
+    http.Response response =
+        await connectionHeaderApi.getResponse(urlController);
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);
@@ -72,14 +62,8 @@ class StoreController implements ControllerGeral {
   Future<List<GetStore>> getData(id) async {
     final Uri storeDetailUrl = Uri.parse("${AppConstants.STORE_URL}/$id");
 
-    var prefs = await SharedPreferences.getInstance();
-    String token = (prefs.getString('token') ?? '');
-
-    var header = <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token'
-    };
-    var response = await http.get(storeDetailUrl, headers: header);
+    http.Response response =
+        await connectionHeaderApi.getResponse(storeDetailUrl);
 
     if (response.statusCode == 200) {
       Map<String, dynamic> map = json.decode(response.body);

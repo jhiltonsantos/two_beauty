@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:to_beauty_app/data/webservice.dart';
+import 'package:to_beauty_app/data/datasources/place_service.dart';
 import 'package:to_beauty_app/presentation/pages/maps/place_viewmodel.dart';
 
 class PlaceListViewModel extends ChangeNotifier {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:to_beauty_app/domain/agenda_models.dart';
-import 'package:to_beauty_app/presentation/controllers/agenda_controller.dart';
-import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
+import 'package:to_beauty_app/data/repositories/agenda_repository.dart';
+import 'package:to_beauty_app/data/repositories/profile_repository.dart';
+import 'package:to_beauty_app/domain/entities/agenda_models.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 
 class ProfileAgendaPage extends StatefulWidget {
@@ -43,7 +43,8 @@ class _ProfileAgendaPageState extends State<ProfileAgendaPage> {
   }
 
   _body(agendaData, context) {
-    Future<int> userId = ProfileController.getUserId();
+    ProfileController profileController = ProfileController();
+    Future<int> userId = profileController.getUserId();
     return FutureBuilder(
       future: userId,
       builder: (BuildContext context, snapshot) {

@@ -1,4 +1,4 @@
-import 'package:to_beauty_app/domain/place_model.dart';
+import 'package:to_beauty_app/domain/entities/place_model.dart';
 
 class PlaceViewModel {
   late PlaceModel _placeModel;

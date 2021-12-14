@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/domain/owner_model.dart';
-import 'package:to_beauty_app/presentation/controllers/owner_controller.dart';
-import 'package:to_beauty_app/presentation/controllers/profile_controller.dart';
+import 'package:to_beauty_app/data/repositories/owner_repository.dart';
+import 'package:to_beauty_app/domain/entities/owner_model.dart';
+import 'package:to_beauty_app/data/repositories/profile_repository.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
@@ -161,7 +161,7 @@ class _ProfileNewOwnerState extends State<ProfileNewOwner> {
                         ),
                         onPressed: () async {
                           setState(() {
-                            ownerController.postData(
+                            ownerController.postNewOwner(
                               Owner(
                                   cpf: _cpfController.text,
                                   birthday: _birthdayController.text,

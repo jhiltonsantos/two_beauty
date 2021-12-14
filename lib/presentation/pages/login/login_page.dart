@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:to_beauty_app/domain/login_user_models.dart';
+import 'package:to_beauty_app/domain/entities/login_user_models.dart';
 import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
@@ -13,7 +13,7 @@ import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_fr
 import 'package:to_beauty_app/presentation/resources/widgets/forms/text_form_from_login_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/login/alert_error_login_widget.dart';
 
-import '../../controllers/login_controller.dart';
+import '../../../data/repositories/login_repository.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                                         await LoginController.loginUser(
                                             user: login, password: password); */
                                     var userLogin = await loginController
-                                        .postData(LoginGetToken(
+                                        .postLogin(LoginGetToken(
                                             username: login,
                                             password: password));
 

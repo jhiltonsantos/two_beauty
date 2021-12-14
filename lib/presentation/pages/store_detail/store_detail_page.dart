@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/domain/service_model.dart';
-import 'package:to_beauty_app/domain/store_models.dart';
-import 'package:to_beauty_app/presentation/controllers/service_controller.dart';
-import 'package:to_beauty_app/presentation/controllers/store_controller.dart';
+import 'package:to_beauty_app/data/repositories/service_repository.dart';
+import 'package:to_beauty_app/data/repositories/store_repository.dart';
+import 'package:to_beauty_app/domain/entities/service_model.dart';
+import 'package:to_beauty_app/domain/entities/store_models.dart';
 import 'package:to_beauty_app/presentation/pages/agenda/agenda_page.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';

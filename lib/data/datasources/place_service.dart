@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:to_beauty_app/domain/place_model.dart';
+import 'package:to_beauty_app/domain/entities/place_model.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
 class WebService {

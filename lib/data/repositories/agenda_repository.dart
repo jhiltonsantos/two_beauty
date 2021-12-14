@@ -1,14 +1,17 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/domain/agenda_models.dart';
-import 'package:to_beauty_app/presentation/controllers/controller_general.dart';
+import 'package:to_beauty_app/domain/entities/agenda_models.dart';
+import 'package:to_beauty_app/domain/repositories/agenda_repository.dart';
+import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class AgendaController implements ControllerGeral {
+class AgendaController implements IAgendaRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.AGENDA_URL);
+
+  @override
+  ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
   Future<Agenda> postData(modelClass) async {
@@ -19,16 +22,8 @@ class AgendaController implements ControllerGeral {
       'horario': modelClass.timetable
     };
 
-    var prefs = await SharedPreferences.getInstance();
-    String token = (prefs.getString('token') ?? '');
-    final http.Response response = await http.post(
-      urlController,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token'
-      },
-      body: jsonEncode(data),
-    );
+    http.Response response =
+        await connectionHeaderApi.postResponse(urlController, data);
 
     if (response.statusCode == 201) {
       return Agenda.fromJson(json.decode(response.body));
@@ -39,13 +34,8 @@ class AgendaController implements ControllerGeral {
 
   @override
   Future<List<GetAgenda>> getAllData() async {
-    var prefs = await SharedPreferences.getInstance();
-    String token = (prefs.getString('token') ?? '');
-    var header = <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token'
-    };
-    var response = await http.get(urlController, headers: header);
+    http.Response response =
+        await connectionHeaderApi.getResponse(urlController);
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);
@@ -58,10 +48,5 @@ class AgendaController implements ControllerGeral {
     } else {
       throw Exception('Falha ao carregar agenda do usuario');
     }
-  }
-
-  @override
-  Future<List> getData(id) {
-    throw UnimplementedError();
   }
 }

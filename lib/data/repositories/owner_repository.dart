@@ -1,33 +1,27 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/domain/owner_model.dart';
-import 'package:to_beauty_app/presentation/controllers/controller_general.dart';
+import 'package:to_beauty_app/domain/entities/owner_model.dart';
+import 'package:to_beauty_app/domain/repositories/owner_repository.dart';
+import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class OwnerController implements ControllerGeral {
+class OwnerController implements IOwnerRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.OWNER_POST_URL);
 
   @override
-  Future<Owner> postData(modelClass) async {
+  ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
+
+  @override
+  Future<Owner> postNewOwner(modelClass) async {
     Map data = {
       "cpf": modelClass.cpf,
       "data_nascimento": modelClass.birthday,
       "telefone": modelClass.phone
     };
 
-    var prefs = await SharedPreferences.getInstance();
-    String token = (prefs.getString('token') ?? '');
-
-    final http.Response response = await http.post(
-      urlController,
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token'
-      },
-      body: jsonEncode(data),
-    );
+    http.Response response =
+        await connectionHeaderApi.postResponse(urlController, data);
 
     if (response.statusCode == 201) {
       return Owner.fromJson(json.decode(response.body));
