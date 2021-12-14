@@ -3,8 +3,11 @@
 Projeto entregue na disciplina de Projeto Integrador II
 
 ## Equipe
-Luis Henrique Rocha Bueno
+
 José Hilton da Silva Santos
+
+Luis Henrique Rocha Bueno
+
 
 ## Tema
 Um aplicativo mobile que salões possam se cadastrar e elementalmente seus principais atendimentos e diferenciais, assim os usuários poderão marcar horário de acordo com a análise do salão e de comentários de clientes. Os dados de endereço do salão também será salvo para que um mapa com os salões próximos seja mostrado para o cliente, em caso de todas as features sejam completadas o incremento no aplicativo seria a possibilidade de pagamento direto pelo aplicativo.
