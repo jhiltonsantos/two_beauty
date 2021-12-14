@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/domain/entities/store_models.dart';
 import 'package:to_beauty_app/data/repositories/home_repository.dart';
 import 'package:to_beauty_app/data/repositories/store_repository.dart';
+import 'package:to_beauty_app/domain/entities/store_models.dart';
 import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 _appBarData(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
-  Future<String> user = HomeController.getUserData();
+  Future<String> user = HomeRepository.getUserData();
   return FutureBuilder(
       future: user,
       builder: (context, snapshot) {
@@ -75,7 +75,7 @@ _viewAppBar(users, scaffoldKey, _sideMenuKey, _endSideMenuKey) {
 }
 
 _body(scaffoldKey, _sideMenuKey, _endSideMenuKey) {
-  StoreController storeController = StoreController();
+  StoreRepository storeController = StoreRepository();
   Future<List> store = storeController.getAllData();
   return FutureBuilder(
       future: store,

@@ -6,7 +6,7 @@ import 'package:to_beauty_app/domain/repositories/agenda_repository.dart';
 import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class AgendaController implements IAgendaRepository {
+class AgendaRepository implements IAgendaRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.AGENDA_URL);
 

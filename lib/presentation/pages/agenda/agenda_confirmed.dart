@@ -32,8 +32,8 @@ class AgendaConfirmed extends StatefulWidget {
 }
 
 class _AgendaConfirmedState extends State<AgendaConfirmed> {
-  final AgendaController agendaController = AgendaController();
-  final ServiceController serviceController = ServiceController();
+  final AgendaRepository agendaController = AgendaRepository();
+  final ServiceRepository serviceController = ServiceRepository();
 
   @override
   Widget build(BuildContext context) {

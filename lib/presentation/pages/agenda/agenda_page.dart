@@ -26,7 +26,7 @@ class AgendaPage extends StatefulWidget {
 }
 
 class _AgendaPageState extends State<AgendaPage> {
-  final ServiceController serviceController = ServiceController();
+  final ServiceRepository serviceController = ServiceRepository();
 
   int _value = 8;
   DateTime _selectedValue = DateTime.now();

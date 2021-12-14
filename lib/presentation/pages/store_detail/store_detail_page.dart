@@ -19,7 +19,7 @@ class StoreDetail extends StatefulWidget {
 }
 
 class _StoreDetailState extends State<StoreDetail> {
-  StoreController storeController = StoreController();
+  StoreRepository storeController = StoreRepository();
   @override
   Widget build(BuildContext context) {
     Future<List> store = storeController.getData(widget.id);
@@ -91,7 +91,7 @@ _body(storeData, id) {
 }
 
 _services(id, address) {
-  ServiceController serviceController = ServiceController();
+  ServiceRepository serviceController = ServiceRepository();
   Future<List> services = serviceController.getAllData();
   return FutureBuilder(
       future: services,

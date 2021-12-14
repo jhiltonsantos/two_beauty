@@ -5,7 +5,7 @@ import 'package:to_beauty_app/domain/repositories/owner_repository.dart';
 import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class OwnerController implements IOwnerRepository {
+class OwnerRepository implements IOwnerRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.OWNER_POST_URL);
 
@@ -28,15 +28,5 @@ class OwnerController implements IOwnerRepository {
     } else {
       throw Exception('Falha ao criar proprietario');
     }
-  }
-
-  @override
-  Future<List> getAllData() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List> getData(id) {
-    throw UnimplementedError();
   }
 }

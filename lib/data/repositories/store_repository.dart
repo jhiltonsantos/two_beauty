@@ -6,7 +6,7 @@ import 'package:to_beauty_app/domain/repositories/store_repository.dart';
 import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class StoreController implements IStoreRepository {
+class StoreRepository implements IStoreRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.STORE_GET_POST);
 

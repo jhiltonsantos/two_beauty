@@ -5,7 +5,7 @@ import 'package:to_beauty_app/domain/repositories/profile_repository.dart';
 import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class ProfileController implements IProfileRepository {
+class ProfileRepository implements IProfileRepository {
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 

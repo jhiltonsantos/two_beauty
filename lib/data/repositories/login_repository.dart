@@ -7,7 +7,7 @@ import 'package:to_beauty_app/domain/repositories/login_repository.dart';
 import 'package:to_beauty_app/presentation/resources/connection_header.dart';
 import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
 
-class LoginController implements ILoginRepository {
+class LoginRepository implements ILoginRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);
 

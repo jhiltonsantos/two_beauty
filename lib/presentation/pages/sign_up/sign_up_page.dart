@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_beauty_app/data/repositories/sign_up_repository.dart';
 import 'package:to_beauty_app/domain/entities/user_models.dart';
 import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
-import 'package:to_beauty_app/data/repositories/sign_up_repository.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
@@ -22,7 +22,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final SignUpController signUpController = SignUpController();
+  final SignUpRepository signUpController = SignUpRepository();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();

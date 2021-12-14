@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_beauty_app/data/repositories/login_repository.dart';
 import 'package:to_beauty_app/domain/entities/login_user_models.dart';
 import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
 import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
@@ -13,8 +14,6 @@ import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_fr
 import 'package:to_beauty_app/presentation/resources/widgets/forms/text_form_from_login_widget.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/login/alert_error_login_widget.dart';
 
-import '../../../data/repositories/login_repository.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -23,7 +22,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final LoginController loginController = LoginController();
+  final LoginRepository loginController = LoginRepository();
   late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   final scaffoldKey = GlobalKey<ScaffoldState>();

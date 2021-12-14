@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_beauty_app/data/repositories/owner_repository.dart';
-import 'package:to_beauty_app/domain/entities/owner_model.dart';
 import 'package:to_beauty_app/data/repositories/profile_repository.dart';
+import 'package:to_beauty_app/domain/entities/owner_model.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
@@ -15,8 +15,8 @@ class ProfileNewOwner extends StatefulWidget {
 }
 
 class _ProfileNewOwnerState extends State<ProfileNewOwner> {
-  final ProfileController profileController = ProfileController();
-  final OwnerController ownerController = OwnerController();
+  final ProfileRepository profileController = ProfileRepository();
+  final OwnerRepository ownerController = OwnerRepository();
   final _cpfController = TextEditingController();
   final _birthdayController = TextEditingController();
   final _phoneController = TextEditingController();

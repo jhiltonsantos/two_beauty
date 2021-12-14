@@ -18,7 +18,7 @@ class CreateStorePage extends StatefulWidget {
 }
 
 class _CreateStorePageState extends State<CreateStorePage> {
-  final StoreController storeAPI = StoreController();
+  final StoreRepository storeAPI = StoreRepository();
   final _nameController = TextEditingController();
   final _cnpjController = TextEditingController();
   final _cityController = TextEditingController();

@@ -13,7 +13,7 @@ class ProfileAgendaPage extends StatefulWidget {
 }
 
 class _ProfileAgendaPageState extends State<ProfileAgendaPage> {
-  AgendaController agendaController = AgendaController();
+  AgendaRepository agendaController = AgendaRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _ProfileAgendaPageState extends State<ProfileAgendaPage> {
   }
 
   _body(agendaData, context) {
-    ProfileController profileController = ProfileController();
+    ProfileRepository profileController = ProfileRepository();
     Future<int> userId = profileController.getUserId();
     return FutureBuilder(
       future: userId,

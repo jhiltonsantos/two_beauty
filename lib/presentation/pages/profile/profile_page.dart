@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:to_beauty_app/data/repositories/profile_repository.dart';
 import 'package:to_beauty_app/domain/entities/user_models.dart';
 import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_agenda_page.dart';
-import 'package:to_beauty_app/data/repositories/profile_repository.dart';
 import 'package:to_beauty_app/presentation/pages/profile/profile_new_owner.dart';
 import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
 import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
@@ -18,7 +18,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    ProfileController profileController = ProfileController();
+    ProfileRepository profileController = ProfileRepository();
     Future<List> user = profileController.getData(1);
     return Scaffold(
       backgroundColor: Colors.white,
