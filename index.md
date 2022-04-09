@@ -35,8 +35,9 @@ Um aplicativo mobile que salões possam se cadastrar e elementalmente seus princ
 [Repositório do aplicativo](https://github.com/jhiltonsantos/2beauty-app) feito em dart/flutter utilizada no projeto.
 
 ## 📁 API 2Beauty
-[Repositório da API](https://github.com/LuisHenrique01/api-2beauty) utilizada no projeto.
-[Endpoints API](https://beauty-2.herokuapp.com/)
+[Repositório da API](https://github.com/LuisHenrique01/api-2beauty) utilizada no projeto. 
+
+[Endpoints API](https://beauty-2.herokuapp.com/) no Heroku APP.
 
 ## 🖍️ Wireframe Aplicativo
 [Wireframe](https://www.figma.com/file/gb7M5HQjnaIhgfYgDRP3Jb/2Beauty-Wireframe?node-id=0%3A1) do aplicativo feito no Figma.
