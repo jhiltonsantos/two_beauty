@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/data/repositories/owner_repository.dart';
-import 'package:to_beauty_app/data/repositories/profile_repository.dart';
-import 'package:to_beauty_app/domain/entities/owner_model.dart';
-import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
+import 'package:two_beauty/data/repositories/owner_repository.dart';
+import 'package:two_beauty/data/repositories/profile_repository.dart';
+import 'package:two_beauty/domain/entities/owner_model.dart';
+import 'package:two_beauty/presentation/pages/profile/profile_page.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/app_bar_personalize.dart';
+import 'package:two_beauty/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
 
 class ProfileNewOwner extends StatefulWidget {
   const ProfileNewOwner({Key? key}) : super(key: key);

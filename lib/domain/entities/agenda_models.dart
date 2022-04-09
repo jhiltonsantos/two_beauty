@@ -12,7 +12,7 @@ class Agenda {
 
   factory Agenda.fromJson(Map<String, dynamic> json) {
     return Agenda(
-      store: json['estabelecimento'],
+      store: json['estabelecimento'] ?? 0,
       service: json['servico'],
       date: json['data'],
       timetable: json['horario'],

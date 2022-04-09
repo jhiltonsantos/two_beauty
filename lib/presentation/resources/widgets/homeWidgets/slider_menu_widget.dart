@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:to_beauty_app/presentation/pages/profile/profile_page.dart';
-import 'package:to_beauty_app/presentation/pages/store_create/create_store_page.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/homeWidgets/button_select_widget.dart';
+import 'package:two_beauty/presentation/pages/initial/initial_page.dart';
+import 'package:two_beauty/presentation/pages/profile/profile_page.dart';
+import 'package:two_beauty/presentation/pages/store_create/create_store_page.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/routes_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/homeWidgets/button_select_widget.dart';
 
 class BuildMenu extends StatefulWidget {
   const BuildMenu({Key? key}) : super(key: key);
@@ -59,7 +60,9 @@ class _BuildMenuState extends State<BuildMenu> {
               var prefs = await SharedPreferences.getInstance();
               prefs.setBool('isLogged', false);
               prefs.clear();
-              Navigator.pushReplacementNamed(context, Routes.mainRoute);
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                return const InitialPage();
+              }));
             },
           ),
         ],

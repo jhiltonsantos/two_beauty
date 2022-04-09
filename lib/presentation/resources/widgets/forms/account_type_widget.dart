@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+
 
 class AccountTypeButton extends StatelessWidget {
   const AccountTypeButton({

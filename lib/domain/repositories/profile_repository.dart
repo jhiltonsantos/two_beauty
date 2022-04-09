@@ -1,4 +1,4 @@
-import 'package:to_beauty_app/presentation/resources/connection_header.dart';
+import 'package:two_beauty/presentation/resources/connection_header.dart';
 
 abstract class IProfileRepository {
   late Uri urlController;

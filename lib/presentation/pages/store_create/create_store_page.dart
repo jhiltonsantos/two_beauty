@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:to_beauty_app/domain/entities/store_models.dart';
+import 'package:two_beauty/data/repositories/store_repository.dart';
+import 'package:two_beauty/domain/entities/store_models.dart';
+import 'package:two_beauty/presentation/pages/home/home_page.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/app_bar_personalize.dart';
+import 'package:two_beauty/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
 
-import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
-import 'package:to_beauty_app/data/repositories/store_repository.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
 
 class CreateStorePage extends StatefulWidget {
   const CreateStorePage({Key? key}) : super(key: key);

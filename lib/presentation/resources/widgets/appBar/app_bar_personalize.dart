@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/text_appBar_widget.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/icon_back_appbar_widget.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/text_appBar_widget.dart';
 
 class AppBarPersonalize extends StatelessWidget {
   const AppBarPersonalize({

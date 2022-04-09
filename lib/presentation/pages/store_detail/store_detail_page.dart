@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/data/repositories/service_repository.dart';
-import 'package:to_beauty_app/data/repositories/store_repository.dart';
-import 'package:to_beauty_app/domain/entities/service_model.dart';
-import 'package:to_beauty_app/domain/entities/store_models.dart';
-import 'package:to_beauty_app/presentation/pages/agenda/agenda_page.dart';
-import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
+import 'package:two_beauty/data/repositories/service_repository.dart';
+import 'package:two_beauty/data/repositories/store_repository.dart';
+import 'package:two_beauty/domain/entities/service_model.dart';
+import 'package:two_beauty/domain/entities/store_models.dart';
+import 'package:two_beauty/presentation/pages/agenda/agenda_page.dart';
+import 'package:two_beauty/presentation/pages/home/home_page.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class StoreDetail extends StatefulWidget {
   const StoreDetail({Key? key, required this.id}) : super(key: key);
@@ -20,6 +20,7 @@ class StoreDetail extends StatefulWidget {
 
 class _StoreDetailState extends State<StoreDetail> {
   StoreRepository storeController = StoreRepository();
+
   @override
   Widget build(BuildContext context) {
     Future<List> store = storeController.getData(widget.id);
@@ -28,28 +29,22 @@ class _StoreDetailState extends State<StoreDetail> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: <Widget>[
               const AppBarPersonalize(
                 text: AppStrings.appBarAgenda,
                 route: HomePage(),
               ),
-              Positioned(
-                left: 70,
-                child: FutureBuilder(
-                    future: store,
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Scaffold(
-                          backgroundColor: ColorManager.whiteColor,
-                          body: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                      Object? storeData = snapshot.data;
-                      return _body(storeData, widget.id);
-                    }),
-              ),
+              FutureBuilder(
+                  future: store,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                          child: CircularProgressIndicator(
+                        color: ColorManager.shiniessBrown,
+                      ));
+                    }
+                    return _body(snapshot.data, widget.id);
+                  }),
             ],
           ),
         ),
@@ -97,14 +92,17 @@ _services(id, address) {
       future: services,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Text("Nao foi possivel carregar os servicos");
+          return const Text("Nao foi possivel carregar os serviços");
         }
         if (!snapshot.hasData) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: ColorManager.shiniessBrown,
+            ),
           );
         }
         Object? servicesData = snapshot.data;
+        //return const Center();
         return _listViewServices(servicesData, id, address);
       });
 }

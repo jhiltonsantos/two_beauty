@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/pages/home/home_page.dart';
-import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
-import 'package:to_beauty_app/presentation/pages/login/login_page.dart';
-import 'package:to_beauty_app/presentation/pages/maps/map_page.dart';
-import 'package:to_beauty_app/presentation/pages/maps/place_list_viewmodel.dart';
-import 'package:to_beauty_app/presentation/pages/sign_up/sign_up_page.dart';
-import 'package:to_beauty_app/presentation/pages/splash/splash_page.dart';
-import 'package:to_beauty_app/presentation/pages/store_create/create_store_page.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+
 import 'package:provider/provider.dart';
+import 'package:two_beauty/presentation/pages/home/home_page.dart';
+import 'package:two_beauty/presentation/pages/initial/initial_page.dart';
+import 'package:two_beauty/presentation/pages/login/login_page.dart';
+import 'package:two_beauty/presentation/pages/maps/map_page.dart';
+import 'package:two_beauty/presentation/pages/maps/place_list_viewmodel.dart';
+import 'package:two_beauty/presentation/pages/sign_up/sign_up_page.dart';
+import 'package:two_beauty/presentation/pages/splash/splash_page.dart';
+import 'package:two_beauty/presentation/pages/store_create/create_store_page.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
 
 class Routes {
   static const String splashRoute = "/";

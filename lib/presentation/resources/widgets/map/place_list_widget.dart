@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/pages/maps/place_viewmodel.dart';
-import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/pages/maps/place_viewmodel.dart';
+import 'package:two_beauty/presentation/resources/assets_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+
 
 class PlaceListWidget extends StatelessWidget {
   List<PlaceViewModel> places;

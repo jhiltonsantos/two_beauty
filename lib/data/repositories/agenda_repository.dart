@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:to_beauty_app/domain/entities/agenda_models.dart';
-import 'package:to_beauty_app/domain/repositories/agenda_repository.dart';
-import 'package:to_beauty_app/presentation/resources/connection_header.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/domain/entities/agenda_models.dart';
+import 'package:two_beauty/domain/repositories/agenda_repository.dart';
+import 'package:two_beauty/presentation/resources/connection_header.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
 
 class AgendaRepository implements IAgendaRepository {
   @override
@@ -25,11 +25,10 @@ class AgendaRepository implements IAgendaRepository {
     http.Response response =
         await connectionHeaderApi.postResponse(urlController, data);
 
-    if (response.statusCode == 201) {
-      return Agenda.fromJson(json.decode(response.body));
-    } else {
+    if (response.statusCode != 201) {
       throw Exception('Falha ao criar agenda');
     }
+    return Agenda.fromJson(json.decode(response.body));
   }
 
   @override
@@ -37,16 +36,15 @@ class AgendaRepository implements IAgendaRepository {
     http.Response response =
         await connectionHeaderApi.getResponse(urlController);
 
-    if (response.statusCode == 200) {
-      List listResponse = json.decode(response.body);
-      final listAgenda = <GetAgenda>[];
-      for (Map<String, dynamic> map in listResponse) {
-        GetAgenda agenda = GetAgenda.fromJson(map);
-        listAgenda.add(agenda);
-      }
-      return listAgenda;
-    } else {
+    if (response.statusCode != 200) {
       throw Exception('Falha ao carregar agenda do usuario');
     }
+    List listResponse = json.decode(response.body);
+    final listAgenda = <GetAgenda>[];
+    for (Map<String, dynamic> map in listResponse) {
+      GetAgenda agenda = GetAgenda.fromJson(map);
+      listAgenda.add(agenda);
+    }
+    return listAgenda;
   }
 }

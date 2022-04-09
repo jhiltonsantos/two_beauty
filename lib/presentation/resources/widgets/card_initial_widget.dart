@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
 
-Card cardLoginCadastro(String text, IconData icon, ontap) {
+Card cardLoginCadastro(String text, IconData icon, Function()? onTap) {
   return Card(
     elevation: 3.0,
     color: ColorManager.secondaryColor,
     child: InkWell(
-      onTap: ontap,
+      onTap: onTap,
       child: SizedBox(
         height: 120,
         width: 140,

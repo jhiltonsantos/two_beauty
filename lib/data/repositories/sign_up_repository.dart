@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:to_beauty_app/domain/entities/user_models.dart';
-import 'package:to_beauty_app/domain/repositories/sign_up_repository.dart';
-import 'package:to_beauty_app/presentation/resources/connection_header.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/domain/entities/user_models.dart';
+import 'package:two_beauty/domain/repositories/sign_up_repository.dart';
+import 'package:two_beauty/presentation/resources/connection_header.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+
 
 class SignUpRepository implements ISignUpRepository {
   @override
