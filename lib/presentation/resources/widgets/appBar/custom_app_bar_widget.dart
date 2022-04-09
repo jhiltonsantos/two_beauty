@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/routes_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar(

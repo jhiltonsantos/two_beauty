@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:to_beauty_app/data/repositories/service_repository.dart';
-import 'package:to_beauty_app/domain/entities/service_model.dart';
-import 'package:to_beauty_app/presentation/pages/agenda/agenda_confirmed.dart';
-import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
+import 'package:two_beauty/data/repositories/service_repository.dart';
+import 'package:two_beauty/domain/entities/service_model.dart';
+import 'package:two_beauty/presentation/pages/agenda/agenda_confirmed.dart';
+import 'package:two_beauty/presentation/pages/store_detail/store_detail_page.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class AgendaPage extends StatefulWidget {
   const AgendaPage(
@@ -55,24 +55,18 @@ class _AgendaPageState extends State<AgendaPage> {
                 text: AppStrings.appBarAgenda,
                 route: StoreDetail(id: widget.idStore),
               ),
-              Positioned(
-                  left: 70,
-                  child: FutureBuilder(
-                    future: service,
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Scaffold(
-                          backgroundColor: ColorManager.whiteColor,
-                          body: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        );
-                      }
-                      Object? serviceData = snapshot.data;
-
-                      return _body(serviceData, _selectedValue, hourFormatted);
-                    },
-                  )),
+              FutureBuilder(
+                future: service,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                          color: ColorManager.shiniessBrown,
+                        ));
+                  }
+                  return _body(snapshot.data, _selectedValue, hourFormatted);
+                },
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                 child: DatePicker(DateTime.now(),

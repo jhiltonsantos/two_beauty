@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/domain/entities/agenda_models.dart';
-import 'package:to_beauty_app/domain/entities/service_model.dart';
-import 'package:to_beauty_app/data/repositories/agenda_repository.dart';
-import 'package:to_beauty_app/data/repositories/service_repository.dart';
-import 'package:to_beauty_app/presentation/pages/agenda/agenda_page.dart';
-import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
+import 'package:two_beauty/data/repositories/agenda_repository.dart';
+import 'package:two_beauty/data/repositories/service_repository.dart';
+import 'package:two_beauty/domain/entities/agenda_models.dart';
+import 'package:two_beauty/domain/entities/service_model.dart';
+import 'package:two_beauty/presentation/pages/agenda/agenda_page.dart';
+import 'package:two_beauty/presentation/pages/store_detail/store_detail_page.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/app_bar_personalize.dart';
 
 class AgendaConfirmed extends StatefulWidget {
   const AgendaConfirmed({
@@ -53,29 +53,23 @@ class _AgendaConfirmedState extends State<AgendaConfirmed> {
                   address: widget.address,
                 ),
               ),
-              Positioned(
-                left: 70,
-                child: FutureBuilder(
-                  future: service,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Scaffold(
-                        backgroundColor: ColorManager.whiteColor,
-                        body: Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      );
-                    }
-                    Object? serviceData = snapshot.data;
-                    return _body(
-                        serviceData: serviceData,
-                        dateService: widget.date,
-                        dateServiceExt: widget.dateExt,
-                        hourService: widget.hour,
-                        address: widget.address,
-                        context: context);
-                  },
-                ),
+              FutureBuilder(
+                future: service,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: ColorManager.shiniessBrown,
+                    ));
+                  }
+                  return _body(
+                      serviceData: snapshot.data,
+                      dateService: widget.date,
+                      dateServiceExt: widget.dateExt,
+                      hourService: widget.hour,
+                      address: widget.address,
+                      context: context);
+                },
               ),
               Center(
                 child: Padding(
@@ -89,7 +83,7 @@ class _AgendaConfirmedState extends State<AgendaConfirmed> {
                             date: widget.date,
                             timetable: widget.hour));
                       });
-                      Future.delayed(const Duration(seconds: 1))
+                      Future.delayed(const Duration(seconds: 2))
                           .then((value) => {
                                 Navigator.push(
                                         context,

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
-import 'package:to_beauty_app/data/repositories/home_repository.dart';
-import 'package:to_beauty_app/data/repositories/store_repository.dart';
-import 'package:to_beauty_app/domain/entities/store_models.dart';
-import 'package:to_beauty_app/presentation/pages/store_detail/store_detail_page.dart';
-import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/custom_app_bar_widget.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/homeWidgets/slider_menu_widget.dart';
+import 'package:two_beauty/data/repositories/home_repository.dart';
+import 'package:two_beauty/data/repositories/store_repository.dart';
+import 'package:two_beauty/domain/entities/store_models.dart';
+import 'package:two_beauty/presentation/pages/store_detail/store_detail_page.dart';
+import 'package:two_beauty/presentation/resources/assets_manager.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/custom_app_bar_widget.dart';
+import 'package:two_beauty/presentation/resources/widgets/homeWidgets/slider_menu_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

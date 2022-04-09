@@ -1,4 +1,4 @@
-import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
+import 'package:two_beauty/presentation/resources/assets_manager.dart';
 
 class AppConstants {
   static const API_URL = 'https://beauty-2.herokuapp.com';

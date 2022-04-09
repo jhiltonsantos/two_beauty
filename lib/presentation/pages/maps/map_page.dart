@@ -3,16 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:map_launcher/map_launcher.dart' as prefix0;
-import 'package:to_beauty_app/presentation/pages/maps/place_list_viewmodel.dart';
-import 'package:to_beauty_app/presentation/pages/maps/place_viewmodel.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/map/place_list_widget.dart';
-import 'package:to_beauty_app/presentation/pages/locations/locations_test.dart'
+import 'package:provider/provider.dart';
+import 'package:two_beauty/presentation/pages/locations/locations_test.dart'
     as locations;
+import 'package:two_beauty/presentation/pages/maps/place_list_viewmodel.dart';
+import 'package:two_beauty/presentation/pages/maps/place_viewmodel.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/routes_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -45,6 +44,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   final Map<String, Marker> _markers = {};
+
   Future<void> _onMapCreated(GoogleMapController controller) async {
     /* _controller.complete(controller);
     _currentPosition = await Geolocator.getCurrentPosition(
@@ -160,6 +160,7 @@ class _MapPageState extends State<MapPage> {
                     style: TextStyle(color: ColorManager.blueGreyColor),
                   ),
                   onPressed: () {
+                    /*
                     showModalBottomSheet(
                       context: context,
                       builder: (context) => PlaceListWidget(
@@ -167,6 +168,7 @@ class _MapPageState extends State<MapPage> {
                         onSelected: _openMapsFor,
                       ),
                     );
+                    */
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(140, 50),

@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:to_beauty_app/presentation/resources/connection_header.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/connection_header.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+
 
 class HomeRepository {
   static Future<String> getUserData() async {

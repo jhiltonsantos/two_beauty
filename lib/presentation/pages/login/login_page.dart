@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:to_beauty_app/data/repositories/login_repository.dart';
-import 'package:to_beauty_app/domain/entities/login_user_models.dart';
-import 'package:to_beauty_app/presentation/pages/initial/initial_page.dart';
-import 'package:to_beauty_app/presentation/resources/assets_manager.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
-import 'package:to_beauty_app/presentation/resources/styles_manager.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/appBar/app_bar_personalize.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/forms/account_type_widget.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/forms/text_form_from_login_widget.dart';
-import 'package:to_beauty_app/presentation/resources/widgets/login/alert_error_login_widget.dart';
+import 'package:two_beauty/data/repositories/login_repository.dart';
+import 'package:two_beauty/domain/entities/login_user_models.dart';
+import 'package:two_beauty/presentation/pages/initial/initial_page.dart';
+import 'package:two_beauty/presentation/resources/assets_manager.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/routes_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/styles_manager.dart';
+import 'package:two_beauty/presentation/resources/widgets/appBar/app_bar_personalize.dart';
+import 'package:two_beauty/presentation/resources/widgets/forms/account_type_widget.dart';
+import 'package:two_beauty/presentation/resources/widgets/forms/input_form_from_login_widget.dart';
+import 'package:two_beauty/presentation/resources/widgets/forms/text_form_from_login_widget.dart';
+import 'package:two_beauty/presentation/resources/widgets/login/alert_error_login_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

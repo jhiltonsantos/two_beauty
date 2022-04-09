@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
-import 'package:to_beauty_app/presentation/resources/routes_manager.dart';
-import 'package:to_beauty_app/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/presentation/resources/routes_manager.dart';
+import 'package:two_beauty/presentation/resources/strings_manager.dart';
+
 
 class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);

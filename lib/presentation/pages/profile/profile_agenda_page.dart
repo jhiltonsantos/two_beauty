@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:to_beauty_app/data/repositories/agenda_repository.dart';
-import 'package:to_beauty_app/data/repositories/profile_repository.dart';
-import 'package:to_beauty_app/domain/entities/agenda_models.dart';
-import 'package:to_beauty_app/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/data/repositories/agenda_repository.dart';
+import 'package:two_beauty/data/repositories/profile_repository.dart';
+import 'package:two_beauty/domain/entities/agenda_models.dart';
+import 'package:two_beauty/presentation/resources/colors_manager.dart';
 
 class ProfileAgendaPage extends StatefulWidget {
   const ProfileAgendaPage({Key? key}) : super(key: key);
@@ -22,12 +22,10 @@ class _ProfileAgendaPageState extends State<ProfileAgendaPage> {
         future: agenda,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const Scaffold(
-              backgroundColor: ColorManager.whiteColor,
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return const Center(
+                child: CircularProgressIndicator(
+              color: ColorManager.shiniessBrown,
+            ));
           }
           Object? agendaData = snapshot.data;
           return _viewAppBar(agendaData, context);
