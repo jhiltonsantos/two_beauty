@@ -34,7 +34,7 @@ Um aplicativo mobile que salões possam se cadastrar e elementalmente seus princ
 - Tanto estrelas quanto comentários
 
 ## 📁 Aplicativo 2Beauty
-[Repositório do aplicativo](https://github.com/LuisHenrique01/api-2beauty) feito em dart/flutter utilizada no projeto.
+[Repositório do aplicativo](https://github.com/jhiltonsantos/2beauty-app) feito em dart/flutter utilizada no projeto.
 
 ## 📁 API 2Beauty
 [Repositório da API](https://github.com/LuisHenrique01/api-2beauty) utilizada no projeto.
