@@ -41,8 +41,8 @@ Um aplicativo mobile que salões possam se cadastrar e elementalmente seus princ
 
 [Endpoints API](https://beauty-2.herokuapp.com/) no Heroku APP.
 
-## 🖍️ Wireframe Aplicativo
-[Wireframe](https://www.figma.com/file/gb7M5HQjnaIhgfYgDRP3Jb/2Beauty-Wireframe?node-id=0%3A1) do aplicativo feito no Figma.
+## 🖍️ Protótipo do Aplicativo
+[Wireframe e UI](https://www.figma.com/file/tvgHSDndBECCPWxs3nqp9e/2beauty?node-id=14%3A35) do aplicativo feito no Figma.
 
 ## ✅ Planejamento de Scrum
 Todo o planejamento scrum foi desenvolvido no Jira, assim facilida a demostração de relatorios e organização de sprints deixando tudo mais dinâmico.
