@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 alertLogin(BuildContext context, String msg, MaterialPageRoute route) {
   showDialog(

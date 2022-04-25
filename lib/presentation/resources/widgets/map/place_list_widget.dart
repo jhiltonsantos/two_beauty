@@ -3,7 +3,7 @@ import 'package:two_beauty/presentation/pages/maps/place_viewmodel.dart';
 import 'package:two_beauty/presentation/resources/assets_manager.dart';
 import 'package:two_beauty/presentation/resources/strings_manager.dart';
 
-
+@immutable
 class PlaceListWidget extends StatelessWidget {
   List<PlaceViewModel> places;
   Function(PlaceViewModel) onSelected;

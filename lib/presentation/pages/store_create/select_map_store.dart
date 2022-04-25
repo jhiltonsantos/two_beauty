@@ -10,7 +10,7 @@ class SelectMapStore extends StatefulWidget {
 class _SelectMapStoreState extends State<SelectMapStore> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
     );
   }
