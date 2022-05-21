@@ -4,5 +4,7 @@ abstract class IProfileRepository {
   late Uri urlController;
   late ConnectionHeaderApi connectionHeaderApi;
 
-  Future<List<dynamic>> getData(id);
+  Future<List<dynamic>> getProfileData(id);
+
+  Future<int> getProfileId();
 }

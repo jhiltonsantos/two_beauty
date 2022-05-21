@@ -17,7 +17,7 @@ class ServiceRepository implements IServiceRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<List<ServiceGetEntity>> getData(id) async {
+  Future<List<ServiceGetEntity>> getServiceData(id) async {
     final Uri url = Uri.parse('${AppConstants.SERVICE_ALL_URL}/$id');
     http.Response response = await connectionHeaderApi.getResponse(url);
 
@@ -33,7 +33,7 @@ class ServiceRepository implements IServiceRepository {
   }
 
   @override
-  Future<List<ServiceGetEntity>> getAllData() async {
+  Future<List<ServiceGetEntity>> getAllServiceData() async {
     http.Response response =
         await connectionHeaderApi.getResponse(urlController);
 
@@ -51,7 +51,7 @@ class ServiceRepository implements IServiceRepository {
   }
 
   @override
-  Future<ServiceEntity> postData(modelClass) async {
+  Future<ServiceEntity> postServiceData(modelClass) async {
     Map data = {
       "estabelecimento": modelClass.store,
       "nome": modelClass.name,

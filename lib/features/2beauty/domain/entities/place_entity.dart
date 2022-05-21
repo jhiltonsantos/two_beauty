@@ -24,7 +24,7 @@ class PlaceEntity {
         latitude: location["lat"],
         longitude: location["lng"],
         placeId: json["place_id"],
-        photoURL: photos == null // Não alterar para isEmpty
+        photoURL: photos.isEmpty
             ? ImageAssets.logoImage
             : photos.first["photo_reference"].toString());
   }

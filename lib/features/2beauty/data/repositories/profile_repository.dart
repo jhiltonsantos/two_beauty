@@ -15,7 +15,7 @@ class ProfileRepository implements IProfileRepository {
   Uri urlController = Uri.parse(AppConstants.PROFILE_GET);
 
   @override
-  Future<List<UserEntity>> getData(id) async {
+  Future<List<UserEntity>> getProfileData(id) async {
     http.Response response =
         await connectionHeaderApi.getResponse(urlController);
 
@@ -30,7 +30,8 @@ class ProfileRepository implements IProfileRepository {
     }
   }
 
-  Future<int> getUserId() async {
+  @override
+  Future<int> getProfileId() async {
     final Uri getIdUrl = Uri.parse(AppConstants.USER_GET_NAME);
     http.Response response = await connectionHeaderApi.getResponse(getIdUrl);
 

@@ -17,7 +17,7 @@ class StoreRepository implements IStoreRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<StoreEntity> postData(modelClass) async {
+  Future<StoreEntity> postStoreData(modelClass) async {
     Map data = {
       'nome': modelClass.name,
       'cnpj': modelClass.cnpj,
@@ -44,7 +44,7 @@ class StoreRepository implements IStoreRepository {
   }
 
   @override
-  Future<List<StoreGetEntity>> getAllData() async {
+  Future<List<StoreGetEntity>> getAllStoreData() async {
     http.Response response =
         await connectionHeaderApi.getResponse(urlController);
 
@@ -62,7 +62,7 @@ class StoreRepository implements IStoreRepository {
   }
 
   @override
-  Future<List<StoreGetEntity>> getData(id) async {
+  Future<List<StoreGetEntity>> getStoreData(id) async {
     final Uri storeDetailUrl = Uri.parse("${AppConstants.STORE_URL}/$id");
 
     http.Response response =
