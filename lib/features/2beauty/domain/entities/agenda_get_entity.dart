@@ -1,4 +1,8 @@
-class AgendaGetEntity {
+// ignore_for_file: must_be_immutable
+
+import 'package:equatable/equatable.dart';
+
+class AgendaGetEntity extends Equatable {
   int id;
   String date;
   String initialHour;
@@ -27,4 +31,8 @@ class AgendaGetEntity {
       service: json['servico'] as int,
     );
   }
+
+  @override
+  List<Object?> get props =>
+      [id, date, initialHour, finalHour, agenda, client, service];
 }
