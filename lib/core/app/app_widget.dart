@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/routes_manager.dart';
+import 'package:two_beauty/core/routes/routes_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
 class AppWidget extends StatefulWidget {

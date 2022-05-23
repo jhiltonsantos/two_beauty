@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/styles_manager.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -26,11 +27,18 @@ class RouteGenerator {
   static Route<dynamic> unDefinedRoute() {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
-        appBar: AppBar(
-          title: const Text(AppStrings.noRouteFound),
-        ),
-        body: const Center(
-          child: Text(AppStrings.noRouteFound),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircularProgressIndicator(),
+              const SizedBox(height: 30.0),
+              Text(
+                AppStrings.noRouteFound,
+                style: TextStyles.addressForm(),
+              ),
+            ],
+          ),
         ),
       ),
     );
