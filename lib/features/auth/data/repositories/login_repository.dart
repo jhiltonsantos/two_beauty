@@ -3,12 +3,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 import 'package:two_beauty/features/auth/domain/entities/login_user_entity.dart';
 import 'package:two_beauty/features/auth/domain/repositories/i_login_repository.dart';
 
+@injectable
 class LoginRepository implements ILoginRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);

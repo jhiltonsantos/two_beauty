@@ -1,13 +1,15 @@
-class ServiceGetEntity {
-  int id;
-  int store;
-  String name;
-  String description;
-  double price;
-  int countAttendants;
-  int durationMinutes;
+import 'package:equatable/equatable.dart';
 
-  ServiceGetEntity(
+class ServiceGetEntity extends Equatable {
+  final int id;
+  final int store;
+  final String name;
+  final String description;
+  final double price;
+  final int countAttendants;
+  final int durationMinutes;
+
+  const ServiceGetEntity(
       {required this.id,
       required this.store,
       required this.name,
@@ -26,4 +28,8 @@ class ServiceGetEntity {
         countAttendants: json['qtd_atendentes'],
         durationMinutes: json['duracao']);
   }
+
+  @override
+  List<Object?> get props =>
+      [id, store, name, description, price, countAttendants, durationMinutes];
 }

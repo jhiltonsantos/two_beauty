@@ -1,13 +1,14 @@
+import 'package:equatable/equatable.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 
-class PlaceEntity {
+class PlaceEntity extends Equatable {
   final String name;
   final double latitude;
   final double longitude;
   final String placeId;
   final String photoURL;
 
-  PlaceEntity(
+  const PlaceEntity(
       {required this.name,
       required this.latitude,
       required this.longitude,
@@ -28,4 +29,7 @@ class PlaceEntity {
             ? ImageAssets.logoImage
             : photos.first["photo_reference"].toString());
   }
+
+  @override
+  List<Object?> get props => [name, latitude, longitude, placeId, photoURL];
 }

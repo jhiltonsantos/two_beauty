@@ -1,9 +1,12 @@
-class OwnerEntity {
-  String cpf;
-  String birthday;
-  String phone;
+import 'package:equatable/equatable.dart';
 
-  OwnerEntity({required this.cpf, required this.birthday, required this.phone});
+class OwnerEntity extends Equatable {
+  final String cpf;
+  final String birthday;
+  final String phone;
+
+  const OwnerEntity(
+      {required this.cpf, required this.birthday, required this.phone});
 
   factory OwnerEntity.fromJson(Map<String, dynamic> json) {
     return OwnerEntity(
@@ -12,4 +15,7 @@ class OwnerEntity {
       phone: json['telefone'] as String,
     );
   }
+
+  @override
+  List<Object?> get props => [cpf, birthday, phone];
 }

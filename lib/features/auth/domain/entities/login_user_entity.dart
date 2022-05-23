@@ -1,8 +1,10 @@
-class LoginUserEntity {
-  String refresh;
-  String access;
+import 'package:equatable/equatable.dart';
 
-  LoginUserEntity({required this.refresh, required this.access});
+class LoginUserEntity extends Equatable {
+  final String refresh;
+  final String access;
+
+  const LoginUserEntity({required this.refresh, required this.access});
 
   factory LoginUserEntity.fromJson(Map<String, dynamic> json) {
     return LoginUserEntity(
@@ -22,4 +24,7 @@ class LoginUserEntity {
   String toString() {
     return 'loginUser{refresh: $refresh, access: $access}';
   }
+
+  @override
+  List<Object?> get props => [refresh, access];
 }

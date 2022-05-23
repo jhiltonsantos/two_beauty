@@ -1,18 +1,20 @@
-class StoreEntity {
-  String name;
-  String cnpj;
-  String city;
-  String district;
-  String street;
-  String number;
-  String cep;
-  String openHour;
-  String closeHour;
-  String phone;
-  String latitude;
-  String longitude;
+import 'package:equatable/equatable.dart';
 
-  StoreEntity({
+class StoreEntity extends Equatable {
+  final String name;
+  final String cnpj;
+  final String city;
+  final String district;
+  final String street;
+  final String number;
+  final String cep;
+  final String openHour;
+  final String closeHour;
+  final String phone;
+  final String latitude;
+  final String longitude;
+
+  const StoreEntity({
     required this.name,
     required this.city,
     required this.cnpj,
@@ -43,4 +45,20 @@ class StoreEntity {
       longitude: json['longitude'] as String,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        name,
+        cnpj,
+        city,
+        district,
+        street,
+        number,
+        cep,
+        openHour,
+        closeHour,
+        phone,
+        latitude,
+        longitude
+      ];
 }

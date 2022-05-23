@@ -4,5 +4,5 @@ abstract class ILoginRepository {
   late Uri urlController;
   late ConnectionHeaderApi connectionHeaderApi;
 
-  Future<dynamic> postLogin(dynamic modelClass);
+  Future<bool> postLogin(dynamic modelClass);
 }

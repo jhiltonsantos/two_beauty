@@ -3,11 +3,13 @@
 import 'dart:convert';
 
 import "package:http/http.dart" as http;
+import 'package:injectable/injectable.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 import 'package:two_beauty/features/auth/domain/repositories/I_sign_up_repository.dart';
 
+@injectable
 class SignUpRepository implements ISignUpRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.USER_CREATE);

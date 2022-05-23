@@ -3,12 +3,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/service_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/service_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_service_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
+@injectable
 class ServiceRepository implements IServiceRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.SERVICE_ALL_URL);

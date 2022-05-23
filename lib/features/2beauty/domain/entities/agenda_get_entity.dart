@@ -1,17 +1,15 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:equatable/equatable.dart';
 
 class AgendaGetEntity extends Equatable {
-  int id;
-  String date;
-  String initialHour;
-  String finalHour;
-  int agenda;
-  int client;
-  int service;
+  final int id;
+  final String date;
+  final String initialHour;
+  final String finalHour;
+  final int agenda;
+  final int client;
+  final int service;
 
-  AgendaGetEntity(
+  const AgendaGetEntity(
       {required this.id,
       required this.date,
       required this.initialHour,

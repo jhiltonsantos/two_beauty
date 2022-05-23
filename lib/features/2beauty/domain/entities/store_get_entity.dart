@@ -1,19 +1,21 @@
-class StoreGetEntity {
-  int id;
-  String name;
-  String cnpj;
-  String city;
-  String district;
-  String street;
-  String number;
-  String cep;
-  String openHour;
-  String closeHour;
-  String phone;
-  String latitude;
-  String longitude;
+import 'package:equatable/equatable.dart';
 
-  StoreGetEntity({
+class StoreGetEntity extends Equatable {
+  final int id;
+  final String name;
+  final String cnpj;
+  final String city;
+  final String district;
+  final String street;
+  final String number;
+  final String cep;
+  final String openHour;
+  final String closeHour;
+  final String phone;
+  final String latitude;
+  final String longitude;
+
+  const StoreGetEntity({
     required this.id,
     required this.name,
     required this.city,
@@ -47,4 +49,21 @@ class StoreGetEntity {
       //user: json['user'] as int,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        cnpj,
+        city,
+        district,
+        street,
+        number,
+        cep,
+        openHour,
+        closeHour,
+        phone,
+        latitude,
+        longitude
+      ];
 }
