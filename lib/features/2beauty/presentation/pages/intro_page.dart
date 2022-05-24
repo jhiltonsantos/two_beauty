@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
@@ -57,7 +58,9 @@ class IntroPage extends StatelessWidget {
               child: Column(
                 children: [
                   ButtonIntroApp(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(signupRoute);
+                    },
                     styleButton: ButtonStyles.buttonPrimary(),
                     text: InitialStrings.signupText,
                     styleText: TextStyles.buttonApp(ColorManager.white_100),
@@ -65,7 +68,9 @@ class IntroPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 10.0),
                     child: ButtonIntroApp(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(loginRoute);
+                      },
                       styleButton: ButtonStyles.buttonSecondary(),
                       text: InitialStrings.loginText,
                       styleText: TextStyles.buttonApp(ColorManager.purple_200),

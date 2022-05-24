@@ -51,7 +51,7 @@ class InitialStrings {
 }
 
 class SingUpStrings {
-  static const String titleSingUp = "Cadastre-se";
+  static const String titleSingUp = "Criar conta";
   static const String chooseOptionSignUp =
       "Faça seu cadastro com as seguintes opções:";
   static const String userNameTextField = "Nome de Usuário";
@@ -59,7 +59,7 @@ class SingUpStrings {
   static const String passwordTextField = "Senha";
   static const String createAccount = "Criar conta";
   static const String haveAnAccountSingUp = "Já possui uma conta?";
-  static const String doLoginPage = "Faça login";
+  static const String doLoginPage = "Fazer login";
   static const String failCreateDataUser =
       "Não foi possível realizar o cadastro. Verifique seus dados.";
 }

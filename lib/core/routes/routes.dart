@@ -1,7 +1,7 @@
 const String splashRoute = "/";
 const String introRoute = "/intro";
 const String loginRoute = "/login";
-const String registerRoute = "/register";
+const String signupRoute = "/signup";
 const String forgotPasswordRoute = "/forgotPassword";
 const String homeRoute = "/home";
 const String mapRoute = "/testMap";

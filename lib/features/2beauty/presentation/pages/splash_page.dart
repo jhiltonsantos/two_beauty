@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void _startDelay() {
-    _timer = Timer(const Duration(seconds: 2), _goNextScreen);
+    _timer = Timer(const Duration(seconds: 3), _goNextScreen);
   }
 
   @override
