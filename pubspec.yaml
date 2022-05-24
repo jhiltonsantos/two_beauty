@@ -46,3 +46,14 @@ flutter:
   assets:
     - assets/images/
     - assets/data/locations.json
+  
+  fonts:
+    - family: Epilogue_400     
+      fonts:
+        - asset: assets/fonts/epilogue/Epilogue-Regular.ttf
+    - family: Epilogue_500     
+      fonts:
+        - asset: assets/fonts/epilogue/Epilogue-Medium.ttf
+    - family: Epilogue_600     
+      fonts:
+        - asset: assets/fonts/epilogue/Epilogue-SemiBold.ttf

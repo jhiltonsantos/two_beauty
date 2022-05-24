@@ -43,11 +43,11 @@ class AppStrings {
 }
 
 class InitialStrings {
-  static const String nameAppUpper = "2BEAUTY";
+  static const String nameAppUpper = "2Beauty";
   static const String subtitleMainScreen =
-      "Agende seu horário de\nqualquer lugar";
-  static const String signupText = "Fazer\nCadastro";
-  static const String loginText = "Fazer\nLogin";
+      "Agende seu horário de qualquer lugar";
+  static const String signupText = "Criar conta";
+  static const String loginText = "Fazer login";
 }
 
 class SingUpStrings {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/core/routes/routes_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
@@ -15,13 +15,13 @@ class _AppWidgetState extends State<AppWidget> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.getRoute,
-      initialRoute: Routes.splashRoute,
       title: InitialStrings.nameAppUpper,
       theme: ThemeData(
-        primaryColor: ColorManager.primaryColor,
+        primaryColor: Colors.black,
         backgroundColor: Colors.white,
       ),
+      initialRoute: splashRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

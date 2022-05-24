@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static const backgroudColor = Color(0xFFFDF5E6);
-  static const buttonColorMap = Color(0xFFFFFFEB);
-  static const whiteColor = Color(0xFFF5F5F5);
-  static const silverColor = Color(0xFFC0C0C0);
-  static const lightBlueColor = Color(0xFFB1CAE5);
-  static const firstColor = Color(0xFFF7F6D3);
-  static const splashBackgroud = Color(0xFFFFEFA8);
-  static const primaryColor = Color(0xFFEBE49F);
-  static const primaryColorOpac70 = Color(0xFFB3AD79);
-  static const secondaryColor = Color(0xFFDFCD85);
-  static const shiniessYellow = Color(0xFFC3B767);
-  static const blueGreyColor = Color(0xFF37474F);
-  static const greyColor = Color(0xFF616161);
-  static const shiniessBrown = Color(0xFF635D58);
+  static const white_100 = Color(0xFFFBFAFC);
+  static const white_200 = Color(0xFFF4F2F5);
+  static const white_300 = Color(0xFFEBE8ED);
+
+  static const grey_100 = Color(0xFFC6C0CC);
+  static const grey_200 = Color(0xFF9A959E);
+  static const grey_300 = Color(0xFF736F75);
+  static const grey_400 = Color(0xFF4B494D);
+  static const grey_500 = Color(0xFF323133);
+  static const grey_600 = Color(0xFF1E1E1F);
+
+  static const purple_100 = Color(0xFFF0E4FA);
+  static const purple_200 = Color(0xFF7D21CC);
+  static const purple_300 = Color(0xFF3F0B6C);
+
+  static const red_100 = Color(0xFFF7B7B7);
+  static const red_200 = Color(0xFFCC2D2D);
+  static const red_300 = Color(0xFF731616);
+
+  static const green_100 = Color(0xFFB9F5BC);
+  static const green_200 = Color(0xFF2DCC34);
+  static const green_300 = Color(0xFF16731A);
 }

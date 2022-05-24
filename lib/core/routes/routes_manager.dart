@@ -1,46 +1,36 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
-
-import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/styles_manager.dart';
-
-class Routes {
-  static const String splashRoute = "/";
-  static const String mainRoute = "/main";
-  static const String loginRoute = "/login";
-  static const String registerRoute = "/register";
-  static const String forgotPasswordRoute = "/forgotPassword";
-  static const String homeRoute = "/home";
-  static const String mapRoute = "/testMap";
-  static const String registerStoreRoute = "/registerstore";
-  static const String detailStore = "/detailStore";
-  static const String profileAgenda = "/profileAgenda";
-}
+import 'package:two_beauty/core/routes/routes.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/splash_page.dart';
 
 class RouteGenerator {
-  static Route<dynamic> getRoute(RouteSettings routeSettings) {
-    switch (routeSettings.name) {
-      default:
-        return unDefinedRoute();
-    }
-  }
-
-  static Route<dynamic> unDefinedRoute() {
-    return MaterialPageRoute(
-      builder: (_) => Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircularProgressIndicator(),
-              const SizedBox(height: 30.0),
-              Text(
-                AppStrings.noRouteFound,
-                style: TextStyles.addressForm(),
-              ),
-            ],
-          ),
-        ),
-      ),
+  static final errorPage = MaterialPageRoute(builder: (_) {
+    return const Scaffold(
+      body: Center(child: Text('Error Routes')),
     );
+  });
+
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+    final routeName = settings.name;
+
+    switch (routeName) {
+      case splashRoute:
+        return MaterialPageRoute(
+          builder: (_) => const SplashPage(),
+          settings: const RouteSettings(name: splashRoute),
+        );
+
+      case introRoute:
+        return MaterialPageRoute(
+          builder: (_) => const IntroPage(),
+          settings: const RouteSettings(name: introRoute),
+        );
+
+      default:
+        return errorPage;
+    }
   }
 }
