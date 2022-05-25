@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/injection/injection.dart';
 import 'package:two_beauty/core/routes/routes.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/signup_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/splash_page.dart';
-import 'package:two_beauty/features/auth/presentation/bloc/login/login_cubit.dart';
-import 'package:two_beauty/features/auth/presentation/bloc/signUp/signup_cubit.dart';
-import 'package:two_beauty/features/auth/presentation/pages/login_page.dart';
-import 'package:two_beauty/features/auth/presentation/pages/signup_page.dart';
 
 class RouteGenerator {
   static final errorPage = MaterialPageRoute(builder: (_) {

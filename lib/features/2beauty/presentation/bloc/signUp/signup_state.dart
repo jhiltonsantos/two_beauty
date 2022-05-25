@@ -20,11 +20,7 @@ class LoadingSignupState extends SignupState {
 
 @immutable
 class LoadedSignupState extends SignupState {
-  final dynamic user;
-  const LoadedSignupState(this.user);
-
-  @override
-  List<Object> get props => [user];
+  const LoadedSignupState();
 }
 
 class ErrorSignupState extends SignupState {

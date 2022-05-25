@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
-import 'package:two_beauty/features/auth/presentation/bloc/login/login_cubit.dart';
-import 'package:two_beauty/features/auth/presentation/bloc/login/login_state.dart';
-import 'package:two_beauty/features/auth/presentation/resources/widgets/app_bar_widget.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

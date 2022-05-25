@@ -35,6 +35,7 @@ class AppStrings {
   static const String notImplemented = "Ainda não implementado";
   static const String nearToYou = "Perto de você";
   static const String failRequestMap = "Não foi possível realizar a pesquisa.";
+  static const String timeException = "Tempo Excedido na Execução";
 
   static const String listMap = "Lista de Salões";
 
