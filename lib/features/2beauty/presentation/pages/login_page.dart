@@ -26,13 +26,30 @@ class LoginPage extends StatelessWidget {
       ),
       body: BlocBuilder<LoginCubit, LoginState>(
         builder: ((context, state) {
-          if (state is InitLoginState || state is LoadingLoginState) {
+          if (state is LoadingLoginState) {
             return const ProgressWidget();
           }
-          return const Center(
-            child: Text(
-              'Erro Desconhecido',
-              style: TextStyle(fontSize: 42.0),
+          if (state is LoadedLoginState) {}
+          if (state is SentLoginState) {}
+          if (state is ErrorLoginState) {}
+
+          return const Scaffold(
+            backgroundColor: ColorManager.white_200,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(200),
+              child: Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: AppBarWidget(
+                  title: '',
+                  leadingIcon: Icons.arrow_back,
+                ),
+              ),
+            ),
+            body: Center(
+              child: Text(
+                'Error',
+                style: TextStyle(fontSize: 28.0),
+              ),
             ),
           );
         }),

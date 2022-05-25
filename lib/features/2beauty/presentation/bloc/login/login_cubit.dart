@@ -7,12 +7,12 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_state.
 @injectable
 class LoginCubit extends Cubit<LoginState> {
   final PostLoginUsecase _postLoginUsecase;
-  LoginCubit(this._postLoginUsecase) : super(const InitLoginState());
+  LoginCubit(this._postLoginUsecase) : super(const LoadedLoginState());
 
   Future<void> postLogin(NoParams params) async {
     emit(const LoadingLoginState());
     await _postLoginUsecase
         .execute(params)
-        .then((user) => emit(LoadedLoginState(user)));
+        .then((user) => emit(const SentLoginState()));
   }
 }

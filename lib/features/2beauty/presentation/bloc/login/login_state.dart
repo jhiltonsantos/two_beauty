@@ -9,21 +9,21 @@ abstract class LoginState extends Equatable {
 }
 
 @immutable
-class InitLoginState extends LoginState {
-  const InitLoginState();
-}
-
-@immutable
 class LoadingLoginState extends LoginState {
   const LoadingLoginState();
 }
 
 @immutable
 class LoadedLoginState extends LoginState {
-  final dynamic user;
-  const LoadedLoginState(this.user);
+  const LoadedLoginState();
 }
 
+@immutable
+class SentLoginState extends LoginState {
+  const SentLoginState();
+}
+
+@immutable
 class ErrorLoginState extends LoginState {
   final String message;
 

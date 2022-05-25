@@ -12,6 +12,7 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/failu
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/show_sucessful_dialog.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 
 class SignupPage extends StatelessWidget {
@@ -21,7 +22,7 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
       builder: ((context, state) {
-        if (state is InitSignupState || state is LoadingSignupState) {
+        if (state is LoadingSignupState) {
           return const ProgressWidget();
         }
         if (state is LoadedSignupState) {
@@ -30,10 +31,26 @@ class SignupPage extends StatelessWidget {
         if (state is ErrorSignupState) {
           return const FailureDialog('Error');
         }
-        return const Center(
-          child: Text(
-            'Erro Desconhecido',
-            style: TextStyle(fontSize: 42.0),
+        if (state is SentSignupState) {
+          showSuccessfulDialog(context, 'Usuário criado');
+        }
+        return const Scaffold(
+          backgroundColor: ColorManager.white_200,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(200),
+            child: Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: AppBarWidget(
+                title: '',
+                leadingIcon: Icons.arrow_back,
+              ),
+            ),
+          ),
+          body: Center(
+            child: Text(
+              'Error',
+              style: TextStyle(fontSize: 28.0),
+            ),
           ),
         );
       }),

@@ -17,7 +17,7 @@ class SignupCubit extends Cubit<SignupState> {
     emit(const LoadingSignupState());
     await _postNewUserUsecase
         .execute(params)
-        .then((user) => emit(const LoadedSignupState()))
+        .then((user) => emit(const SentSignupState()))
         .catchError((error) {
       emit(ErrorSignupState(error.message));
     }, test: (error) => error is HttpException).catchError((error) {

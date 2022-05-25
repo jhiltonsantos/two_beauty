@@ -9,11 +9,6 @@ abstract class SignupState extends Equatable {
 }
 
 @immutable
-class InitSignupState extends SignupState {
-  const InitSignupState();
-}
-
-@immutable
 class LoadingSignupState extends SignupState {
   const LoadingSignupState();
 }
@@ -21,6 +16,11 @@ class LoadingSignupState extends SignupState {
 @immutable
 class LoadedSignupState extends SignupState {
   const LoadedSignupState();
+}
+
+@immutable
+class SentSignupState extends SignupState {
+  const SentSignupState();
 }
 
 class ErrorSignupState extends SignupState {
