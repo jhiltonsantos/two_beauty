@@ -51,29 +51,28 @@ class InitialStrings {
   static const String loginText = "Fazer login";
 }
 
-class SingUpStrings {
-  static const String titleSingUp = "Criar conta";
-  static const String chooseOptionSignUp =
-      "Faça seu cadastro com as seguintes opções:";
-  static const String userNameTextField = "Nome de Usuário";
+class SignUpStrings {
+  static const String titleSignUp = "Criar conta";
+  static const String userNameTextField = "Usuário";
+  static const String userNameInputField = "Ex: hiltonsantos";
   static const String emailTextField = "Email";
+  static const String emailInputField = "Ex: hilton@gmail.com";
   static const String passwordTextField = "Senha";
-  static const String createAccount = "Criar conta";
+  static const String passwordInputField = "Crie uma senha forte aqui";
+  static const String buttonTextSignUp = "Criar conta";
   static const String haveAnAccountSingUp = "Já possui uma conta?";
-  static const String doLoginPage = "Fazer login";
+  static const String doLoginPage = "Faça login";
   static const String failCreateDataUser =
       "Não foi possível realizar o cadastro. Verifique seus dados.";
 }
 
 class LoginStrings {
-  static const String titleLogin = "Log In";
-  static const String chooseOptionLogin =
-      "Faça seu login com as seguintes opções:";
+  static const String titleLogin = "Fazer login";
   static const String userTextField = "Usuário";
   static const String passwordTextField = "Senha";
-  static const String entryAccount = "Log In";
-  static const String dontHaveAccount = "Não possui uma conta?";
-  static const String doCreatePage = "Inscrever-se";
+  static const String buttonTextLogin = "Fazer login";
+  static const String dontHaveAccount = "Ainda não possui uma conta?";
+  static const String doCreatePage = "Crie uma conta";
   static const String failLoginDataUser = "Usuário ou senha incorretos";
 }
 

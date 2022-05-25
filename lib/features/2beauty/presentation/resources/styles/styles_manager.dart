@@ -38,4 +38,14 @@ class TextStyles {
       overflow: TextOverflow.clip,
     );
   }
+
+  static TextStyle textFormField() {
+    return const TextStyle(
+      fontSize: 16,
+      fontFamily: 'Epilogue_600',
+      color: ColorManager.grey_500,
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.clip,
+    );
+  }
 }

@@ -13,10 +13,10 @@ class SignupCubit extends Cubit<SignupState> {
 
   SignupCubit(this._postNewUserUsecase) : super(const LoadedSignupState());
 
-  Future<void> postNewUser() async {
+  Future<void> postNewUser(NoParams params) async {
     emit(const LoadingSignupState());
     await _postNewUserUsecase
-        .execute(NoParams())
+        .execute(params)
         .then((user) => emit(const LoadedSignupState()))
         .catchError((error) {
       emit(ErrorSignupState(error.message));

@@ -9,10 +9,10 @@ class LoginCubit extends Cubit<LoginState> {
   final PostLoginUsecase _postLoginUsecase;
   LoginCubit(this._postLoginUsecase) : super(const InitLoginState());
 
-  Future<void> postLogin() async {
+  Future<void> postLogin(NoParams params) async {
     emit(const LoadingLoginState());
     await _postLoginUsecase
-        .execute(NoParams())
+        .execute(params)
         .then((user) => emit(LoadedLoginState(user)));
   }
 }

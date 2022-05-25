@@ -21,7 +21,6 @@ dependencies:
   shared_preferences: ^2.0.15
   google_maps_flutter: ^2.1.5
   geolocator: ^8.2.1
-  provider: ^6.0.2
   json_serializable: ^6.2.0
   json_annotation: ^4.5.0
   http_interceptor: ^1.0.2
