@@ -4,43 +4,29 @@ import 'package:two_beauty/features/2beauty/presentation/resources/colors_manage
 class TextFieldItem extends StatefulWidget {
   final TextEditingController controller;
   final String? hintText;
-  final bool? obscureText;
   final TextInputType? textInputType;
-  final bool iconSufix;
-  const TextFieldItem(
-      {Key? key,
-      required this.controller,
-      this.obscureText,
-      this.textInputType,
-      this.hintText,
-      required this.iconSufix})
-      : super(key: key);
+  const TextFieldItem({
+    Key? key,
+    required this.controller,
+    this.textInputType,
+    this.hintText,
+  }) : super(key: key);
 
   @override
   State<TextFieldItem> createState() => _TextFieldItemState();
 }
 
 class _TextFieldItemState extends State<TextFieldItem> {
-  late bool passwordObscure;
-
-  @override
-  void initState() {
-    super.initState();
-    passwordObscure = true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: TextField(
-        keyboardType: widget.textInputType ?? TextInputType.text,
-        obscureText: passwordObscure,
-        obscuringCharacter: "*",
-        expands: false,
-        controller: widget.controller,
-        style: const TextStyle(fontSize: 16.0, fontFamily: "Epilogue_400"),
-        decoration: InputDecoration(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: TextField(
+          keyboardType: widget.textInputType ?? TextInputType.text,
+          expands: false,
+          controller: widget.controller,
+          style: const TextStyle(fontSize: 16.0, fontFamily: "Epilogue_400"),
+          decoration: InputDecoration(
             filled: true,
             fillColor: ColorManager.white_100,
             border: const OutlineInputBorder(
@@ -53,20 +39,9 @@ class _TextFieldItemState extends State<TextFieldItem> {
             focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 borderSide:
-                    BorderSide(color: ColorManager.purple_300, width: 1.0)),
+                    BorderSide(color: ColorManager.purple_200, width: 2.0)),
             hintText: widget.hintText ?? "",
-            suffixIcon: widget.iconSufix
-                ? IconButton(
-                    icon: Icon(
-                      passwordObscure ? Icons.visibility : Icons.visibility_off,
-                      color: ColorManager.purple_300,
-                    ),
-                    onPressed: () {
-                      setState(() => passwordObscure = !passwordObscure);
-                    },
-                  )
-                : null),
-      ),
-    );
+          ),
+        ));
   }
 }

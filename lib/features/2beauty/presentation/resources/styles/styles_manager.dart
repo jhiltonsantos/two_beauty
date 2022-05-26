@@ -19,12 +19,12 @@ class TextStyles {
     );
   }
 
-  static TextStyle subtitleInitApp() {
-    return const TextStyle(
-      fontFamily: 'Epilogue_400',
+  static TextStyle subtitleInitApp({Color? color, String? fontFamily}) {
+    return TextStyle(
+      fontFamily: fontFamily ?? 'Epilogue_400',
       fontSize: 14,
       fontWeight: FontWeight.w400,
-      color: ColorManager.grey_300,
+      color: color ?? ColorManager.grey_300,
       overflow: TextOverflow.clip,
     );
   }

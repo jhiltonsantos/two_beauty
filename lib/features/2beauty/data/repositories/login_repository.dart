@@ -13,7 +13,7 @@ import 'package:two_beauty/features/2beauty/domain/repositories/i_login_reposito
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
-@injectable
+@Injectable(as: ILoginRepository)
 class LoginRepository implements ILoginRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);
@@ -22,7 +22,8 @@ class LoginRepository implements ILoginRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, bool>> postLogin(LoginGetTokenEntity loginGetTokenEntity) async {
+  Future<Either<Failure, bool>> postLogin(
+      LoginGetTokenEntity loginGetTokenEntity) async {
     Map data = {
       "username": loginGetTokenEntity.username,
       "password": loginGetTokenEntity.password,

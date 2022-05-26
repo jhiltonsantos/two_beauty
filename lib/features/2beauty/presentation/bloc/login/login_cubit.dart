@@ -13,6 +13,6 @@ class LoginCubit extends Cubit<LoginState> {
     emit(const LoadingLoginState());
     await _postLoginUsecase
         .execute(params)
-        .then((user) => emit(const SentLoginState()));
+        .then((userReturn) => emit(const SentLoginState()));
   }
 }

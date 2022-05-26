@@ -10,7 +10,7 @@ import 'package:two_beauty/features/2beauty/domain/repositories/i_home_repositor
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
-@injectable
+@Injectable(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();

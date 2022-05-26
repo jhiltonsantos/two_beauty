@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_state.dart';
@@ -8,11 +9,13 @@ import 'package:two_beauty/features/2beauty/presentation/resources/strings_manag
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/failure_dialog.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item_password.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -28,33 +31,50 @@ class LoginPage extends StatelessWidget {
           return const LoginForm();
         }
         if (state is SentLoginState) {
-          return const Text('Logado');
+          return SafeArea(
+            child: Scaffold(
+              backgroundColor: ColorManager.white_200,
+              appBar: const PreferredSize(
+                preferredSize: Size.fromHeight(200),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 20.0),
+                  child: AppBarWidget(
+                    title: '',
+                    leadingIcon: Icons.arrow_back,
+                  ),
+                ),
+              ),
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        'Usuário logado',
+                        style: TextStyles.textFormField(),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: ButtonIntroApp(
+                      styleButton: ButtonStyles.buttonPrimary(),
+                      styleText: TextStyles.buttonApp(ColorManager.white_100),
+                      text: "Continuar",
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(homeRoute),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
         }
         if (state is ErrorLoginState) {
           return const FailureDialog('Error');
         }
-
-        return const SafeArea(
-          child: Scaffold(
-            backgroundColor: ColorManager.white_200,
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(200),
-              child: Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: AppBarWidget(
-                  title: '',
-                  leadingIcon: Icons.arrow_back,
-                ),
-              ),
-            ),
-            body: Center(
-              child: Text(
-                'Error',
-                style: TextStyle(fontSize: 28.0),
-              ),
-            ),
-          ),
-        );
+        return const ErrorPage();
       }),
     );
   }
@@ -70,11 +90,12 @@ class LoginForm extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: ColorManager.white_200,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(200),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(200),
         child: Padding(
-          padding: EdgeInsets.only(top: 20.0),
+          padding: const EdgeInsets.only(top: 20.0),
           child: AppBarWidget(
+            leadingOnTap: (() => Navigator.of(context).pushNamed(introRoute)),
             title: LoginStrings.titleLogin,
             leadingIcon: Icons.arrow_back,
           ),
@@ -91,7 +112,6 @@ class LoginForm extends StatelessWidget {
                 const LabelFormItem(title: SignUpStrings.userNameTextField),
                 TextFieldItem(
                   controller: userInputController,
-                  iconSufix: false,
                 )
               ],
             ),
@@ -103,7 +123,7 @@ class LoginForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const LabelFormItem(title: SignUpStrings.passwordTextField),
-                TextFieldItem(
+                TextFieldItemPassword(
                   controller: passwordInputController,
                   obscureText: true,
                   iconSufix: true,
@@ -116,7 +136,7 @@ class LoginForm extends StatelessWidget {
             child: ButtonIntroApp(
               styleButton: ButtonStyles.buttonPrimary(),
               styleText: TextStyles.buttonApp(ColorManager.white_100),
-              text: SignUpStrings.buttonTextSignUp,
+              text: LoginStrings.buttonTextLogin,
               onPressed: () {
                 final String user = userInputController.text;
                 final String password = passwordInputController.text;
@@ -132,6 +152,29 @@ class LoginForm extends StatelessWidget {
               },
             ),
           ),
+          const SizedBox(
+            height: 50.0,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                LoginStrings.dontHaveAccount,
+                style: TextStyles.subtitleInitApp(),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(signupRoute);
+                  },
+                  child: Text(
+                    LoginStrings.doCreatePage,
+                    style: TextStyles.subtitleInitApp(
+                        fontFamily: 'Epilogue_500',
+                        color: ColorManager.purple_200),
+                  ))
+            ],
+          )
         ]),
       ),
     );

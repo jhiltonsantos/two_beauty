@@ -14,6 +14,7 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item_password.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -32,31 +33,7 @@ class SignupPage extends StatelessWidget {
           return const FailureDialog('Error');
         }
         if (state is SentSignupState) {
-          return Scaffold(
-            body: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        'Usuário criado com sucesso',
-                        style: TextStyles.textFormField(),
-                      ),
-                    ),
-                  ),
-                  ButtonIntroApp(
-                    styleButton: ButtonStyles.buttonPrimary(),
-                    styleText: TextStyles.buttonApp(ColorManager.white_100),
-                    text: "Continuar",
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed(introRoute),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return const ResponseSentNewUser();
         }
         return const Scaffold(
           backgroundColor: ColorManager.white_200,
@@ -95,11 +72,12 @@ class SignupForm extends StatelessWidget {
         TextEditingController();
     return Scaffold(
       backgroundColor: ColorManager.white_200,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(200),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(200),
         child: Padding(
-          padding: EdgeInsets.only(top: 20.0),
+          padding: const EdgeInsets.only(top: 20.0),
           child: AppBarWidget(
+            leadingOnTap: (() => Navigator.of(context).pushNamed(introRoute)),
             title: SignUpStrings.titleSignUp,
             leadingIcon: Icons.arrow_back,
           ),
@@ -117,7 +95,6 @@ class SignupForm extends StatelessWidget {
                 TextFieldItem(
                   controller: userInputController,
                   hintText: SignUpStrings.userNameInputField,
-                  iconSufix: false,
                 )
               ],
             ),
@@ -133,7 +110,6 @@ class SignupForm extends StatelessWidget {
                   controller: emailInputController,
                   hintText: SignUpStrings.emailInputField,
                   textInputType: TextInputType.emailAddress,
-                  iconSufix: false,
                 )
               ],
             ),
@@ -145,7 +121,7 @@ class SignupForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const LabelFormItem(title: SignUpStrings.passwordTextField),
-                TextFieldItem(
+                TextFieldItemPassword(
                   controller: passwordInputController,
                   hintText: SignUpStrings.passwordInputField,
                   obscureText: true,
@@ -178,7 +154,64 @@ class SignupForm extends StatelessWidget {
               },
             ),
           ),
+          const SizedBox(
+            height: 50.0,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                SignUpStrings.haveAnAccountSingUp,
+                style: TextStyles.subtitleInitApp(),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(loginRoute);
+                  },
+                  child: Text(
+                    SignUpStrings.doLoginPage,
+                    style: TextStyles.subtitleInitApp(
+                        fontFamily: 'Epilogue_500',
+                        color: ColorManager.purple_200),
+                  ))
+            ],
+          )
         ]),
+      ),
+    );
+  }
+}
+
+class ResponseSentNewUser extends StatelessWidget {
+  const ResponseSentNewUser({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Text(
+                  'Usuário criado com sucesso',
+                  style: TextStyles.textFormField(),
+                ),
+              ),
+            ),
+            ButtonIntroApp(
+              styleButton: ButtonStyles.buttonPrimary(),
+              styleText: TextStyles.buttonApp(ColorManager.white_100),
+              text: "Continuar",
+              onPressed: () => Navigator.of(context).pushNamed(homeRoute),
+            ),
+          ],
+        ),
       ),
     );
   }
