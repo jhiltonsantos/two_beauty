@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:two_beauty/core/usecase/usecase.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/usecases/sign_up/post_new_user_usecase.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
@@ -13,7 +13,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   SignupCubit(this._postNewUserUsecase) : super(const LoadedSignupState());
 
-  Future<void> postNewUser(NoParams params) async {
+  Future<void> postNewUser(UserEntity params) async {
     emit(const LoadingSignupState());
     await _postNewUserUsecase
         .execute(params)
