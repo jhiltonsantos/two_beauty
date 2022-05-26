@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_state.dart';
@@ -12,7 +13,6 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/failu
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/widgets/show_sucessful_dialog.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 
 class SignupPage extends StatelessWidget {
@@ -32,7 +32,31 @@ class SignupPage extends StatelessWidget {
           return const FailureDialog('Error');
         }
         if (state is SentSignupState) {
-          showSuccessfulDialog(context, 'Usuário criado');
+          return Scaffold(
+            body: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        'Usuário criado com sucesso',
+                        style: TextStyles.textFormField(),
+                      ),
+                    ),
+                  ),
+                  ButtonIntroApp(
+                    styleButton: ButtonStyles.buttonPrimary(),
+                    styleText: TextStyles.buttonApp(ColorManager.white_100),
+                    text: "Continuar",
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(introRoute),
+                  ),
+                ],
+              ),
+            ),
+          );
         }
         return const Scaffold(
           backgroundColor: ColorManager.white_200,
@@ -93,6 +117,7 @@ class SignupForm extends StatelessWidget {
                 TextFieldItem(
                   controller: userInputController,
                   hintText: SignUpStrings.userNameInputField,
+                  iconSufix: false,
                 )
               ],
             ),
@@ -106,7 +131,9 @@ class SignupForm extends StatelessWidget {
                 const LabelFormItem(title: SignUpStrings.emailTextField),
                 TextFieldItem(
                   controller: emailInputController,
+                  hintText: SignUpStrings.emailInputField,
                   textInputType: TextInputType.emailAddress,
+                  iconSufix: false,
                 )
               ],
             ),
@@ -120,7 +147,9 @@ class SignupForm extends StatelessWidget {
                 const LabelFormItem(title: SignUpStrings.passwordTextField),
                 TextFieldItem(
                   controller: passwordInputController,
+                  hintText: SignUpStrings.passwordInputField,
                   obscureText: true,
+                  iconSufix: true,
                 )
               ],
             ),
@@ -139,12 +168,11 @@ class SignupForm extends StatelessWidget {
                 if (user.isEmpty || email.isEmpty || password.isEmpty) {
                   const ErrorSignupState("Faltando dados");
                 } else {
-                  final dynamic userEntity = UserEntity(
+                  final UserEntity userEntity = UserEntity(
                       username: user,
                       email: email,
-                      firstName: 'Hilton',
+                      firstName: user,
                       password: password);
-                  // TODO: Resolver enviar a entidade user pelo parametro do postNewUser
                   BlocProvider.of<SignupCubit>(context).postNewUser(userEntity);
                 }
               },

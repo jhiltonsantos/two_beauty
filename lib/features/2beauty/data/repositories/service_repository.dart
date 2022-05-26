@@ -2,8 +2,10 @@
 
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/service_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/service_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_service_repository.dart';
@@ -19,7 +21,7 @@ class ServiceRepository implements IServiceRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<List<ServiceGetEntity>> getServiceData(id) async {
+  Future<Either<Failure, List<ServiceGetEntity>>> getServiceData(String id) async {
     final Uri url = Uri.parse('${AppConstants.SERVICE_ALL_URL}/$id');
     http.Response response = await connectionHeaderApi.getResponse(url);
 
@@ -28,14 +30,15 @@ class ServiceRepository implements IServiceRepository {
       final listService = <ServiceGetEntity>[];
       ServiceGetEntity service = ServiceGetEntity.fromJson(map);
       listService.add(service);
-      return listService;
+      return Right(listService);
     } else {
-      throw Exception('Falha ao carregar servico');
+      // throw Exception('Falha ao carregar servico');
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<List<ServiceGetEntity>> getAllServiceData() async {
+  Future<Either<Failure, List<ServiceGetEntity>>> getAllServiceData() async {
     http.Response response =
         await connectionHeaderApi.getResponse(urlController);
 
@@ -46,30 +49,33 @@ class ServiceRepository implements IServiceRepository {
         ServiceGetEntity service = ServiceGetEntity.fromJson(map);
         services.add(service);
       }
-      return services;
+      return Right(services);
     } else {
-      throw Exception('Falha ao carregar servicos');
+      // throw Exception('Falha ao carregar servicos');
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<ServiceEntity> postServiceData(modelClass) async {
+  Future<Either<Failure, ServiceEntity>> postServiceData(
+      ServiceEntity serviceEntity) async {
     Map data = {
-      "estabelecimento": modelClass.store,
-      "nome": modelClass.name,
-      "descricao": modelClass.description,
-      "preco": modelClass.price,
-      "qtd_atendentes": modelClass.countAttendants,
-      "duracao": modelClass.durationMinutes,
+      "estabelecimento": serviceEntity.store,
+      "nome": serviceEntity.name,
+      "descricao": serviceEntity.description,
+      "preco": serviceEntity.price,
+      "qtd_atendentes": serviceEntity.countAttendants,
+      "duracao": serviceEntity.durationMinutes,
     };
 
     http.Response response =
         await connectionHeaderApi.postResponse(urlController, data);
 
     if (response.statusCode == 201) {
-      return ServiceEntity.fromJson(json.decode(response.body));
+      return Right(ServiceEntity.fromJson(json.decode(response.body)));
     } else {
-      throw Exception('Falha ao criar servico');
+      // throw Exception('Falha ao criar servico');
+      return Left(ServerFailure());
     }
   }
 }

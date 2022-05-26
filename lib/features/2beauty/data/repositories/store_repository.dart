@@ -2,8 +2,10 @@
 
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_store_repository.dart';
@@ -19,7 +21,7 @@ class StoreRepository implements IStoreRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<List<StoreGetEntity>> getStoreData(id) async {
+  Future<Either<Failure, List<StoreGetEntity>>> getStoreData(String id) async {
     final Uri storeDetailUrl = Uri.parse("${AppConstants.STORE_URL}/$id");
 
     http.Response response =
@@ -30,14 +32,15 @@ class StoreRepository implements IStoreRepository {
       final listStore = <StoreGetEntity>[];
       StoreGetEntity store = StoreGetEntity.fromJson(map);
       listStore.add(store);
-      return listStore;
+      return Right(listStore);
     } else {
-      throw Exception('Falha ao carregar estabelecimento');
+      // throw Exception('Falha ao carregar estabelecimento');
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<List<StoreGetEntity>> getAllStoreData() async {
+  Future<Either<Failure, List<StoreGetEntity>>> getAllStoreData() async {
     http.Response response =
         await connectionHeaderApi.getResponse(urlController);
 
@@ -48,36 +51,38 @@ class StoreRepository implements IStoreRepository {
         StoreGetEntity service = StoreGetEntity.fromJson(map);
         services.add(service);
       }
-      return services;
+      return Right(services);
     } else {
       throw Exception('Falha ao carregar estabelecimentos');
     }
   }
 
   @override
-  Future<StoreEntity> postStoreData(modelClass) async {
+  Future<Either<Failure, StoreEntity>> postStoreData(
+      StoreEntity storeEntity) async {
     Map data = {
-      'nome': modelClass.name,
-      'cnpj': modelClass.cnpj,
-      'cidade': modelClass.city,
-      'bairro': modelClass.district,
-      'rua': modelClass.street,
-      'numero': modelClass.number,
-      'cep': modelClass.cep,
-      'horario_inicio': modelClass.openHour,
-      'horario_final': modelClass.closeHour,
-      'telefone': modelClass.phone,
-      'latitude': modelClass.latitude,
-      'longitude': modelClass.longitude,
+      'nome': storeEntity.name,
+      'cnpj': storeEntity.cnpj,
+      'cidade': storeEntity.city,
+      'bairro': storeEntity.district,
+      'rua': storeEntity.street,
+      'numero': storeEntity.number,
+      'cep': storeEntity.cep,
+      'horario_inicio': storeEntity.openHour,
+      'horario_final': storeEntity.closeHour,
+      'telefone': storeEntity.phone,
+      'latitude': storeEntity.latitude,
+      'longitude': storeEntity.longitude,
     };
 
     http.Response response =
         await connectionHeaderApi.postResponse(urlController, data);
 
     if (response.statusCode == 201) {
-      return StoreEntity.fromJson(json.decode(response.body));
+      return Right(StoreEntity.fromJson(json.decode(response.body)));
     } else {
-      throw Exception('Falha ao criar estabelecimento');
+      // throw Exception('Falha ao criar estabelecimento');
+      return Left(ServerFailure());
     }
   }
 }

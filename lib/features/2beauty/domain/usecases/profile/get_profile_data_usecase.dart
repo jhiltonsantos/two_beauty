@@ -1,4 +1,6 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/core/usecase/usecase.dart';
 import 'package:two_beauty/features/2beauty/data/repositories/profile_repository.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
@@ -9,7 +11,7 @@ class GetProfileDataUsecase extends UseCase<List<UserEntity>, NoParams> {
   final IProfileRepository _iProfileRepository = ProfileRepository();
 
   @override
-  Future<List<UserEntity>> execute(NoParams params) async {
+  Future<Either<Failure, List<UserEntity>>> execute(NoParams params) async {
     return await _iProfileRepository.getProfileData();
   }
 }
