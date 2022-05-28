@@ -35,7 +35,6 @@ class SignUpRepository implements ISignUpRepository {
       },
       body: jsonEncode(data),
     );
-
     if (response.statusCode == 201) {
       UserEntity.fromJson(json.decode(response.body));
       return const Right(true);

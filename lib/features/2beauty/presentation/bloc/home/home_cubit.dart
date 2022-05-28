@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/usecase/usecase.dart';
@@ -13,6 +14,6 @@ class HomeCubit extends Cubit<HomeState> {
     emit(const LoadingHomeState());
     await _getUserDataUsecase
         .execute(params)
-        .then((userData) => emit(const LoadedHomeState()));
+        .then((userData) => emit(LoadedHomeState(userData)));
   }
 }

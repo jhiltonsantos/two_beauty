@@ -31,45 +31,7 @@ class LoginPage extends StatelessWidget {
           return const LoginForm();
         }
         if (state is SentLoginState) {
-          return SafeArea(
-            child: Scaffold(
-              backgroundColor: ColorManager.white_200,
-              appBar: const PreferredSize(
-                preferredSize: Size.fromHeight(200),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 20.0),
-                  child: AppBarWidget(
-                    title: '',
-                    leadingIcon: Icons.arrow_back,
-                  ),
-                ),
-              ),
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20.0),
-                      child: Text(
-                        'Usuário logado',
-                        style: TextStyles.textFormField(),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: ButtonIntroApp(
-                      styleButton: ButtonStyles.buttonPrimary(),
-                      styleText: TextStyles.buttonApp(ColorManager.white_100),
-                      text: "Continuar",
-                      onPressed: () =>
-                          Navigator.of(context).pushNamed(homeRoute),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return const SentLoginUser();
         }
         if (state is ErrorLoginState) {
           return const FailureDialog('Error');
@@ -176,6 +138,55 @@ class LoginForm extends StatelessWidget {
             ],
           )
         ]),
+      ),
+    );
+  }
+}
+
+class SentLoginUser extends StatelessWidget {
+  const SentLoginUser({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: ColorManager.white_200,
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(200),
+          child: Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: AppBarWidget(
+              title: '',
+              leadingIcon: Icons.arrow_back,
+            ),
+          ),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: Text(
+                  'Usuário logado',
+                  style: TextStyles.textFormField(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: ButtonIntroApp(
+                styleButton: ButtonStyles.buttonPrimary(),
+                styleText: TextStyles.buttonApp(ColorManager.white_100),
+                text: "Continuar",
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(homeRoute),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

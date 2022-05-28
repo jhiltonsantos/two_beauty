@@ -9,6 +9,7 @@ class ConnectionHeaderApi {
   Future<http.Response> getResponse(Uri url) async {
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
+    print('Token: $token');
     var header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
@@ -17,7 +18,7 @@ class ConnectionHeaderApi {
   }
 
   Future<http.Response> postResponse(Uri url, Map data) async {
-    var prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
     return await http.post(
       url,

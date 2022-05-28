@@ -30,6 +30,7 @@ class HomeRepository implements IHomeRepository {
       return Right(data);
     } else {
       //throw Exception('Falha ao carregar usuarios');
+      print("STATUS CODE GET: ${response.statusCode}");
       return Left(ServerFailure());
     }
   }

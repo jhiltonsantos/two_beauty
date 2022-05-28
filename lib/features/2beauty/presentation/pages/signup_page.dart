@@ -208,7 +208,7 @@ class ResponseSentNewUser extends StatelessWidget {
               styleButton: ButtonStyles.buttonPrimary(),
               styleText: TextStyles.buttonApp(ColorManager.white_100),
               text: "Continuar",
-              onPressed: () => Navigator.of(context).pushNamed(homeRoute),
+              onPressed: () => Navigator.of(context).pushNamed(introRoute),
             ),
           ],
         ),

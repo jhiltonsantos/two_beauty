@@ -21,7 +21,8 @@ class ServiceRepository implements IServiceRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, List<ServiceGetEntity>>> getServiceData(String id) async {
+  Future<Either<Failure, List<ServiceGetEntity>>> getServiceData(
+      String id) async {
     final Uri url = Uri.parse('${AppConstants.SERVICE_ALL_URL}/$id');
     http.Response response = await connectionHeaderApi.getResponse(url);
 
