@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class LoginUserEntity extends Equatable {
+class UserAccessResponseEntity extends Equatable {
   final String refresh;
   final String access;
 
-  const LoginUserEntity({required this.refresh, required this.access});
+  const UserAccessResponseEntity({required this.refresh, required this.access});
 
-  factory LoginUserEntity.fromJson(Map<String, dynamic> json) {
-    return LoginUserEntity(
+  factory UserAccessResponseEntity.fromJson(Map<String, dynamic> json) {
+    return UserAccessResponseEntity(
       refresh: json['refresh'],
       access: json['access'],
     );

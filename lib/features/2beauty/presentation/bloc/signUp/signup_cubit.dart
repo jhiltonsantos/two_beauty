@@ -15,10 +15,15 @@ class SignupCubit extends Cubit<SignupState> {
 
   Future<void> postNewUser(UserEntity params) async {
     emit(const LoadingSignupState());
-    await _postNewUserUsecase
-        .execute(params)
-        .then((user) => emit(const SentSignupState()))
-        .catchError((error) {
+    await _postNewUserUsecase.execute(params).then((userData) {
+      if (userData.isRight()) {
+
+        emit(SentSignupState(user: userData));
+      } else {
+        emit(const ErrorSignupState('Erro ao criar usuário'));
+      }
+      
+    }).catchError((error) {
       emit(ErrorSignupState(error.message));
     }, test: (error) => error is HttpException).catchError((error) {
       emit(const ErrorSignupState(AppStrings.timeException));

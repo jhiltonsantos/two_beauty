@@ -5,14 +5,16 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import "package:http/http.dart" as http;
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/core/connection/web_client.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_access_response_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
-import 'package:two_beauty/features/2beauty/domain/repositories/I_sign_up_repository.dart';
+import 'package:two_beauty/features/2beauty/domain/repositories/sign_up_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
-@Injectable(as: ISignUpRepository)
-class SignUpRepository implements ISignUpRepository {
+@Injectable(as: SignUpRepository)
+class SignUpRepositoryImp implements SignUpRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.USER_CREATE);
 
@@ -20,7 +22,7 @@ class SignUpRepository implements ISignUpRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, bool>> postNewUser(UserEntity userEntity) async {
+  Future<Either<Failure, UserAccessResponseEntity>> postNewUser(UserEntity userEntity) async {
     Map data = {
       'username': userEntity.username,
       'email': userEntity.email,
@@ -28,7 +30,7 @@ class SignUpRepository implements ISignUpRepository {
       'password': userEntity.password
     };
 
-    final http.Response response = await http.post(
+     final http.Response response = await client.post(
       urlController,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -36,8 +38,8 @@ class SignUpRepository implements ISignUpRepository {
       body: jsonEncode(data),
     );
     if (response.statusCode == 201) {
-      UserEntity.fromJson(json.decode(response.body));
-      return const Right(true);
+      UserAccessResponseEntity newUserData = UserAccessResponseEntity.fromJson(json.decode(response.body));
+      return Right(newUserData);
     } else {
       return Left(ServerFailure());
     }

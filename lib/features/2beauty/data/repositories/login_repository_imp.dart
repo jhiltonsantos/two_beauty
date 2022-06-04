@@ -8,13 +8,13 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
-import 'package:two_beauty/features/2beauty/domain/entities/login_user_entity.dart';
-import 'package:two_beauty/features/2beauty/domain/repositories/i_login_repository.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_access_response_entity.dart';
+import 'package:two_beauty/features/2beauty/domain/repositories/login_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
-@Injectable(as: ILoginRepository)
-class LoginRepository implements ILoginRepository {
+@Injectable(as: LoginRepository)
+class LoginRepositoryImp implements LoginRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);
 
@@ -22,7 +22,7 @@ class LoginRepository implements ILoginRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, bool>> postLogin(
+  Future<Either<Failure, UserAccessResponseEntity>> postLogin(
       LoginGetTokenEntity loginGetTokenEntity) async {
     Map data = {
       "username": loginGetTokenEntity.username,
@@ -35,9 +35,11 @@ class LoginRepository implements ILoginRepository {
 
     if (response.statusCode == 200) {
       Map<String, dynamic> mapResponse = json.decode(response.body);
-      LoginUserEntity.fromJson(mapResponse);
+      UserAccessResponseEntity.fromJson(mapResponse);
       prefs.setString('token', mapResponse["access"]);
-      return const Right(true);
+      UserAccessResponseEntity userLoginData =
+          UserAccessResponseEntity.fromJson(json.decode(response.body));
+      return Right(userLoginData);
     } else {
       // throw Exception('Falha ao realizar login');
       return Left(ServerFailure());

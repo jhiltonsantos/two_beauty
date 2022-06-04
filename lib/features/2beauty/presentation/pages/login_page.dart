@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
           return const SentLoginUser();
         }
         if (state is ErrorLoginState) {
-          return const FailureDialog('Error');
+          return FailureDialog(state.message);
         }
         return const ErrorPage();
       }),

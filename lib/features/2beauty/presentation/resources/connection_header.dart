@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:two_beauty/core/connection/web_client.dart';
 
 class ConnectionHeaderApi {
   Future<http.Response> getResponse(Uri url) async {
@@ -14,13 +15,13 @@ class ConnectionHeaderApi {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
     };
-    return await http.get(url, headers: header);
+    return await client.get(url, headers: header);
   }
 
   Future<http.Response> postResponse(Uri url, Map data) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
-    return await http.post(
+    return await client.post(
       url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
