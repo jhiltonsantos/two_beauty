@@ -5,10 +5,10 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_home_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
 @Injectable(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
@@ -30,7 +30,6 @@ class HomeRepository implements IHomeRepository {
       return Right(data);
     } else {
       //throw Exception('Falha ao carregar usuarios');
-      print("STATUS CODE GET: ${response.statusCode}");
       return Left(ServerFailure());
     }
   }

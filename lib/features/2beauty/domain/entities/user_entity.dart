@@ -21,6 +21,15 @@ class UserEntity extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['username'] = username;
+    data['email'] = email;
+    data['first_name'] = firstName;
+    data['password'] = password;
+    return data;
+  }
+
   @override
   List<Object?> get props => [username, email, firstName, password];
 }

@@ -6,12 +6,13 @@ import 'package:dartz/dartz.dart';
 import "package:http/http.dart" as http;
 import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/connection/web_client.dart';
+import 'package:two_beauty/core/constants/app_constants.dart';
+import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
-import 'package:two_beauty/features/2beauty/domain/entities/user_access_response_entity.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_access_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/sign_up_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
 @Injectable(as: SignUpRepository)
 class SignUpRepositoryImp implements SignUpRepository {
@@ -22,26 +23,36 @@ class SignUpRepositoryImp implements SignUpRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, UserAccessResponseEntity>> postNewUser(UserEntity userEntity) async {
-    Map data = {
-      'username': userEntity.username,
-      'email': userEntity.email,
-      'first_name': userEntity.firstName,
-      'password': userEntity.password
-    };
+  Future<Either<Failure, UserAccessEntity>> postNewUser(
+      UserEntity userEntity) async {
+    http.Response response = await requestPostUser(userEntity);
+    if (response.statusCode != StatusCode.CREATED) {
+      return Left(ServerFailure());
+    }
+    return Right(createSignup(response));
+  }
 
-     final http.Response response = await client.post(
+  Future<http.Response> requestPostUser(UserEntity userEntity) async {
+    Map data = createJsonUser(userEntity);
+    return await client.post(
       urlController,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(data),
     );
-    if (response.statusCode == 201) {
-      UserAccessResponseEntity newUserData = UserAccessResponseEntity.fromJson(json.decode(response.body));
-      return Right(newUserData);
-    } else {
-      return Left(ServerFailure());
-    }
+  }
+
+  Map<dynamic, dynamic> createJsonUser(UserEntity userEntity) {
+    return UserEntity(
+            username: userEntity.username,
+            email: userEntity.email,
+            firstName: userEntity.firstName,
+            password: userEntity.password)
+        .toJson();
+  }
+
+  UserAccessEntity createSignup(http.Response response) {
+    return UserAccessEntity.fromJson(json.decode(response.body));
   }
 }

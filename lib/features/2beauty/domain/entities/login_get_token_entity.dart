@@ -13,6 +13,13 @@ class LoginGetTokenEntity extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['username'] = username;
+    data['password'] = password;
+    return data;
+  }
+
   @override
   List<Object?> get props => [username, password];
 }

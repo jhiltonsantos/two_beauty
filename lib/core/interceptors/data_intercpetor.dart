@@ -11,6 +11,7 @@ class DataInterceptor implements InterceptorContract {
     print('url: ${data.baseUrl}');
     print('headers: ${data.headers}');
     print('body: ${data.body}');
+    print('status code: ${data.encoding}');
     return data;
   }
 

@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/owner_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_owner_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
 @injectable
 class OwnerRepository implements IOwnerRepository {
