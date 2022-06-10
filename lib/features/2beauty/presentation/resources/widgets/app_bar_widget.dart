@@ -4,13 +4,13 @@ import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles
 class AppBarWidget extends StatelessWidget {
   final String title;
   final Function()? leadingOnTap;
-  final IconData leadingIcon;
+  final IconData? leadingIcon;
 
   const AppBarWidget({
     Key? key,
     required this.title,
     this.leadingOnTap,
-    required this.leadingIcon,
+    this.leadingIcon,
   }) : super(key: key);
 
   @override

@@ -77,7 +77,8 @@ class SignupForm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: AppBarWidget(
-            leadingOnTap: (() => Navigator.of(context).pushNamed(introRoute)),
+            leadingOnTap: (() =>
+                Navigator.of(context).pushReplacementNamed(introRoute)),
             title: SignUpStrings.titleSignUp,
             leadingIcon: Icons.arrow_back,
           ),
@@ -208,7 +209,8 @@ class ResponseSentNewUser extends StatelessWidget {
               styleButton: ButtonStyles.buttonPrimary(),
               styleText: TextStyles.buttonApp(ColorManager.white_100),
               text: "Continuar",
-              onPressed: () => Navigator.of(context).pushNamed(homeRoute),
+              onPressed: () =>
+                  Navigator.of(context).pushReplacementNamed(homeRoute),
             ),
           ],
         ),

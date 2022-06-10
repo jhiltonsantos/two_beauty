@@ -10,8 +10,6 @@ import 'package:two_beauty/features/2beauty/domain/usecases/home/get_user_data_u
 
 import 'get_user_data_usecase_test.mocks.dart';
 
-class GetUserDataUsecaseTest {}
-
 @GenerateMocks([HomeRepository, LoginRepository])
 void main() {
   late GetUserDataUsecase usecase;
@@ -22,23 +20,26 @@ void main() {
     usecase = GetUserDataUsecase(mockHomeRepository);
   });
 
-  final tUser = UserGetEntity(id: 35,
+  final tUser = UserGetEntity(
+      id: 35,
       username: "maria123",
       firstName: "Hilton",
       email: "maria123@outlook.com");
 
   test("Deve retornar uma entidade de usuario", () async {
-
     when(mockHomeRepository.getUserData()).thenAnswer((_) async {
       return Right(tUser);
     });
 
     final result = await usecase(NoParams());
 
-    expect(result, Right(UserGetEntity(id: 35,
-        username: "maria123",
-        firstName: "Hilton",
-        email: "maria123@outlook.com")));
+    expect(
+        result,
+        Right(UserGetEntity(
+            id: 35,
+            username: "maria123",
+            firstName: "Hilton",
+            email: "maria123@outlook.com")));
     verify(mockHomeRepository.getUserData());
     verifyNoMoreInteractions(mockHomeRepository);
   });

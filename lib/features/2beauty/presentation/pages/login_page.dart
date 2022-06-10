@@ -57,7 +57,8 @@ class LoginForm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: AppBarWidget(
-            leadingOnTap: (() => Navigator.of(context).pushNamed(introRoute)),
+            leadingOnTap: (() =>
+                Navigator.of(context).pushReplacementNamed(introRoute)),
             title: LoginStrings.titleLogin,
             leadingIcon: Icons.arrow_back,
           ),
@@ -182,7 +183,7 @@ class SentLoginUser extends StatelessWidget {
                 styleText: TextStyles.buttonApp(ColorManager.white_100),
                 text: "Continuar",
                 onPressed: () =>
-                    Navigator.of(context).pushNamed(homeRoute),
+                    Navigator.of(context).pushReplacementNamed(homeRoute),
               ),
             ),
           ],

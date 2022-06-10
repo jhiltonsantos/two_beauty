@@ -9,20 +9,21 @@ class TextStyles {
         color: ColorManager.white_100);
   }
 
-  static TextStyle titleApp() {
-    return const TextStyle(
+  static TextStyle titleApp({double? fontSize}) {
+    return TextStyle(
       fontFamily: 'Epilogue_600',
-      fontSize: 28,
+      fontSize: fontSize ?? 28,
       fontWeight: FontWeight.w600,
       color: ColorManager.purple_300,
       overflow: TextOverflow.clip,
     );
   }
 
-  static TextStyle subtitleInitApp({Color? color, String? fontFamily}) {
+  static TextStyle subtitleInitApp(
+      {Color? color, String? fontFamily, double? fontSize}) {
     return TextStyle(
       fontFamily: fontFamily ?? 'Epilogue_400',
-      fontSize: 14,
+      fontSize: fontSize ?? 14,
       fontWeight: FontWeight.w400,
       color: color ?? ColorManager.grey_300,
       overflow: TextOverflow.clip,
@@ -45,6 +46,16 @@ class TextStyles {
       fontFamily: 'Epilogue_600',
       color: ColorManager.grey_500,
       fontWeight: FontWeight.w600,
+      overflow: TextOverflow.clip,
+    );
+  }
+
+  static TextStyle textLabelHome({double? fontSize}) {
+    return TextStyle(
+      fontFamily: 'Epilogue_600',
+      fontSize: fontSize ?? 20,
+      fontWeight: FontWeight.bold,
+      color: ColorManager.grey_600,
       overflow: TextOverflow.clip,
     );
   }

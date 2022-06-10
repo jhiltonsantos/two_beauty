@@ -5,14 +5,15 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
+import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
-import 'package:two_beauty/features/2beauty/domain/repositories/i_store_repository.dart';
+import 'package:two_beauty/features/2beauty/domain/repositories/store_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 
-@injectable
-class StoreRepository implements IStoreRepository {
+@Injectable(as: StoreRepository)
+class StoreRepositoryImpl implements StoreRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.STORE_GET_POST);
 
@@ -20,22 +21,13 @@ class StoreRepository implements IStoreRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, List<StoreGetEntity>>> getStoreData(String id) async {
-    final Uri storeDetailUrl = Uri.parse("${AppConstants.STORE_URL}/$id");
-
+  Future<Either<Failure, StoreGetEntity>> getStoreData(String id) async {
     http.Response response =
-        await connectionHeaderApi.getResponse(storeDetailUrl);
-
-    if (response.statusCode == 200) {
-      Map<String, dynamic> map = json.decode(response.body);
-      final listStore = <StoreGetEntity>[];
-      StoreGetEntity store = StoreGetEntity.fromJson(map);
-      listStore.add(store);
-      return Right(listStore);
-    } else {
-      // throw Exception('Falha ao carregar estabelecimento');
+        await requestGetStore(url: Uri.parse("${AppConstants.STORE_URL}/$id"));
+    if (response.statusCode != StatusCode.OK) {
       return Left(ServerFailure());
     }
+    return Right(storeDataByID(response));
   }
 
   @override
@@ -83,5 +75,16 @@ class StoreRepository implements IStoreRepository {
       // throw Exception('Falha ao criar estabelecimento');
       return Left(ServerFailure());
     }
+  }
+
+  // FUNCTIONS FOR getStoreData
+  Future<http.Response> requestGetStore({required Uri url}) async {
+    return await connectionHeaderApi.getResponse(url);
+  }
+
+  StoreGetEntity storeDataByID(http.Response response) {
+    Map<String, dynamic> map = json.decode(response.body);
+    StoreGetEntity store = StoreGetEntity.fromJson(map);
+    return store;
   }
 }
