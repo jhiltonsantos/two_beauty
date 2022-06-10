@@ -11,7 +11,7 @@ class PostStoreDataUsecase extends UseCase<StoreEntity, StoreEntity> {
   final IStoreRepository _iStoreRepository = StoreRepository();
 
   @override
-  Future<Either<Failure, StoreEntity>> execute(StoreEntity params) async {
+  Future<Either<Failure, StoreEntity>> call(StoreEntity params) async {
     return await _iStoreRepository.postStoreData(params);
   }
 }

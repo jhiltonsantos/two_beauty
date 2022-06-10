@@ -1,7 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 
 abstract class HomeState extends Equatable {
   const HomeState();
@@ -22,7 +21,7 @@ class LoadingHomeState extends HomeState {
 
 @immutable
 class LoadedHomeState extends HomeState {
-  final Either<Failure, String> user;
+  final UserGetEntity user;
   const LoadedHomeState(this.user);
 }
 

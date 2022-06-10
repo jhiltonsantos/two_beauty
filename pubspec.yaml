@@ -39,6 +39,7 @@ dev_dependencies:
   injectable_generator: ^1.5.3
   build_runner: ^2.1.11
   mocktail: ^0.3.0
+  mockito: ^5.2.0
 
 flutter:
 

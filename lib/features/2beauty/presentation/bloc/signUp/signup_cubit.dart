@@ -15,10 +15,9 @@ class SignupCubit extends Cubit<SignupState> {
 
   Future<void> postNewUser(UserEntity params) async {
     emit(const LoadingSignupState());
-    await _postNewUserUsecase.execute(params).then((userData) {
+    await _postNewUserUsecase.call(params).then((userData) {
       if (userData.isRight()) {
-
-        emit(SentSignupState(user: userData));
+        emit(const SentSignupState());
       } else {
         emit(const ErrorSignupState('Erro ao criar usuário'));
       }

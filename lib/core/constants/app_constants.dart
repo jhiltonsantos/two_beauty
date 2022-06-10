@@ -17,8 +17,6 @@ class AppConstants {
   static const String API_LOCATION_KEY =
       "AIzaSyD0qBxYechVt9ibozWktY8tfsdEQaIkgX4";
 
-  static const STATUS_CODE_CREATE = 201;
-
   static String urlForReferenceImage(String photoReferenceId) {
     if (photoReferenceId == ImageAssets.logoImage) {
       return ImageAssets.logoImage;

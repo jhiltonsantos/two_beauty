@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import "package:http/http.dart" as http;
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_beauty/core/connection/web_client.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
@@ -15,7 +16,7 @@ import 'package:two_beauty/features/2beauty/domain/repositories/sign_up_reposito
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 
 @Injectable(as: SignUpRepository)
-class SignUpRepositoryImp implements SignUpRepository {
+class SignUpRepositoryImpl implements SignUpRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.USER_CREATE);
 
@@ -26,10 +27,11 @@ class SignUpRepositoryImp implements SignUpRepository {
   Future<Either<Failure, UserAccessEntity>> postNewUser(
       UserEntity userEntity) async {
     http.Response response = await requestPostUser(userEntity);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     if (response.statusCode != StatusCode.CREATED) {
       return Left(ServerFailure());
     }
-    return Right(createSignup(response));
+    return Right(createSignup(response, preferences));
   }
 
   Future<http.Response> requestPostUser(UserEntity userEntity) async {
@@ -52,7 +54,10 @@ class SignUpRepositoryImp implements SignUpRepository {
         .toJson();
   }
 
-  UserAccessEntity createSignup(http.Response response) {
+  UserAccessEntity createSignup(
+      http.Response response, SharedPreferences prefs) {
+    Map<String, dynamic> data = json.decode(response.body);
+    prefs.setString('token', data["access"]);
     return UserAccessEntity.fromJson(json.decode(response.body));
   }
 }

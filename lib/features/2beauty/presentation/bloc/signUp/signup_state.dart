@@ -23,9 +23,7 @@ class LoadedSignupState extends SignupState {
 
 @immutable
 class SentSignupState extends SignupState {
-  final Either<Failure, UserAccessEntity> user;
-
-  const SentSignupState({required this.user});
+  const SentSignupState();
 }
 
 class ErrorSignupState extends SignupState {

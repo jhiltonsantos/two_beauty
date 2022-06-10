@@ -11,7 +11,7 @@ class GetAllStoreDataUsecase extends UseCase<List<StoreGetEntity>, NoParams> {
   final IStoreRepository _iStoreRepository = StoreRepository();
 
   @override
-  Future<Either<Failure, List<StoreGetEntity>>> execute(NoParams params) async {
+  Future<Either<Failure, List<StoreGetEntity>>> call(NoParams params) async {
     return await _iStoreRepository.getAllStoreData();
   }
 }

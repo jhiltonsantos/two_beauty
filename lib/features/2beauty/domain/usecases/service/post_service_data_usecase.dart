@@ -11,7 +11,7 @@ class PostServiceDataUsecase extends UseCase<ServiceEntity, ServiceEntity> {
   final IServiceRepository _iServiceRepository = ServiceRepository();
 
   @override
-  Future<Either<Failure, ServiceEntity>> execute(ServiceEntity params) async {
+  Future<Either<Failure, ServiceEntity>> call(ServiceEntity params) async {
     return await _iServiceRepository.postServiceData(params);
   }
 }

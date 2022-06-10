@@ -11,7 +11,7 @@ class PostNewOwnerUsecase extends UseCase<OwnerEntity, OwnerEntity> {
   final IOwnerRepository _iOwnerRepository = OwnerRepository();
 
   @override
-  Future<Either<Failure, OwnerEntity>> execute(OwnerEntity params) async {
+  Future<Either<Failure, OwnerEntity>> call(OwnerEntity params) async {
     return await _iOwnerRepository.postNewOwner(params);
   }
 }

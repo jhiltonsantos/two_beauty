@@ -12,7 +12,7 @@ class GetAllServiceDataUsecase
   final IServiceRepository _iServiceRepository = ServiceRepository();
 
   @override
-  Future<Either<Failure, List<ServiceGetEntity>>> execute(NoParams params) async {
+  Future<Either<Failure, List<ServiceGetEntity>>> call(NoParams params) async {
     return await _iServiceRepository.getAllServiceData();
   }
 }

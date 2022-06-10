@@ -12,7 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> postLogin(LoginGetTokenEntity params) async {
     emit(const LoadingLoginState());
-    await _postLoginUsecase.execute(params).then((userReturn) {
+    await _postLoginUsecase.call(params).then((userReturn) {
       if (userReturn.isRight()) {
         emit(const SentLoginState());
       } else {

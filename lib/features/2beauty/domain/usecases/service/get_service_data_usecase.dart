@@ -11,7 +11,7 @@ class GetServiceDataUsecase extends UseCase<List<ServiceGetEntity>, String> {
   final IServiceRepository _iServiceRepository = ServiceRepository();
 
   @override
-  Future<Either<Failure, List<ServiceGetEntity>>> execute(String params) async {
+  Future<Either<Failure, List<ServiceGetEntity>>> call(String params) async {
     return await _iServiceRepository.getServiceData(params);
   }
 }

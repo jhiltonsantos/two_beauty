@@ -8,16 +8,16 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../../features/2beauty/data/repositories/agenda_repository.dart' as _i3;
-import '../../features/2beauty/data/repositories/home_repository_imp.dart'
+import '../../features/2beauty/data/repositories/home_repository_impl.dart'
     as _i10;
-import '../../features/2beauty/data/repositories/login_repository_imp.dart'
+import '../../features/2beauty/data/repositories/login_repository_impl.dart'
     as _i14;
 import '../../features/2beauty/data/repositories/owner_repository.dart' as _i15;
 import '../../features/2beauty/data/repositories/profile_repository_imp.dart'
     as _i22;
 import '../../features/2beauty/data/repositories/service_repository.dart'
     as _i23;
-import '../../features/2beauty/data/repositories/sign_up_repository_imp.dart'
+import '../../features/2beauty/data/repositories/sign_up_repository_impl.dart'
     as _i25;
 import '../../features/2beauty/data/repositories/store_repository.dart' as _i26;
 import '../../features/2beauty/domain/repositories/home_repository.dart' as _i9;
@@ -77,9 +77,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i6.GetAllStoreDataUsecase>(() => _i6.GetAllStoreDataUsecase());
   gh.factory<_i7.GetServiceDataUsecase>(() => _i7.GetServiceDataUsecase());
   gh.factory<_i8.GetStoreDataUsecase>(() => _i8.GetStoreDataUsecase());
-  gh.factory<_i9.HomeRepository>(() => _i10.HomeRepositoryImp());
+  gh.factory<_i9.HomeRepository>(() => _i10.HomeRepositoryImpl());
   gh.factory<_i11.IntroCubit>(() => _i11.IntroCubit(get<_i12.IntroState>()));
-  gh.factory<_i13.LoginRepository>(() => _i14.LoginRepositoryImp());
+  gh.factory<_i13.LoginRepository>(() => _i14.LoginRepositoryImpl());
   gh.factory<_i15.OwnerRepository>(() => _i15.OwnerRepository());
   gh.factory<_i16.PostAgendaDataUsecase>(() => _i16.PostAgendaDataUsecase());
   gh.factory<_i17.PostLoginUsecase>(
@@ -89,7 +89,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i20.PostStoreDataUsecase>(() => _i20.PostStoreDataUsecase());
   gh.factory<_i21.ProfileRepository>(() => _i22.ProfileRepositoryImp());
   gh.factory<_i23.ServiceRepository>(() => _i23.ServiceRepository());
-  gh.factory<_i24.SignUpRepository>(() => _i25.SignUpRepositoryImp());
+  gh.factory<_i24.SignUpRepository>(() => _i25.SignUpRepositoryImpl());
   gh.factory<_i26.StoreRepository>(() => _i26.StoreRepository());
   gh.factory<_i27.GetCurrentProfileID>(
       () => _i27.GetCurrentProfileID(get<_i21.ProfileRepository>()));

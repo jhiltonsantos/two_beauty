@@ -11,7 +11,7 @@ class GetCurrentProfileID extends UseCase<int, NoParams> {
   GetCurrentProfileID(this._profileRepository);
 
   @override
-  Future<Either<Failure, int>> execute(NoParams params) async {
+  Future<Either<Failure, int>> call(NoParams params) async {
     return await _profileRepository.getCurrentProfileID();
   }
 }

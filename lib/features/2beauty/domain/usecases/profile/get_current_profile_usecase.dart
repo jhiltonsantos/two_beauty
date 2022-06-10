@@ -12,7 +12,7 @@ class GetCurrentProfileUsecase extends UseCase<List<UserEntity>, NoParams> {
   GetCurrentProfileUsecase(this._profileRepository);
 
   @override
-  Future<Either<Failure, List<UserEntity>>> execute(NoParams params) async{
+  Future<Either<Failure, List<UserEntity>>> call(NoParams params) async{
     return await _profileRepository.getCurrentProfile();
   }
 

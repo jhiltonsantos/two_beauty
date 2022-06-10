@@ -14,7 +14,7 @@ class PostNewUserUsecase extends UseCase<UserAccessEntity, UserEntity> {
   PostNewUserUsecase(this._signUpRepository);
 
   @override
-  Future<Either<Failure, UserAccessEntity>> execute(UserEntity params) async {
+  Future<Either<Failure, UserAccessEntity>> call(UserEntity params) async {
     return await _signUpRepository.postNewUser(params);
   }
 }

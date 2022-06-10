@@ -11,7 +11,7 @@ class GetStoreDataUsecase extends UseCase<List<StoreGetEntity>, String> {
   final IStoreRepository _iStoreRepository = StoreRepository();
 
   @override
-  Future<Either<Failure, List<StoreGetEntity>>> execute(String params) async {
+  Future<Either<Failure, List<StoreGetEntity>>> call(String params) async {
     return await _iStoreRepository.getStoreData(params);
   }
 }

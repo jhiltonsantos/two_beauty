@@ -8,13 +8,13 @@ import 'package:two_beauty/features/2beauty/domain/repositories/login_repository
 
 @injectable
 class PostLoginUsecase extends UseCase<UserAccessEntity, LoginGetTokenEntity> {
-  final LoginRepository _loginRepository;
+  final LoginRepository loginRepository;
 
-  PostLoginUsecase(this._loginRepository);
+  PostLoginUsecase(this.loginRepository);
 
   @override
-  Future<Either<Failure, UserAccessEntity>> execute(
+  Future<Either<Failure, UserAccessEntity>> call(
       LoginGetTokenEntity params) async {
-    return await _loginRepository.postLogin(params);
+    return await loginRepository.postLogin(params);
   }
 }

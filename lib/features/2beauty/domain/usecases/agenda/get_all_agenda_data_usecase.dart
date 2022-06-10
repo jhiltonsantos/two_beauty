@@ -10,7 +10,7 @@ class GetAllAgendaDataUsecase extends UseCase<List<AgendaGetEntity>, NoParams> {
   final AgendaRepository agendaRepository = AgendaRepository();
 
   @override
-  Future<Either<Failure, List<AgendaGetEntity>>> execute(
+  Future<Either<Failure, List<AgendaGetEntity>>> call(
       NoParams params) async {
     return await agendaRepository.getAllAgendaData();
   }

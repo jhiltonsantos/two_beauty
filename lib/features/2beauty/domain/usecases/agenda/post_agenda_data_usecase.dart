@@ -10,7 +10,7 @@ class PostAgendaDataUsecase extends UseCase<AgendaEntity, AgendaEntity> {
   final AgendaRepository agendaRepository = AgendaRepository();
 
   @override
-  Future<Either<Failure, AgendaEntity>> execute(AgendaEntity params) async {
+  Future<Either<Failure, AgendaEntity>> call(AgendaEntity params) async {
     return agendaRepository.postAgendaData(params);
   }
 }

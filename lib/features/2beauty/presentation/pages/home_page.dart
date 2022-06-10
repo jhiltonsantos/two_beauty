@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/usecase/usecase.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
@@ -29,9 +30,9 @@ class _HomePageState extends State<HomePage> {
           return const ProgressWidget();
         }
         if (state is LoadedHomeState) {
-          final user = state.user;
+          final UserGetEntity user = state.user;
           return Scaffold(
-            body: Column(children: [Center(child: Text('$user'),)]),
+            body: Column(children: [Center(child: Text('${user.username}'),)]),
           );
         }
         return const ErrorPage();

@@ -8,11 +8,12 @@ import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/home_repository.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 
 @Injectable(as: HomeRepository)
-class HomeRepositoryImp implements HomeRepository {
+class HomeRepositoryImpl implements HomeRepository {
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
@@ -20,22 +21,22 @@ class HomeRepositoryImp implements HomeRepository {
   Uri urlController = Uri.parse(AppConstants.USER_GET_NAME);
 
   @override
-  Future<Either<Failure, String>> getUserData() async {
-    http.Response response =
-        await requestGetUser(connectionHeaderApi, urlController);
+  Future<Either<Failure, UserGetEntity>> getUserData() async {
+    http.Response response = await requestGetUser();
     if (response.statusCode != StatusCode.OK) {
       return Left(ServerFailure());
     }
     return Right(getUsername(response));
   }
 
-  Future<http.Response> requestGetUser(
-      ConnectionHeaderApi connection, Uri uri) async {
+  // FUNCTIONS FOR getUserData()
+  Future<http.Response> requestGetUser() async {
     return await connectionHeaderApi.getResponse(urlController);
   }
 
-  String getUsername(http.Response response) {
+  UserGetEntity getUsername(http.Response response) {
     Map<String, dynamic> map = json.decode(response.body);
-    return map["username"];
+    final UserGetEntity user = UserGetEntity.fromJson(map);
+    return user;
   }
 }

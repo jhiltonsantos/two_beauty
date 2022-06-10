@@ -15,7 +15,7 @@ import 'package:two_beauty/features/2beauty/domain/repositories/login_repository
 import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
 
 @Injectable(as: LoginRepository)
-class LoginRepositoryImp implements LoginRepository {
+class LoginRepositoryImpl implements LoginRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);
 
@@ -33,6 +33,8 @@ class LoginRepositoryImp implements LoginRepository {
     return Right(userAccess(response, prefs));
   }
 
+
+  // FUNCTIONS UTILS FOR postLogin()
   UserAccessEntity userAccess(http.Response response, SharedPreferences prefs) {
     Map<String, dynamic> data = json.decode(response.body);
     UserAccessEntity.fromJson(data);
