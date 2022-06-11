@@ -10,7 +10,7 @@ import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/home_repository.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
+import 'package:two_beauty/core/constants/connection_header.dart';
 
 @Injectable(as: HomeRepository)
 class HomeRepositoryImpl implements HomeRepository {

@@ -30,7 +30,9 @@ class SignupPage extends StatelessWidget {
           return const SignupForm();
         }
         if (state is ErrorSignupState) {
-          return const FailureDialog('Error');
+          return Scaffold(
+              backgroundColor: ColorManager.white_200,
+              body: FailureDialog(message: state.message));
         }
         if (state is SentSignupState) {
           return const ResponseSentNewUser();
@@ -184,37 +186,28 @@ class SignupForm extends StatelessWidget {
   }
 }
 
-class ResponseSentNewUser extends StatelessWidget {
+class ResponseSentNewUser extends StatefulWidget {
   const ResponseSentNewUser({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<ResponseSentNewUser> createState() => _ResponseSentNewUserState();
+}
+
+class _ResponseSentNewUserState extends State<ResponseSentNewUser> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1))
+        .then((_) => Navigator.of(context).pushReplacementNamed(homeRoute));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Text(
-                  'Usuário criado com sucesso',
-                  style: TextStyles.textFormField(),
-                ),
-              ),
-            ),
-            ButtonIntroApp(
-              styleButton: ButtonStyles.buttonPrimary(),
-              styleText: TextStyles.buttonApp(ColorManager.white_100),
-              text: "Continuar",
-              onPressed: () =>
-                  Navigator.of(context).pushReplacementNamed(homeRoute),
-            ),
-          ],
-        ),
-      ),
+    return const Scaffold(
+      body: Center(child: ProgressWidget(),)
     );
   }
 }

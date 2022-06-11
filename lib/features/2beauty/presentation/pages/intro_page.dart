@@ -66,7 +66,7 @@ class IntroPage extends StatelessWidget {
                     styleText: TextStyles.buttonApp(ColorManager.white_100),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
                     child: ButtonIntroApp(
                       onPressed: () {
                         Navigator.of(context).pushNamed(loginRoute);

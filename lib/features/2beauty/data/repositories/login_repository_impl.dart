@@ -12,7 +12,7 @@ import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_access_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/login_repository.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
+import 'package:two_beauty/core/constants/connection_header.dart';
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {

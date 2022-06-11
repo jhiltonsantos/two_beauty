@@ -6,6 +6,7 @@ import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:two_beauty/core/constants/connection_header.dart' as _i2;
 import 'package:two_beauty/core/error/failures.dart' as _i6;
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart'
     as _i10;
@@ -17,8 +18,6 @@ import 'package:two_beauty/features/2beauty/domain/repositories/home_repository.
     as _i4;
 import 'package:two_beauty/features/2beauty/domain/repositories/login_repository.dart'
     as _i8;
-import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart'
-    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

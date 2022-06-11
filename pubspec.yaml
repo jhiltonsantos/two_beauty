@@ -14,10 +14,10 @@ dependencies:
   cached_network_image: ^3.2.1
   font_awesome_flutter: ^10.1.0
   google_fonts: ^3.0.0
+  flutter_svg: ^1.1.0
   intl: ^0.17.0
   timeago: ^3.2.2
   url_launcher: ^6.1.2
-  flutter_svg: ^1.0.3
   shared_preferences: ^2.0.15
   google_maps_flutter: ^2.1.5
   geolocator: ^8.2.1

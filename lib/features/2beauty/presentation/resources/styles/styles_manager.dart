@@ -59,4 +59,20 @@ class TextStyles {
       overflow: TextOverflow.clip,
     );
   }
+
+  static TextStyle labelTitleTile() {
+    return const TextStyle(
+      fontFamily: 'Epilogue_500',
+      fontSize: 16,
+      color: ColorManager.grey_500,
+    );
+  }
+
+  static TextStyle countStoreIconText({double? fontSize}) {
+    return TextStyle(
+      fontFamily: 'Epilogue_500',
+      fontSize: fontSize ?? 12,
+      color: ColorManager.purple_300
+    );
+  }
 }

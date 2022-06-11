@@ -13,7 +13,7 @@ class AppBarHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 50),
       child: Padding(
         padding: const EdgeInsets.only(top: 40.0, left: 20.0),
         child: Column(
@@ -22,13 +22,13 @@ class AppBarHomePage extends StatelessWidget {
           children: [
             Text(
               'Olá, ${user.firstName}',
-              style: TextStyles.titleApp(fontSize: 32),
+              style: TextStyles.titleApp(),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Text(
                 'Separamos alguns salões para você cuidar da sua beleza',
-                style: TextStyles.subtitleInitApp(fontSize: 18),
+                style: TextStyles.subtitleInitApp(),
               ),
             )
           ],

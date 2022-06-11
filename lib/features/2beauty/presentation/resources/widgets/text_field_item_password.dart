@@ -7,6 +7,7 @@ class TextFieldItemPassword extends StatefulWidget {
   final bool? obscureText;
   final TextInputType? textInputType;
   final bool iconSufix;
+
   const TextFieldItemPassword(
       {Key? key,
       required this.controller,
@@ -50,7 +51,6 @@ class _TextFieldItemPasswordState extends State<TextFieldItemPassword> {
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               borderSide: BorderSide(color: ColorManager.white_100, width: 0.0),
             ),
-            hoverColor: ColorManager.purple_200,
             focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 borderSide:
@@ -58,6 +58,8 @@ class _TextFieldItemPasswordState extends State<TextFieldItemPassword> {
             hintText: widget.hintText ?? "",
             suffixIcon: widget.iconSufix
                 ? IconButton(
+                    hoverColor: Colors.transparent,
+                    splashRadius: 1.0,
                     icon: Icon(
                       passwordObscure ? Icons.visibility : Icons.visibility_off,
                       color: ColorManager.purple_300,

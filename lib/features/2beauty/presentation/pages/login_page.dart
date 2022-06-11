@@ -8,12 +8,12 @@ import 'package:two_beauty/features/2beauty/presentation/resources/colors_manage
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/failure_dialog.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item_password.dart';
 
@@ -34,7 +34,9 @@ class LoginPage extends StatelessWidget {
           return const SentLoginUser();
         }
         if (state is ErrorLoginState) {
-          return FailureDialog(state.message);
+          return Scaffold(
+              backgroundColor: ColorManager.white_200,
+              body: FailureDialog(message: state.message));
         }
         return const ErrorPage();
       }),
@@ -144,51 +146,29 @@ class LoginForm extends StatelessWidget {
   }
 }
 
-class SentLoginUser extends StatelessWidget {
+class SentLoginUser extends StatefulWidget {
   const SentLoginUser({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<SentLoginUser> createState() => _SentLoginUserState();
+}
+
+class _SentLoginUserState extends State<SentLoginUser> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1))
+        .then((_) => Navigator.of(context).pushReplacementNamed(homeRoute));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return const Scaffold(
         backgroundColor: ColorManager.white_200,
-        appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(200),
-          child: Padding(
-            padding: EdgeInsets.only(top: 20.0),
-            child: AppBarWidget(
-              title: '',
-              leadingIcon: Icons.arrow_back,
-            ),
-          ),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Text(
-                  'Usuário logado',
-                  style: TextStyles.textFormField(),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: ButtonIntroApp(
-                styleButton: ButtonStyles.buttonPrimary(),
-                styleText: TextStyles.buttonApp(ColorManager.white_100),
-                text: "Continuar",
-                onPressed: () =>
-                    Navigator.of(context).pushReplacementNamed(homeRoute),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        body: Center(
+          child: ProgressWidget(),
+        ));
   }
 }

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/connection_header.dart';
+import 'package:two_beauty/core/constants/connection_header.dart';
 
 abstract class StoreRepository {
   late Uri urlController;

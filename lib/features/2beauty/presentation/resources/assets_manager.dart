@@ -9,6 +9,12 @@ class ImageAssets {
   static const String logoGoogle = "$IMAGE_PATH/google-logo.svg";
   static const String logoFacebook = "$IMAGE_PATH/facebook-logo.svg";
 
+  static const String iconStoreDefault = "$IMAGE_PATH/icon-store-default.svg";
+  static const String iconLocation = "$IMAGE_PATH/icon-location.svg";
+  static const String iconAlarmClock = "$IMAGE_PATH/alarm-clock.svg";
+
+  static const String iconLocal = "$IMAGE_PATH/local-two.png";
+
   static const String introImage1 = "$IMAGE_PATH/intro1.jpg";
   static const String introImage2 = "$IMAGE_PATH/intro2.jpg";
   static const String introImage3 = "$IMAGE_PATH/intro3.jpg";

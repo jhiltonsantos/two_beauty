@@ -8,6 +8,7 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_state.da
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_home_page_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_home_page_widget.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/list_all_stores_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -53,21 +54,21 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(200),
-            child: AppBarHomePage(user: user)),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(children: const [
-            LabelHomePage(
-              fontSize: 24,
+    return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(160),
+          child: AppBarHomePage(user: user)),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+            child: LabelHomePage(
               text: 'Estabelecimentos\nencontrados',
+              countStores: stores.length,
             ),
-            Center(child: Text('Continua'))
-          ]),
-        ),
+          ),
+          ListAllStores(stores: stores),
+        ],
       ),
     );
   }
