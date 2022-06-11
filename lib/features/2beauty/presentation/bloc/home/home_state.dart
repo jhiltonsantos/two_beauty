@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:two_beauty/features/2beauty/domain/entities/store_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 
