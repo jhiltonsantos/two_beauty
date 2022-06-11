@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:two_beauty/features/2beauty/data/models/user_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/usecases/sign_up/post_new_user_usecase.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_state.dart';
@@ -21,7 +22,6 @@ class SignupCubit extends Cubit<SignupState> {
       } else {
         emit(const ErrorSignupState('Erro ao criar usuário'));
       }
-      
     }).catchError((error) {
       emit(ErrorSignupState(error.message));
     }, test: (error) => error is HttpException).catchError((error) {

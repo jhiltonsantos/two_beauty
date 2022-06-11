@@ -16,16 +16,6 @@ class ServiceEntity extends Equatable {
       required this.countAttendants,
       required this.durationMinutes});
 
-  factory ServiceEntity.fromJson(Map<String, dynamic> json) {
-    return ServiceEntity(
-        store: json['estabelecimento'],
-        name: json['nome'],
-        description: json['descricao'],
-        price: json['preco'],
-        countAttendants: json['qtd_atendentes'],
-        durationMinutes: json['duracao']);
-  }
-
   @override
   List<Object?> get props =>
       [store, name, description, price, countAttendants, durationMinutes];

@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 
 class PlaceEntity extends Equatable {
   final String name;
@@ -14,21 +13,6 @@ class PlaceEntity extends Equatable {
       required this.longitude,
       required this.placeId,
       required this.photoURL});
-
-  factory PlaceEntity.fromJson(Map<String, dynamic> json) {
-    final location = json["geometry"]["location"];
-
-    Iterable photos = json["photos"];
-
-    return PlaceEntity(
-        name: json["name"],
-        latitude: location["lat"],
-        longitude: location["lng"],
-        placeId: json["place_id"],
-        photoURL: photos.isEmpty
-            ? ImageAssets.logoImage
-            : photos.first["photo_reference"].toString());
-  }
 
   @override
   List<Object?> get props => [name, latitude, longitude, placeId, photoURL];

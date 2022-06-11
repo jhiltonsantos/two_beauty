@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/data/models/login_get_token_model.dart';
+import 'package:two_beauty/features/2beauty/data/models/user_access_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_access_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/login_repository.dart';
@@ -33,13 +35,12 @@ class LoginRepositoryImpl implements LoginRepository {
     return Right(userAccess(response, prefs));
   }
 
-
   // FUNCTIONS UTILS FOR postLogin()
   UserAccessEntity userAccess(http.Response response, SharedPreferences prefs) {
     Map<String, dynamic> data = json.decode(response.body);
-    UserAccessEntity.fromJson(data);
+    UserAccessModel.fromJson(data);
     prefs.setString('token', data["access"]);
-    return UserAccessEntity.fromJson(json.decode(response.body));
+    return UserAccessModel.fromJson(json.decode(response.body));
   }
 
   Future<http.Response> requestPostLogin(
@@ -50,7 +51,7 @@ class LoginRepositoryImpl implements LoginRepository {
 
   Map<dynamic, dynamic> createJsonLogin(
       LoginGetTokenEntity loginGetTokenEntity) {
-    return LoginGetTokenEntity(
+    return LoginGetTokenModel(
             username: loginGetTokenEntity.username,
             password: loginGetTokenEntity.password)
         .toJson();

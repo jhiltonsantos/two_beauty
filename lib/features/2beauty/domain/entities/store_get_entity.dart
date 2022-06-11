@@ -31,25 +31,6 @@ class StoreGetEntity extends Equatable {
     required this.longitude,
   });
 
-  factory StoreGetEntity.fromJson(Map<String, dynamic> json) {
-    return StoreGetEntity(
-      id: json['id'] as int,
-      name: json['nome'] as String,
-      cnpj: json['cnpj'] as String,
-      city: json['cidade'] as String,
-      district: json['bairro'] as String,
-      street: json['rua'] as String,
-      number: json['numero'] as String,
-      cep: json['cep'] as String,
-      openHour: json['horario_inicio'] as String,
-      closeHour: json['horario_final'] as String,
-      phone: json['telefone'] as String,
-      latitude: json['latitude'] as String,
-      longitude: json['longitude'] as String,
-      //user: json['user'] as int,
-    );
-  }
-
   @override
   List<Object?> get props => [
         id,

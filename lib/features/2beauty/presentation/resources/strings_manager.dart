@@ -47,6 +47,8 @@ class LoginStrings {
 }
 
 class HomeStrings {
+  static const String errorUserData = "Erro ao carregar dados do usuário";
+  static const String errorStoresData = "Erro ao carregar dados das lojas";
   static const String mapButton = "Perto de você";
   static const String perfilSideMenu = "Perfil";
   static const String createStoreSideMenu = "Criar negócio";

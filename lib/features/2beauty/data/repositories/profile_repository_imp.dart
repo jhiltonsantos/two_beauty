@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/data/models/user_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/profile_repository.dart';
 import 'package:two_beauty/core/constants/connection_header.dart';
@@ -48,7 +49,7 @@ class ProfileRepositoryImp implements ProfileRepository {
   List<UserEntity> currentProfile(http.Response response) {
     Map<String, dynamic> map = json.decode(response.body);
     final List<UserEntity> listUsers = <UserEntity>[];
-    UserEntity user = UserEntity.fromJson(map);
+    UserEntity user = UserModel.fromJson(map);
     listUsers.add(user);
     return listUsers;
   }

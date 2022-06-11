@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/data/models/user_get_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/home_repository.dart';
 import 'package:two_beauty/core/constants/connection_header.dart';
@@ -36,7 +37,7 @@ class HomeRepositoryImpl implements HomeRepository {
 
   UserGetEntity getUsername(http.Response response) {
     Map<String, dynamic> map = json.decode(response.body);
-    final UserGetEntity user = UserGetEntity.fromJson(map);
+    final UserGetEntity user = UserGetModel.fromJson(map);
     return user;
   }
 }

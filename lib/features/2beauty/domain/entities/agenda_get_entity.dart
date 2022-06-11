@@ -18,18 +18,6 @@ class AgendaGetEntity extends Equatable {
       required this.client,
       required this.service});
 
-  factory AgendaGetEntity.fromJson(Map<String, dynamic> json) {
-    return AgendaGetEntity(
-      id: json['id'] as int,
-      date: json['data'] as String,
-      initialHour: json['horario'] as String,
-      finalHour: json['horario_termino'] as String,
-      agenda: json['agenda'] as int,
-      client: json['cliente'] as int,
-      service: json['servico'] as int,
-    );
-  }
-
   @override
   List<Object?> get props =>
       [id, date, initialHour, finalHour, agenda, client, service];

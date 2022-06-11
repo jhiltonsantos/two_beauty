@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:two_beauty/core/constants/app_constants.dart';
+import 'package:two_beauty/features/2beauty/data/models/place_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/place_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
@@ -18,7 +19,7 @@ class WebService {
     if (response.statusCode == 200) {
       final jsonResponse = jsonDecode(response.body);
       final Iterable results = jsonResponse["results"];
-      return results.map((e) => PlaceEntity.fromJson(e)).toList();
+      return results.map((e) => PlaceModel.fromJson(e)).toList();
     } else {
       throw Exception(AppStrings.failRequestMap);
     }

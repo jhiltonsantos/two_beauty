@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/data/models/service_get_model.dart';
+import 'package:two_beauty/features/2beauty/data/models/service_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/service_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/service_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_service_repository.dart';
@@ -29,7 +31,7 @@ class ServiceRepository implements IServiceRepository {
     if (response.statusCode == 200) {
       Map<String, dynamic> map = json.decode(response.body);
       final listService = <ServiceGetEntity>[];
-      ServiceGetEntity service = ServiceGetEntity.fromJson(map);
+      ServiceGetEntity service = ServiceGetModel.fromJson(map);
       listService.add(service);
       return Right(listService);
     } else {
@@ -47,7 +49,7 @@ class ServiceRepository implements IServiceRepository {
       List listResponse = json.decode(response.body);
       final services = <ServiceGetEntity>[];
       for (Map<String, dynamic> map in listResponse) {
-        ServiceGetEntity service = ServiceGetEntity.fromJson(map);
+        ServiceGetEntity service = ServiceGetModel.fromJson(map);
         services.add(service);
       }
       return Right(services);
@@ -73,7 +75,7 @@ class ServiceRepository implements IServiceRepository {
         await connectionHeaderApi.postResponse(urlController, data);
 
     if (response.statusCode == 201) {
-      return Right(ServiceEntity.fromJson(json.decode(response.body)));
+      return Right(ServiceModel.fromJson(json.decode(response.body)));
     } else {
       // throw Exception('Falha ao criar servico');
       return Left(ServerFailure());

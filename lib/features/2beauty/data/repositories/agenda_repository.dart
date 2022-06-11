@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/data/models/agenda_get_model.dart';
+import 'package:two_beauty/features/2beauty/data/models/agenda_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/i_agenda_repository.dart';
@@ -31,7 +33,7 @@ class AgendaRepository implements IAgendaRepository {
     List listResponse = json.decode(response.body);
     final listAgenda = <AgendaGetEntity>[];
     for (Map<String, dynamic> map in listResponse) {
-      AgendaGetEntity agenda = AgendaGetEntity.fromJson(map);
+      AgendaGetEntity agenda = AgendaGetModel.fromJson(map);
       listAgenda.add(agenda);
     }
     return Right(listAgenda);
@@ -53,6 +55,6 @@ class AgendaRepository implements IAgendaRepository {
     if (response.statusCode != 201) {
       return Left(ServerFailure());
     }
-    return Right(AgendaEntity.fromJson(json.decode(response.body)));
+    return Right(AgendaModel.fromJson(json.decode(response.body)));
   }
 }

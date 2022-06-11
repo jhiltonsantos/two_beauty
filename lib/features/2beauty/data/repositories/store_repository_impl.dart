@@ -9,6 +9,8 @@ import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/connection_header.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/features/2beauty/data/models/store_get_model.dart';
+import 'package:two_beauty/features/2beauty/data/models/store_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/store_repository.dart';
@@ -62,7 +64,7 @@ class StoreRepositoryImpl implements StoreRepository {
         await connectionHeaderApi.postResponse(urlController, data);
 
     if (response.statusCode == 201) {
-      return Right(StoreEntity.fromJson(json.decode(response.body)));
+      return Right(StoreModel.fromJson(json.decode(response.body)));
     } else {
       // throw Exception('Falha ao criar estabelecimento');
       return Left(ServerFailure());
@@ -76,7 +78,7 @@ class StoreRepositoryImpl implements StoreRepository {
   // FUNCTIONS FOR getStoreData
   StoreGetEntity storeDataByID(http.Response response) {
     Map<String, dynamic> map = json.decode(response.body);
-    StoreGetEntity store = StoreGetEntity.fromJson(map);
+    StoreGetEntity store = StoreGetModel.fromJson(map);
     return store;
   }
 
@@ -85,7 +87,7 @@ class StoreRepositoryImpl implements StoreRepository {
     List listResponse = json.decode(response.body);
     final List<StoreGetEntity> stores = <StoreGetEntity>[];
     for (Map<String, dynamic> map in listResponse) {
-      StoreGetEntity store = StoreGetEntity.fromJson(map);
+      StoreGetEntity store = StoreGetModel.fromJson(map);
       stores.add(store);
     }
     return stores;

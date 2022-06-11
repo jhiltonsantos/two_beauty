@@ -61,7 +61,7 @@ class _TextFieldItemPasswordState extends State<TextFieldItemPassword> {
                     hoverColor: Colors.transparent,
                     splashRadius: 1.0,
                     icon: Icon(
-                      passwordObscure ? Icons.visibility : Icons.visibility_off,
+                      passwordObscure ? Icons.visibility_off : Icons.visibility,
                       color: ColorManager.purple_300,
                     ),
                     onPressed: () {
