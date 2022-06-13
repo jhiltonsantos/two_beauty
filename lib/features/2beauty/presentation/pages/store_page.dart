@@ -4,6 +4,7 @@ import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 
@@ -36,7 +37,19 @@ class _StorePageState extends State<StorePage> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(child: Text(state.store.name)),
+              Center(
+                  child: Column(
+                children: [
+                  Text(
+                    state.store.cnpj,
+                    style: TextStyles.subtitleInitApp(),
+                  ),
+                  Text(
+                    state.store.name,
+                    style: TextStyles.subtitleInitApp(),
+                  ),
+                ],
+              )),
               const SizedBox(height: 50.0),
               ElevatedButton(
                   onPressed: () {
