@@ -65,7 +65,9 @@ import '../../features/2beauty/presentation/bloc/intro/intro_state.dart'
 import '../../features/2beauty/presentation/bloc/login/login_cubit.dart'
     as _i31;
 import '../../features/2beauty/presentation/bloc/signUp/signup_cubit.dart'
-    as _i34; // ignore_for_file: unnecessary_lambdas
+    as _i34;
+import '../../features/2beauty/presentation/bloc/store/store_cubit.dart'
+    as _i35; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -110,5 +112,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i33.PostStoreDataUsecase(get<_i23.StoreRepository>()));
   gh.factory<_i34.SignupCubit>(
       () => _i34.SignupCubit(get<_i32.PostNewUserUsecase>()));
+  gh.factory<_i35.StoreCubit>(
+      () => _i35.StoreCubit(get<_i28.GetStoreDataUsecase>()));
   return get;
 }

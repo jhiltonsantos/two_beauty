@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/usecases/store/get_store_data_usecase.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 
+@injectable
 class StoreCubit extends Cubit<StoreState> {
   final GetStoreDataUsecase _getStoreDataUsecase;
 
