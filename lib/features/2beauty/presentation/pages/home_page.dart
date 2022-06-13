@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/core/usecase/usecase.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
@@ -54,21 +55,27 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(160),
-          child: AppBarHomePage(user: user)),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-            child: LabelHomePage(
-              text: 'Estabelecimentos\nencontrados',
-              countStores: stores.length,
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushReplacementNamed(logoutRoute);
+        return false;
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(160),
+            child: AppBarHomePage(user: user)),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+              child: LabelHomePage(
+                text: 'Estabelecimentos\nencontrados',
+                countStores: stores.length,
+              ),
             ),
-          ),
-          ListAllStores(stores: stores),
-        ],
+            ListAllStores(stores: stores),
+          ],
+        ),
       ),
     );
   }

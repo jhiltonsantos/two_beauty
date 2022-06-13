@@ -11,6 +11,7 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/logout_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/signup_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/splash_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/store_page.dart';
@@ -69,6 +70,8 @@ class RouteGenerator {
                   ));
         }
         return errorPage;
+      case logoutRoute:
+        return MaterialPageRoute(builder: (_) => const LogoutPage());
 
       default:
         return errorPage;

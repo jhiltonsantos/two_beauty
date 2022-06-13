@@ -50,6 +50,16 @@ class TextStyles {
     );
   }
 
+  static TextStyle textTitleStoreDetails() {
+    return const TextStyle(
+      fontSize: 20,
+      fontFamily: 'Epilogue_600',
+      color: ColorManager.grey_600,
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.clip,
+    );
+  }
+
   static TextStyle textLabelHome({double? fontSize}) {
     return TextStyle(
       fontFamily: 'Epilogue_600',
@@ -70,9 +80,8 @@ class TextStyles {
 
   static TextStyle countStoreIconText({double? fontSize}) {
     return TextStyle(
-      fontFamily: 'Epilogue_500',
-      fontSize: fontSize ?? 12,
-      color: ColorManager.purple_300
-    );
+        fontFamily: 'Epilogue_500',
+        fontSize: fontSize ?? 12,
+        color: ColorManager.purple_300);
   }
 }

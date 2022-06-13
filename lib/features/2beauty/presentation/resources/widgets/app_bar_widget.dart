@@ -3,6 +3,7 @@ import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles
 
 class AppBarWidget extends StatelessWidget {
   final String title;
+  final double? fontSizeTitle;
   final Function()? leadingOnTap;
   final IconData? leadingIcon;
 
@@ -11,6 +12,7 @@ class AppBarWidget extends StatelessWidget {
     required this.title,
     this.leadingOnTap,
     this.leadingIcon,
+    this.fontSizeTitle,
   }) : super(key: key);
 
   @override
@@ -32,9 +34,9 @@ class AppBarWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Text(
                     title,
-                    style: TextStyles.titleApp(),
+                    style: TextStyles.titleApp(fontSize: fontSizeTitle),
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+                    maxLines: 2,
                     softWrap: false,
                   ),
                 ),
