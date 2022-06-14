@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
+import 'package:two_beauty/core/constants/connection_header.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
 import 'package:two_beauty/features/2beauty/data/models/login_get_token_model.dart';
@@ -14,7 +15,6 @@ import 'package:two_beauty/features/2beauty/data/models/user_access_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_access_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/login_repository.dart';
-import 'package:two_beauty/core/constants/connection_header.dart';
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {

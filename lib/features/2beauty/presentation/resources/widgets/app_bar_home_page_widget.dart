@@ -27,7 +27,7 @@ class AppBarHomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: Text(
-                'Separamos alguns salões para você cuidar da sua beleza',
+                'Separamos alguns locais para você cuidar da sua beleza',
                 style: TextStyles.subtitleInitApp(),
               ),
             )
