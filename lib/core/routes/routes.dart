@@ -1,4 +1,5 @@
 const String splashRoute = "/";
+const String splashLogin = "/splashLogin";
 const String introRoute = "/intro";
 const String loginRoute = "/login";
 const String signupRoute = "/signup";

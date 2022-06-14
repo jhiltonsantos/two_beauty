@@ -13,6 +13,7 @@ import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/logout_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/signup_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/splash_login.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/splash_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/store_page.dart';
 
@@ -33,7 +34,11 @@ class RouteGenerator {
           builder: (_) => const SplashPage(),
           settings: const RouteSettings(name: splashRoute),
         );
-
+      case splashLogin:
+        return MaterialPageRoute(
+          builder: (_) => const SplashLogin(),
+          settings: const RouteSettings(name: splashLogin),
+        );
       case introRoute:
         return MaterialPageRoute(
           builder: (_) => const IntroPage(),

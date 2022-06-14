@@ -1,8 +1,11 @@
-import 'package:sqflite/sqflite.dart';
+import 'package:flutter/foundation.dart';
+import 'package:sqflite/sqflite.dart' as sql;
 import 'package:two_beauty/features/2beauty/data/datasources/app_database.dart';
 import 'package:two_beauty/features/2beauty/data/models/login_get_token_model.dart';
 
 class LoginDAO {
+  final AppDatabase appDatabase = AppDatabase();
+
   static const String _tableName = 'login_access';
   static const String _id = 'id';
   static const String _username = 'username';
@@ -13,28 +16,52 @@ class LoginDAO {
       '$_username TEXT, '
       '$_password TEXT)';
 
-  Future<int> save(LoginGetTokenModel loginUser) async {
-    final Database db = await getDatabase();
-    final Map<String, dynamic> loginMap = {};
-    loginMap[_username] = loginUser.username;
-    loginMap[_password] = loginUser.password;
-    return db.insert(_tableName, loginMap);
+  Future<void> createTable(sql.Database database) async {
+    await database.execute(tableSql);
   }
 
-  Future<List<LoginGetTokenModel>> findUser() async {
-    final Database db = await getDatabase();
-    final List<Map<String, dynamic>> result = await db.query(_tableName);
+  Future<sql.Database> getDatabase() async {
+    return await appDatabase.db();
+  }
+
+  Future<int> saveLoginData(LoginGetTokenModel loginUser) async {
+    final sql.Database db = await getDatabase();
+    final Map<String, dynamic> data = {
+      _username: loginUser.username,
+      _password: loginUser.password
+    };
+    return await db.insert(_tableName, data,
+        conflictAlgorithm: sql.ConflictAlgorithm.replace);
+  }
+
+  Future<List<LoginGetTokenModel>> getUsers() async {
+    final sql.Database db = await getDatabase();
+    final List<Map<String, dynamic>> result =
+        await db.query(_tableName, orderBy: 'id');
     final List<LoginGetTokenModel> users = [];
     for (Map<String, dynamic> row in result) {
-      final LoginGetTokenModel login = LoginGetTokenModel(
-          username: row[_username], password: row[_username]);
-      users.add(login);
+      final LoginGetTokenModel loginUser = LoginGetTokenModel(
+          username: row[_username], password: row[_password]);
+      users.add(loginUser);
     }
     return users;
   }
 
-  Future<void> delete() async {
-    final Database db = await getDatabase();
-    db.rawQuery('DELETE FROM $tableSql');
+  Future<LoginGetTokenModel> getUserLogin({int getId = 0}) async {
+    final sql.Database db = await getDatabase();
+    final List<Map<String, dynamic>> queryResult = await db.query(_tableName,
+        where: 'id = ?', whereArgs: [getId], limit: 1);
+    return LoginGetTokenModel(
+        username: queryResult[0][_username],
+        password: queryResult[0][_password]);
+  }
+
+  Future<void> deleteLogin() async {
+    final sql.Database db = await getDatabase();
+    try {
+      await db.delete(_tableName);
+    } catch (error) {
+      debugPrint('Erro ao deletar login de usuário');
+    }
   }
 }

@@ -25,6 +25,7 @@ class SignUpRepositoryImpl implements SignUpRepository {
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
+  // TODO: Na hora de fazer cadastro de novo usuario deve salvar os dados no BD
   @override
   Future<Either<Failure, UserAccessEntity>> postNewUser(
       UserEntity userEntity) async {
@@ -36,6 +37,7 @@ class SignUpRepositoryImpl implements SignUpRepository {
     return Right(createSignup(response, preferences));
   }
 
+  // FUNCTIONS FOR postNewUser()
   Future<http.Response> requestPostUser(UserEntity userEntity) async {
     Map data = createJsonUser(userEntity);
     return await client.post(

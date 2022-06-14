@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:two_beauty/core/app/app_widget.dart';
 import 'package:two_beauty/core/injection/injection.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
