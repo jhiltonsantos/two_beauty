@@ -36,7 +36,6 @@ class LoginRepositoryImpl implements LoginRepository {
     return Right(userAccess(response, prefs));
   }
 
-  // FUNCTIONS UTILS FOR postLogin()
   UserAccessEntity userAccess(http.Response response, SharedPreferences prefs) {
     Map<String, dynamic> data = json.decode(response.body);
     UserAccessModel.fromJson(data);
@@ -47,7 +46,7 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<http.Response> requestPostLogin(
       LoginGetTokenEntity loginGetTokenEntity) async {
     Map data = createJsonLogin(loginGetTokenEntity);
-    return await connectionHeaderApi.postResponse(urlController, data);
+    return await connectionHeaderApi.postHeader(urlController, data);
   }
 
   Map<dynamic, dynamic> createJsonLogin(

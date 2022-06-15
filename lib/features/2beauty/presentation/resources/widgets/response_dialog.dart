@@ -5,7 +5,7 @@ class ResponseDialog extends StatelessWidget {
   final String title;
   final String message;
   final String buttonText;
-  final IconData icon;
+  final IconData? icon;
   final Color colorIcon;
 
   const ResponseDialog({

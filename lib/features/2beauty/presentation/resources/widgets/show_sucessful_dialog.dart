@@ -27,7 +27,6 @@ Future<void> showSuccessfulDialog(BuildContext context, String message) async {
       builder: (contextDialog) {
         return SuccessDialog(message);
       });
-  Navigator.pop(context);
 }
 
 class ShowSuccessfulDialog extends StatelessWidget {

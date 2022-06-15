@@ -61,7 +61,7 @@ class StoreRepositoryImpl implements StoreRepository {
     };
 
     http.Response response =
-        await connectionHeaderApi.postResponse(urlController, data);
+        await connectionHeaderApi.postHeader(urlController, data);
 
     if (response.statusCode == 201) {
       return Right(StoreModel.fromJson(json.decode(response.body)));
@@ -72,7 +72,7 @@ class StoreRepositoryImpl implements StoreRepository {
   }
 
   Future<http.Response> requestGetStore({Uri? url}) async {
-    return await connectionHeaderApi.getResponse(url ?? urlController);
+    return await connectionHeaderApi.getHeader(url ?? urlController);
   }
 
   // FUNCTIONS FOR getStoreData

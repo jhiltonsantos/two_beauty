@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/routes/routes.dart';
-import 'package:two_beauty/features/2beauty/data/models/user_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_state.dart';

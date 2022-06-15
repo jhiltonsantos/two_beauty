@@ -24,8 +24,7 @@ class AgendaRepository implements IAgendaRepository {
 
   @override
   Future<Either<Failure, List<AgendaGetEntity>>> getAllAgendaData() async {
-    http.Response response =
-        await connectionHeaderApi.getResponse(urlController);
+    http.Response response = await connectionHeaderApi.getHeader(urlController);
 
     if (response.statusCode != 200) {
       return Left(ServerFailure());
@@ -50,7 +49,7 @@ class AgendaRepository implements IAgendaRepository {
     };
 
     http.Response response =
-        await connectionHeaderApi.postResponse(urlController, data);
+        await connectionHeaderApi.postHeader(urlController, data);
 
     if (response.statusCode != 201) {
       return Left(ServerFailure());

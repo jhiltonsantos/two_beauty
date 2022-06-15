@@ -29,7 +29,7 @@ class OwnerRepository implements IOwnerRepository {
     };
 
     http.Response response =
-        await connectionHeaderApi.postResponse(urlController, data);
+        await connectionHeaderApi.postHeader(urlController, data);
 
     if (response.statusCode == 201) {
       return Right(OwnerModel.fromJson(json.decode(response.body)));

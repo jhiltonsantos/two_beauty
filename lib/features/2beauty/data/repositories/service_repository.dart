@@ -26,7 +26,7 @@ class ServiceRepository implements IServiceRepository {
   Future<Either<Failure, List<ServiceGetEntity>>> getServiceData(
       String id) async {
     final Uri url = Uri.parse('${AppConstants.SERVICE_ALL_URL}/$id');
-    http.Response response = await connectionHeaderApi.getResponse(url);
+    http.Response response = await connectionHeaderApi.getHeader(url);
 
     if (response.statusCode == 200) {
       Map<String, dynamic> map = json.decode(response.body);
@@ -42,8 +42,7 @@ class ServiceRepository implements IServiceRepository {
 
   @override
   Future<Either<Failure, List<ServiceGetEntity>>> getAllServiceData() async {
-    http.Response response =
-        await connectionHeaderApi.getResponse(urlController);
+    http.Response response = await connectionHeaderApi.getHeader(urlController);
 
     if (response.statusCode == 200) {
       List listResponse = json.decode(response.body);
@@ -72,7 +71,7 @@ class ServiceRepository implements IServiceRepository {
     };
 
     http.Response response =
-        await connectionHeaderApi.postResponse(urlController, data);
+        await connectionHeaderApi.postHeader(urlController, data);
 
     if (response.statusCode == 201) {
       return Right(ServiceModel.fromJson(json.decode(response.body)));

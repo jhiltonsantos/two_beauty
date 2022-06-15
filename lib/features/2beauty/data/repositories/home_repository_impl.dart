@@ -32,7 +32,7 @@ class HomeRepositoryImpl implements HomeRepository {
 
   // FUNCTIONS FOR getUserData()
   Future<http.Response> requestGetUser() async {
-    return await connectionHeaderApi.getResponse(urlController);
+    return await connectionHeaderApi.getHeader(urlController);
   }
 
   UserGetEntity getUsername(http.Response response) {

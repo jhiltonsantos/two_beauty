@@ -43,7 +43,7 @@ class ProfileRepositoryImp implements ProfileRepository {
   // Functions for getCurrentProfile
   Future<http.Response> requestGetProfile(
       ConnectionHeaderApi connection, Uri uri) async {
-    return await connectionHeaderApi.getResponse(urlController);
+    return await connectionHeaderApi.getHeader(urlController);
   }
 
   List<UserEntity> currentProfile(http.Response response) {
@@ -57,7 +57,7 @@ class ProfileRepositoryImp implements ProfileRepository {
   // Functions for getCurrentProfileID
   Future<http.Response> requestProfileGetName() async {
     final Uri getIdUrl = Uri.parse(AppConstants.USER_GET_NAME);
-    return await connectionHeaderApi.getResponse(getIdUrl);
+    return await connectionHeaderApi.getHeader(getIdUrl);
   }
 
   int currentID(http.Response response) {

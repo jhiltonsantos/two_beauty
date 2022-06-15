@@ -7,10 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:two_beauty/core/connection/web_client.dart';
 
 class ConnectionHeaderApi {
-  Future<http.Response> getResponse(Uri url) async {
+  Future<http.Response> getHeader(Uri url) async {
     var prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
-    print('Token: $token');
     var header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token'
@@ -18,7 +17,7 @@ class ConnectionHeaderApi {
     return await client.get(url, headers: header);
   }
 
-  Future<http.Response> postResponse(Uri url, Map data) async {
+  Future<http.Response> postHeader(Uri url, Map data) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = (prefs.getString('token') ?? '');
     return await client.post(
