@@ -1,13 +1,14 @@
+import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:two_beauty/features/2beauty/data/datasources/dao/login_dao.dart';
 
-class AppDatabase {
-  final LoginDAO loginDAO = LoginDAO();
-
-  Future<sql.Database> db() async {
-    return sql.openDatabase('2beauty.db', version: 1,
-        onCreate: (sql.Database database, int version) async {
-      await loginDAO.createTable(database);
-    });
-  }
+Future<sql.Database> getDatabase() async {
+  final String path = join(await sql.getDatabasesPath(), '2beauty.db');
+  return sql.openDatabase(
+    path,
+    onCreate: (sql.Database database, int version) async {
+      database.execute(LoginDAO.tableSql);
+    },
+    version: 1,
+  );
 }

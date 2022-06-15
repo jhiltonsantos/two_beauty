@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/routes/routes.dart';
-import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubit.dart';
-import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/splash_widget.dart';
 
 class SplashPage extends StatefulWidget {
@@ -19,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   Timer? _timer;
 
   void _goNextScreen() {
-    Navigator.of(context).pushReplacementNamed(splashLogin);
+    Navigator.of(context).pushReplacementNamed(introRoute);
   }
 
   void _startDelay() {

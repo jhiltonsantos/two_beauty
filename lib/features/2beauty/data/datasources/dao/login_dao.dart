@@ -2,10 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 import 'package:two_beauty/features/2beauty/data/datasources/app_database.dart';
 import 'package:two_beauty/features/2beauty/data/models/login_get_token_model.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 
 class LoginDAO {
-  final AppDatabase appDatabase = AppDatabase();
-
   static const String _tableName = 'login_access';
   static const String _id = 'id';
   static const String _username = 'username';
@@ -16,15 +15,7 @@ class LoginDAO {
       '$_username TEXT, '
       '$_password TEXT)';
 
-  Future<void> createTable(sql.Database database) async {
-    await database.execute(tableSql);
-  }
-
-  Future<sql.Database> getDatabase() async {
-    return await appDatabase.db();
-  }
-
-  Future<int> saveLoginData(LoginGetTokenModel loginUser) async {
+  Future<int> saveLoginData(LoginGetTokenEntity loginUser) async {
     final sql.Database db = await getDatabase();
     final Map<String, dynamic> data = {
       _username: loginUser.username,

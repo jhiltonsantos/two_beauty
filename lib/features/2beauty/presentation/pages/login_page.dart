@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/routes/routes.dart';
+import 'package:two_beauty/features/2beauty/data/datasources/dao/login_dao.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_state.dart';
@@ -28,7 +29,7 @@ class LoginPage extends StatelessWidget {
           return const ProgressWidget();
         }
         if (state is LoadedLoginState) {
-          return const LoginForm();
+          return LoginForm();
         }
         if (state is SentLoginState) {
           return const SentLoginUser();
@@ -45,7 +46,9 @@ class LoginPage extends StatelessWidget {
 }
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({Key? key}) : super(key: key);
+  LoginForm({Key? key}) : super(key: key);
+
+  final LoginDAO loginDAO = LoginDAO();
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +105,7 @@ class LoginForm extends StatelessWidget {
               styleButton: ButtonStyles.buttonPrimary(),
               styleText: TextStyles.buttonApp(ColorManager.white_100),
               text: LoginStrings.buttonTextLogin,
-              onPressed: () {
+              onPressed: () async {
                 final String user = userInputController.text;
                 final String password = passwordInputController.text;
 
@@ -111,8 +114,9 @@ class LoginForm extends StatelessWidget {
                 } else {
                   final LoginGetTokenEntity loginGetTokenEntity =
                       LoginGetTokenEntity(username: user, password: password);
-                  BlocProvider.of<LoginCubit>(context)
-                      .postLogin(loginGetTokenEntity);
+                  await loginDAO.saveLoginData(loginGetTokenEntity).then((_) =>
+                      BlocProvider.of<LoginCubit>(context)
+                          .postLogin(loginGetTokenEntity));
                 }
               },
             ),
