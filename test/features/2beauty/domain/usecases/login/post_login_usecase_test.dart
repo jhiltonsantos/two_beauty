@@ -26,7 +26,7 @@ void main() {
   });
 
   test("Deve retornar o token de acesso do usuário", () async {
-    const tLogin = LoginGetTokenEntity(username: 'maria123', password: "12345");
+    LoginGetTokenEntity tLogin = LoginGetTokenEntity(username: 'maria123', password: "12345");
 
     when(mockLoginRepository.postLogin(tLogin)).thenAnswer((_) async =>
         const Right(
@@ -42,7 +42,7 @@ void main() {
   });
 
   test("Deve retornar ServerFailure ao tentar realizar login", () async {
-    const tFailureLogin = LoginGetTokenEntity(username: '123', password: "12");
+    LoginGetTokenEntity tFailureLogin = LoginGetTokenEntity(username: '123', password: "12");
 
     when(mockLoginRepository.postLogin(tFailureLogin))
         .thenAnswer((_) async => Left(ServerFailure()));

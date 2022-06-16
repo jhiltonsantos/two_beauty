@@ -7,13 +7,13 @@ import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/logout_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/signup_page.dart';
-import 'package:two_beauty/features/2beauty/presentation/pages/splash_login.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/splash_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/store_page.dart';
 
@@ -29,16 +29,16 @@ class RouteGenerator {
     final routeName = settings.name;
 
     switch (routeName) {
-      case splashRoute:
-        return MaterialPageRoute(
-          builder: (_) => const SplashPage(),
-          settings: const RouteSettings(name: splashRoute),
-        );
+
+
       case splashLogin:
         return MaterialPageRoute(
-          builder: (_) => const SplashLogin(),
-          settings: const RouteSettings(name: splashLogin),
-        );
+            builder: (_) => BlocProvider<SplashCubit>(
+                  create: (_) => getIt(),
+                  child: const SplashLoginPage(),
+                ),
+            settings: const RouteSettings(name: splashLogin));
+
       case introRoute:
         return MaterialPageRoute(
           builder: (_) => const IntroPage(),

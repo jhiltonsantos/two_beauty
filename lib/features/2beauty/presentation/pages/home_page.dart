@@ -1,7 +1,13 @@
+// ignore_for_file: must_be_immutable
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/core/usecase/usecase.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
@@ -11,6 +17,7 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_home_page_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/list_all_stores_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
+import 'package:two_beauty/objectbox.g.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -50,14 +57,16 @@ class HomeWidget extends StatelessWidget {
   final UserGetEntity user;
   final List<StoreGetEntity> stores;
 
-  const HomeWidget({Key? key, required this.user, required this.stores})
+  HomeWidget({Key? key, required this.user, required this.stores})
       : super(key: key);
+
+  late Store storeData;
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.of(context).pushReplacementNamed(logoutRoute);
+        closeApp();
         return false;
       },
       child: Scaffold(
@@ -76,7 +85,37 @@ class HomeWidget extends StatelessWidget {
             ListAllStores(stores: stores),
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await logoutApp();
+            closeApp();
+          },
+          child: const Icon(Icons.close),
+        ),
       ),
     );
+  }
+
+  Future<void> logoutApp() async {
+    await initializedDBData();
+    final userBox = storeData.box<LoginGetTokenEntity>();
+    userBox.removeAll();
+    closeDBData();
+  }
+
+  Future<void> initializedDBData() async {
+    Directory directory = await getApplicationDocumentsDirectory();
+    storeData = Store(
+      getObjectBoxModel(),
+      directory: '${directory.path}/objectbox',
+    );
+  }
+
+  void closeDBData() {
+    storeData.close();
+  }
+
+  void closeApp() {
+    exit(0);
   }
 }

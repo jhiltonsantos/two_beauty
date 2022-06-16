@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 
+
 class LoginGetTokenModel extends LoginGetTokenEntity {
-  const LoginGetTokenModel({required String username, required String password})
+  LoginGetTokenModel({required String username, required String password})
       : super(username: username, password: password);
 
   factory LoginGetTokenModel.fromJson(Map<String, dynamic> json) {

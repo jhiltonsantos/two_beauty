@@ -18,7 +18,7 @@ class _AppWidgetState extends State<AppWidget> {
       debugShowCheckedModeBanner: false,
       title: InitialStrings.nameAppUpper,
       theme: theme2beauty,
-      initialRoute: splashRoute,
+      initialRoute: splashLogin,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

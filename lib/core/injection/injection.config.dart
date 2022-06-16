@@ -4,8 +4,6 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -91,7 +89,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i16.ProfileRepository>(() => _i17.ProfileRepositoryImp());
   gh.factory<_i18.ServiceRepository>(() => _i18.ServiceRepository());
   gh.factory<_i19.SignUpRepository>(() => _i20.SignUpRepositoryImpl());
-  gh.factory<_i21.SplashCubit>(() => _i21.SplashCubit());
+  gh.factory<_i21.SplashCubit>(
+      () => _i21.SplashCubit(get<_i13.PostLoginUsecase>()));
   gh.factory<_i22.StoreRepository>(() => _i23.StoreRepositoryImpl());
   gh.factory<_i24.GetAllStoreDataUsecase>(
       () => _i24.GetAllStoreDataUsecase(get<_i22.StoreRepository>()));

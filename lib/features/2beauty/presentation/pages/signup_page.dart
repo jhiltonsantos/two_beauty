@@ -1,6 +1,12 @@
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:two_beauty/core/routes/routes.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_state.dart';
@@ -8,13 +14,14 @@ import 'package:two_beauty/features/2beauty/presentation/resources/colors_manage
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/failure_dialog.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item_password.dart';
+import 'package:two_beauty/objectbox.g.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -27,7 +34,7 @@ class SignupPage extends StatelessWidget {
           return const ProgressWidget();
         }
         if (state is LoadedSignupState) {
-          return const SignupForm();
+          return SignupForm();
         }
         if (state is ErrorSignupState) {
           return Scaffold(
@@ -62,9 +69,12 @@ class SignupPage extends StatelessWidget {
 }
 
 class SignupForm extends StatelessWidget {
-  const SignupForm({
+  SignupForm({
     Key? key,
   }) : super(key: key);
+
+  late Store store;
+  late LoginGetTokenEntity loginGetData;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +149,7 @@ class SignupForm extends StatelessWidget {
               styleButton: ButtonStyles.buttonPrimary(),
               styleText: TextStyles.buttonApp(ColorManager.white_100),
               text: SignUpStrings.buttonTextSignUp,
-              onPressed: () {
+              onPressed: () async {
                 final String user = userInputController.text;
                 final String email = emailInputController.text;
                 final String password = passwordInputController.text;
@@ -152,6 +162,7 @@ class SignupForm extends StatelessWidget {
                       email: email,
                       firstName: user,
                       password: password);
+                  await setNewLoginDataOnObjectbox(user, password);
                   BlocProvider.of<SignupCubit>(context).postNewUser(userEntity);
                 }
               },
@@ -183,6 +194,25 @@ class SignupForm extends StatelessWidget {
         ]),
       ),
     );
+  }
+
+  Future<void> setNewLoginDataOnObjectbox(String user, String password) async {
+    await initializedDBData();
+    loginGetData = LoginGetTokenEntity(username: user, password: password);
+    store.box<LoginGetTokenEntity>().put(loginGetData);
+    closeDBData();
+  }
+
+  Future<void> initializedDBData() async {
+    Directory directory = await getApplicationDocumentsDirectory();
+    store = Store(
+      getObjectBoxModel(),
+      directory: '${directory.path}/objectbox',
+    );
+  }
+
+  void closeDBData() {
+    store.close();
   }
 }
 

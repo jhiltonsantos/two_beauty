@@ -24,7 +24,6 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
-  // TODO: Na hora de fazer o login deve salvar os dados do usuário no BD
   @override
   Future<Either<Failure, UserAccessEntity>> postLogin(
       LoginGetTokenEntity loginGetTokenEntity) async {
