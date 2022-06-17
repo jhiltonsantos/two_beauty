@@ -10,4 +10,6 @@ abstract class LoginRepository {
 
   Future<Either<Failure, UserAccessEntity>> postLogin(
       LoginGetTokenEntity loginGetTokenEntity);
+
+
 }

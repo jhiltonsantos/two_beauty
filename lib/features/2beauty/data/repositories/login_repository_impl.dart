@@ -10,6 +10,8 @@ import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/connection_header.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/core/platform/network_info.dart';
+import 'package:two_beauty/features/2beauty/data/datasources/login_local_datasource.dart';
 import 'package:two_beauty/features/2beauty/data/models/login_get_token_model.dart';
 import 'package:two_beauty/features/2beauty/data/models/user_access_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
@@ -18,19 +20,37 @@ import 'package:two_beauty/features/2beauty/domain/repositories/login_repository
 
 @Injectable(as: LoginRepository)
 class LoginRepositoryImpl implements LoginRepository {
+  final LoginLocalDataSource loginLocalData;
+  final NetworkInfo networkInfo;
+
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);
 
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
+  LoginRepositoryImpl(
+      {required this.loginLocalData, required this.networkInfo});
+
   @override
   Future<Either<Failure, UserAccessEntity>> postLogin(
+      LoginGetTokenEntity loginGetTokenEntity) async {
+    if (await networkInfo.isConnected) {
+      return connectLogin(loginGetTokenEntity);
+    } else {
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, UserAccessEntity>> connectLogin(
       LoginGetTokenEntity loginGetTokenEntity) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     http.Response response = await requestPostLogin(loginGetTokenEntity);
     if (response.statusCode != StatusCode.OK) {
       return Left(ServerFailure());
+    }
+    if (!await saveInCacheData(loginGetTokenEntity)) {
+      return Left(CacheFailure());
     }
     return Right(userAccess(response, prefs));
   }
@@ -55,4 +75,9 @@ class LoginRepositoryImpl implements LoginRepository {
             password: loginGetTokenEntity.password)
         .toJson();
   }
+
+  Future<bool> saveInCacheData(LoginGetTokenEntity loginData) async {
+    return await loginLocalData.addLoginDataOnDB(loginData);
+  }
+
 }

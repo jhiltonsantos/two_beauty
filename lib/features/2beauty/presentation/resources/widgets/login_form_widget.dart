@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
@@ -14,48 +13,10 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/butto
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item_password.dart';
-import 'package:two_beauty/objectbox.g.dart';
 
-class LoginForm extends StatefulWidget {
+
+class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
-
-  @override
-  State<LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
-  late Store store;
-  bool hasBeenInitialized = false;
-
-  late LoginGetTokenEntity loginGetData;
-
-  late Stream<List<LoginGetTokenEntity>> stream;
-
-  @override
-  void initState() {
-    super.initState();
-    getApplicationDocumentsDirectory().then((directory) {
-      store = Store(
-        getObjectBoxModel(),
-        directory: '${directory.path}/objectbox',
-      );
-
-      setState(() {
-        stream = store
-            .box<LoginGetTokenEntity>()
-            .query()
-            .watch(triggerImmediately: true)
-            .map((query) => query.find());
-        hasBeenInitialized = true;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    store.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +81,8 @@ class _LoginFormState extends State<LoginForm> {
                   const ErrorLoginState("Faltando dados");
                 }
                 final LoginGetTokenEntity loginGetTokenEntity =
-                LoginGetTokenEntity(username: user, password: password);
+                    LoginGetTokenEntity(username: user, password: password);
 
-                setNewLoginDataOnObjectbox(user, password);
                 BlocProvider.of<LoginCubit>(context)
                     .postLogin(loginGetTokenEntity);
               },
@@ -155,10 +115,4 @@ class _LoginFormState extends State<LoginForm> {
       ),
     );
   }
-
-  void setNewLoginDataOnObjectbox(String user, String password) {
-    loginGetData = LoginGetTokenEntity(username: user, password: password);
-    store.box<LoginGetTokenEntity>().put(loginGetData);
-  }
 }
-

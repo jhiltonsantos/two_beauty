@@ -30,6 +30,7 @@ class _SplashLoginPageState extends State<SplashLoginPage> {
   void initState() {
     super.initState();
     initBD();
+    // startDelay();
   }
 
   @override
@@ -75,6 +76,7 @@ class _SplashLoginPageState extends State<SplashLoginPage> {
     if (usersData.isNotEmpty) {
       loginGetData = LoginGetTokenEntity(
           username: usersData[0].username, password: usersData[0].password);
+      store.close();
       BlocProvider.of<SplashCubit>(context).postLogin(loginGetData);
     } else {
       startDelay();
@@ -82,6 +84,7 @@ class _SplashLoginPageState extends State<SplashLoginPage> {
   }
 
   void startDelay() {
+    store.close();
     timer = Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacementNamed(introRoute);
     });

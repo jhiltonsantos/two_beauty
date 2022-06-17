@@ -6,16 +6,16 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_stat
 
 @injectable
 class SplashCubit extends Cubit<SplashState> {
-  final PostLoginUsecase _postLoginUsecase;
+  final PostLoginUsecase _usecase;
 
-  SplashCubit(this._postLoginUsecase) : super(const InitSplashState());
+  SplashCubit(this._usecase) : super(const InitSplashState());
 
   void nextPage() {
     emit(const LoadedSplashState());
   }
 
   Future<void> postLogin(LoginGetTokenEntity params) async {
-    await _postLoginUsecase.call(params).then((userReturn) {
+    await _usecase.call(params).then((userReturn) {
       if (userReturn.isRight()) {
         emit(const SentSplashState());
       } else {

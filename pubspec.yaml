@@ -11,12 +11,8 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.4
-  cached_network_image: ^3.2.1
   flutter_svg: ^1.1.0
-  intl: ^0.17.0
   shared_preferences: ^2.0.15
-  google_maps_flutter: ^2.1.5
-  geolocator: ^8.2.1
   json_annotation: ^4.5.0
   http_interceptor: ^1.0.2
   flutter_bloc: ^8.0.1
@@ -24,12 +20,10 @@ dependencies:
   get_it: ^7.2.0
   equatable: ^2.0.3
   dartz: ^0.10.1
-  sqflite: ^2.0.2
-  path: ^1.8.0
   objectbox: ^1.5.0
   objectbox_flutter_libs: ^1.5.0
   path_provider: ^2.0.11
-
+  simple_connection_checker: ^0.2.1
 
 dev_dependencies:
   flutter_test:
