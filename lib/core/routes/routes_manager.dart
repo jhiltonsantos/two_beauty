@@ -29,15 +29,13 @@ class RouteGenerator {
     final routeName = settings.name;
 
     switch (routeName) {
-
-
-      case splashLogin:
+      case splashRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<SplashCubit>(
                   create: (_) => getIt(),
-                  child: const SplashLoginPage(),
+                  child: const SplashPage(),
                 ),
-            settings: const RouteSettings(name: splashLogin));
+            settings: const RouteSettings(name: splashRoute));
 
       case introRoute:
         return MaterialPageRoute(

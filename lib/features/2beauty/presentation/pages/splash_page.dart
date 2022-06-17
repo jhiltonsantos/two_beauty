@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubit.dart';
@@ -14,14 +13,14 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/sent_
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/splash_widget.dart';
 import 'package:two_beauty/objectbox.g.dart';
 
-class SplashLoginPage extends StatefulWidget {
-  const SplashLoginPage({Key? key}) : super(key: key);
+class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
-  State<SplashLoginPage> createState() => _SplashLoginPageState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashLoginPageState extends State<SplashLoginPage> {
+class _SplashPageState extends State<SplashPage> {
   late Timer timer;
   late Store store;
   late LoginGetTokenEntity loginGetData;
@@ -29,13 +28,11 @@ class _SplashLoginPageState extends State<SplashLoginPage> {
   @override
   void initState() {
     super.initState();
-    initBD();
-    // startDelay();
+    initLogin();
   }
 
   @override
   void dispose() {
-    store.close();
     super.dispose();
   }
 
@@ -43,7 +40,11 @@ class _SplashLoginPageState extends State<SplashLoginPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<SplashCubit, SplashState>(
       builder: (context, state) {
-        if (state is InitSplashState || state is LoadingSplashState) {
+        if (state is InitSplashState) {
+          return const SplashWidget();
+        }
+        if (state is NoLoginSplashState) {
+          startDelay();
           return const SplashWidget();
         }
         if (state is SentSplashState) {
@@ -59,34 +60,12 @@ class _SplashLoginPageState extends State<SplashLoginPage> {
     );
   }
 
-  void initBD() {
-    getApplicationDocumentsDirectory().then((dir) {
-      store = Store(
-        getObjectBoxModel(),
-        directory: '${dir.path}/objectbox',
-      );
-      getLoginUserApp();
-    });
-  }
-
-  void getLoginUserApp() {
-    final userBox = store.box<LoginGetTokenEntity>();
-    final usersData = userBox.getAll();
-
-    if (usersData.isNotEmpty) {
-      loginGetData = LoginGetTokenEntity(
-          username: usersData[0].username, password: usersData[0].password);
-      store.close();
-      BlocProvider.of<SplashCubit>(context).postLogin(loginGetData);
-    } else {
-      startDelay();
-    }
+  void initLogin() {
+    BlocProvider.of<SplashCubit>(context).getLogin();
   }
 
   void startDelay() {
-    store.close();
-    timer = Timer(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(introRoute);
-    });
+    timer = Timer(const Duration(seconds: 3),
+        () => Navigator.of(context).pushReplacementNamed(introRoute));
   }
 }

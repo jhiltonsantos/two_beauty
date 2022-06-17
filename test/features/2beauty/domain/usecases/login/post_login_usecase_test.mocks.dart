@@ -65,4 +65,11 @@ class MockLoginRepository extends _i1.Mock implements _i4.LoginRepository {
                   Future<_i3.Either<_i6.Failure, _i7.UserAccessEntity>>.value(
                       _FakeEither_2<_i6.Failure, _i7.UserAccessEntity>()))
           as _i5.Future<_i3.Either<_i6.Failure, _i7.UserAccessEntity>>);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, _i8.LoginGetTokenEntity>> getLogin() =>
+      (super.noSuchMethod(Invocation.method(#getLogin, []),
+          returnValue:
+              Future<_i3.Either<_i6.Failure, _i8.LoginGetTokenEntity>>.value(
+                  _FakeEither_2<_i6.Failure, _i8.LoginGetTokenEntity>())) as _i5
+          .Future<_i3.Either<_i6.Failure, _i8.LoginGetTokenEntity>>);
 }

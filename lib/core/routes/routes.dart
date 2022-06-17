@@ -1,11 +1,8 @@
 const String splashRoute = "/";
-const String splashLogin = "/splashLogin";
 const String introRoute = "/intro";
 const String loginRoute = "/login";
 const String signupRoute = "/signup";
-const String forgotPasswordRoute = "/forgotPassword";
 const String homeRoute = "/home";
-const String mapRoute = "/testMap";
 const String registerStoreRoute = "/registerstore";
 const String detailStore = "/detailStore";
 const String profileAgenda = "/profileAgenda";

@@ -22,6 +22,7 @@ import 'package:two_beauty/features/2beauty/domain/repositories/login_repository
 class LoginRepositoryImpl implements LoginRepository {
   final LoginLocalDataSource loginLocalData;
   final NetworkInfo networkInfo;
+  final boolean = true;
 
   @override
   Uri urlController = Uri.parse(AppConstants.LOGIN_USER);
@@ -31,6 +32,22 @@ class LoginRepositoryImpl implements LoginRepository {
 
   LoginRepositoryImpl(
       {required this.loginLocalData, required this.networkInfo});
+
+  @override
+  Future<Either<Failure, LoginGetTokenEntity>> getLogin() async {
+    late LoginGetTokenEntity login;
+    bool isHaveData = true;
+    await loginLocalData.getLoginDataFromDB().then((loginData) {
+      loginData.fold(
+        (valueFalse) => isHaveData = valueFalse,
+        (data) => login = data,
+      );
+    });
+    if (!isHaveData) {
+      return Left(CacheFailure());
+    }
+    return Right(login);
+  }
 
   @override
   Future<Either<Failure, UserAccessEntity>> postLogin(
@@ -79,5 +96,4 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<bool> saveInCacheData(LoginGetTokenEntity loginData) async {
     return await loginLocalData.addLoginDataOnDB(loginData);
   }
-
 }

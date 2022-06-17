@@ -4,6 +4,8 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -40,6 +42,8 @@ import '../../features/2beauty/domain/usecases/agenda/post_agenda_data_usecase.d
     as _i13;
 import '../../features/2beauty/domain/usecases/home/get_user_data_usecase.dart'
     as _i27;
+import '../../features/2beauty/domain/usecases/login/get_login_usecase.dart'
+    as _i36;
 import '../../features/2beauty/domain/usecases/login/post_login_usecase.dart'
     as _i31;
 import '../../features/2beauty/domain/usecases/owner/post_new_owner_usecase.dart'
@@ -68,9 +72,9 @@ import '../../features/2beauty/presentation/bloc/login/login_cubit.dart'
 import '../../features/2beauty/presentation/bloc/signUp/signup_cubit.dart'
     as _i34;
 import '../../features/2beauty/presentation/bloc/splash/splash_cubit.dart'
-    as _i35;
+    as _i38;
 import '../../features/2beauty/presentation/bloc/store/store_cubit.dart'
-    as _i36;
+    as _i35;
 import '../platform/network_info.dart'
     as _i11; // ignore_for_file: unnecessary_lambdas
 
@@ -118,11 +122,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i33.PostStoreDataUsecase(get<_i21.StoreRepository>()));
   gh.factory<_i34.SignupCubit>(
       () => _i34.SignupCubit(get<_i32.PostNewUserUsecase>()));
-  gh.factory<_i35.SplashCubit>(
-      () => _i35.SplashCubit(get<_i31.PostLoginUsecase>()));
-  gh.factory<_i36.StoreCubit>(
-      () => _i36.StoreCubit(get<_i26.GetStoreDataUsecase>()));
+  gh.factory<_i35.StoreCubit>(
+      () => _i35.StoreCubit(get<_i26.GetStoreDataUsecase>()));
+  gh.factory<_i36.GetLoginUsecase>(
+      () => _i36.GetLoginUsecase(get<_i29.LoginRepository>()));
   gh.factory<_i37.LoginCubit>(
       () => _i37.LoginCubit(get<_i31.PostLoginUsecase>()));
+  gh.factory<_i38.SplashCubit>(() => _i38.SplashCubit(
+      get<_i31.PostLoginUsecase>(), get<_i36.GetLoginUsecase>()));
   return get;
 }

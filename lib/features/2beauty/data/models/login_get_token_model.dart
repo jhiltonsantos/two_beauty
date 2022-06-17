@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
-import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
+// ignore_for_file: must_be_immutable
 
+import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 
 class LoginGetTokenModel extends LoginGetTokenEntity {
   LoginGetTokenModel({required String username, required String password})

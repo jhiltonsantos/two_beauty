@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:two_beauty/features/2beauty/data/datasources/login_local_datasource.dart';
@@ -21,14 +22,16 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
   }
 
   @override
-  Future<List<LoginGetTokenEntity>> getLoginDataFromDB() {
-    // TODO: implement getLoginDataFromDB
-    throw UnimplementedError();
+  Future<Either<bool, LoginGetTokenEntity>> getLoginDataFromDB() async {
+    if (await isAlreadyHaveData()) {
+      List<LoginGetTokenEntity> data = await getDataFromLoginTable();
+      return Right(data[0]);
+    }
+    return const Left(false);
   }
 
   @override
   Future<bool> removeLoginDataFromDB() {
-    // TODO: implement removeLoginDataFromDB
     throw UnimplementedError();
   }
 

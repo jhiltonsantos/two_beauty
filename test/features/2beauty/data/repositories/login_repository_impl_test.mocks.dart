@@ -2,14 +2,15 @@
 // in two_beauty/test/features/2beauty/data/repositories/login_repository_impl_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
+import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:two_beauty/core/platform/network_info.dart' as _i5;
+import 'package:two_beauty/core/platform/network_info.dart' as _i6;
 import 'package:two_beauty/features/2beauty/data/datasources/login_local_datasource.dart'
-    as _i2;
+    as _i3;
 import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart'
-    as _i4;
+    as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -21,43 +22,45 @@ import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_enti
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
+class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
+
 /// A class which mocks [LoginLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginLocalDataSource extends _i1.Mock
-    implements _i2.LoginLocalDataSource {
+    implements _i3.LoginLocalDataSource {
   MockLoginLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> addLoginDataOnDB(
-          _i4.LoginGetTokenEntity? loginGetTokenEntity) =>
+  _i4.Future<bool> addLoginDataOnDB(
+          _i5.LoginGetTokenEntity? loginGetTokenEntity) =>
       (super.noSuchMethod(
           Invocation.method(#addLoginDataOnDB, [loginGetTokenEntity]),
-          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i3.Future<List<_i4.LoginGetTokenEntity>> getLoginDataFromDB() =>
+  _i4.Future<_i2.Either<bool, _i5.LoginGetTokenEntity>> getLoginDataFromDB() =>
       (super.noSuchMethod(Invocation.method(#getLoginDataFromDB, []),
-              returnValue: Future<List<_i4.LoginGetTokenEntity>>.value(
-                  <_i4.LoginGetTokenEntity>[]))
-          as _i3.Future<List<_i4.LoginGetTokenEntity>>);
+          returnValue: Future<_i2.Either<bool, _i5.LoginGetTokenEntity>>.value(
+              _FakeEither_0<bool, _i5.LoginGetTokenEntity>())) as _i4
+          .Future<_i2.Either<bool, _i5.LoginGetTokenEntity>>);
   @override
-  _i3.Future<bool> removeLoginDataFromDB() =>
+  _i4.Future<bool> removeLoginDataFromDB() =>
       (super.noSuchMethod(Invocation.method(#removeLoginDataFromDB, []),
-          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i5.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> get isConnected =>
+  _i4.Future<bool> get isConnected =>
       (super.noSuchMethod(Invocation.getter(#isConnected),
-          returnValue: Future<bool>.value(false)) as _i3.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }
