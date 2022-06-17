@@ -2,7 +2,6 @@
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge) ![GitHub Org's stars](https://img.shields.io/github/stars/jhiltonsantos/2beauty-app?style=social) 
 
-Projeto para disciplina de Projeto Integrador III - ADS 2022.1
 
 ## 👨‍💻 Equipe
 - [José Hilton](https://github.com/jhiltonsantos)
