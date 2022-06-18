@@ -25,67 +25,70 @@ class ListAllStores extends StatelessWidget {
             itemCount: stores.length,
             itemBuilder: (context, index) {
               StoreGetEntity store = stores[index];
-              return Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: InkWell(
-                  highlightColor: ColorManager.purple_100,
-                  borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                  onTap: () => Navigator.of(context).pushReplacementNamed(
-                      detailStore,
-                      arguments: store.id.toString()),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 10.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 72.0,
-                              width: 72.0,
-                              child: SvgPicture.asset(
-                                ImageAssets.iconStoreDefault,
+              return Column(
+                children: [
+                  InkWell(
+                    highlightColor: ColorManager.purple_100,
+                    borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+                    onTap: () => Navigator.of(context).pushReplacementNamed(
+                        detailStore,
+                        arguments: store.id.toString()),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 20.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 72.0,
+                                width: 72.0,
+                                child: SvgPicture.asset(
+                                  ImageAssets.iconStoreDefault,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 30.0,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  store.name,
-                                  style: TextStyles.labelTitleTile(),
-                                ),
-                                const SizedBox(height: 12.0),
-                                SubtitleTileCard(
-                                  text: "${store.district}, ${store.number}",
-                                  image: ImageAssets.iconLocation,
-                                ),
-                                const SizedBox(height: 5.0),
-                                SubtitleTileCard(
-                                  text: "${store.openHour} - ${store.closeHour}",
-                                  image: ImageAssets.iconAlarmClock,
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20.0),
-                          child: Divider(
-                            height: 1,
-                            thickness: 2,
-                            color: ColorManager.white_300,
+                              const SizedBox(
+                                width: 30.0,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    store.name,
+                                    style: TextStyles.labelTitleTile(),
+                                  ),
+                                  const SizedBox(height: 12.0),
+                                  SubtitleTileCard(
+                                    text: "${store.district}, ${store.number}",
+                                    image: ImageAssets.iconLocation,
+                                  ),
+                                  const SizedBox(height: 5.0),
+                                  SubtitleTileCard(
+                                    text:
+                                        "${store.openHour} - ${store.closeHour}",
+                                    image: ImageAssets.iconAlarmClock,
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    child: Divider(
+                      height: 1,
+                      thickness: 2,
+                      color: ColorManager.white_300,
+                    ),
+                  )
+                ],
               );
             }),
       ),
