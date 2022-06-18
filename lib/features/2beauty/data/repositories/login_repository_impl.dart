@@ -59,6 +59,15 @@ class LoginRepositoryImpl implements LoginRepository {
     }
   }
 
+  @override
+  Future<bool> logoutUser() async {
+    late bool isLogout;
+    await loginLocalData.removeLoginDataFromDB().then((value) {
+      isLogout = value;
+    });
+    return isLogout;
+  }
+
   Future<Either<Failure, UserAccessEntity>> connectLogin(
       LoginGetTokenEntity loginGetTokenEntity) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -94,6 +103,6 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   Future<bool> saveInCacheData(LoginGetTokenEntity loginData) async {
-    return await loginLocalData.addLoginDataOnDB(loginData);
+    return await loginLocalData.isLoginDataOnDB(loginData);
   }
 }

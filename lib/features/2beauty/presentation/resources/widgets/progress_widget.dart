@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 
 class ProgressWidget extends StatelessWidget {
@@ -6,16 +7,22 @@ class ProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const <Widget>[
-            CircularProgressIndicator(
-              color: ColorManager.purple_300,
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushNamed(homeRoute);
+        return false;
+      },
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const <Widget>[
+              CircularProgressIndicator(
+                color: ColorManager.purple_300,
+              ),
+            ],
+          ),
         ),
       ),
     );

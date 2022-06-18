@@ -12,10 +12,10 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
-import 'package:two_beauty/features/2beauty/presentation/pages/logout_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/signup_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/splash_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/store_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/close_app_widget.dart';
 
 class RouteGenerator {
   static final errorPage = MaterialPageRoute(builder: (_) {
@@ -58,12 +58,14 @@ class RouteGenerator {
                   child: const LoginPage(),
                 ),
             settings: const RouteSettings(name: loginRoute));
+
       case homeRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<HomeCubit>(
                   create: (_) => getIt(),
                   child: const HomePage(),
                 ));
+
       case detailStore:
         if (args is String) {
           return MaterialPageRoute(
@@ -73,8 +75,9 @@ class RouteGenerator {
                   ));
         }
         return errorPage;
-      case logoutRoute:
-        return MaterialPageRoute(builder: (_) => const LogoutPage());
+
+      case closeAppRoute:
+        return MaterialPageRoute(builder: (_) => const CloseAppWidget());
 
       default:
         return errorPage;

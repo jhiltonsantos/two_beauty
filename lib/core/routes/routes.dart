@@ -7,3 +7,4 @@ const String registerStoreRoute = "/registerstore";
 const String detailStore = "/detailStore";
 const String profileAgenda = "/profileAgenda";
 const String logoutRoute = "/logout";
+const String closeAppRoute = "/close";

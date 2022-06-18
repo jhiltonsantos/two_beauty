@@ -5,7 +5,4 @@ final theme2beauty = ThemeData(
   scaffoldBackgroundColor: ColorManager.white_200,
   primaryColor: ColorManager.purple_200,
   primarySwatch: Colors.purple,
-
-
-
 );

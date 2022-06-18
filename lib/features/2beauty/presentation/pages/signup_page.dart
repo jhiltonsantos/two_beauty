@@ -162,7 +162,6 @@ class SignupForm extends StatelessWidget {
                       email: email,
                       firstName: user,
                       password: password);
-                  await setNewLoginDataOnObjectbox(user, password);
                   BlocProvider.of<SignupCubit>(context).postNewUser(userEntity);
                 }
               },

@@ -4,8 +4,6 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -17,7 +15,7 @@ import '../../features/2beauty/data/repositories/agenda_repository.dart' as _i3;
 import '../../features/2beauty/data/repositories/home_repository_impl.dart'
     as _i8;
 import '../../features/2beauty/data/repositories/login_repository_impl.dart'
-    as _i30;
+    as _i29;
 import '../../features/2beauty/data/repositories/owner_repository.dart' as _i12;
 import '../../features/2beauty/data/repositories/profile_repository_imp.dart'
     as _i17;
@@ -29,7 +27,7 @@ import '../../features/2beauty/data/repositories/store_repository_impl.dart'
     as _i22;
 import '../../features/2beauty/domain/repositories/home_repository.dart' as _i7;
 import '../../features/2beauty/domain/repositories/login_repository.dart'
-    as _i29;
+    as _i28;
 import '../../features/2beauty/domain/repositories/profile_repository.dart'
     as _i16;
 import '../../features/2beauty/domain/repositories/sign_up_repository.dart'
@@ -42,6 +40,8 @@ import '../../features/2beauty/domain/usecases/agenda/post_agenda_data_usecase.d
     as _i13;
 import '../../features/2beauty/domain/usecases/home/get_user_data_usecase.dart'
     as _i27;
+import '../../features/2beauty/domain/usecases/home/logout_user_usecase.dart'
+    as _i30;
 import '../../features/2beauty/domain/usecases/login/get_login_usecase.dart'
     as _i36;
 import '../../features/2beauty/domain/usecases/login/post_login_usecase.dart'
@@ -66,13 +66,13 @@ import '../../features/2beauty/domain/usecases/store/get_store_data_usecase.dart
     as _i26;
 import '../../features/2beauty/domain/usecases/store/post_store_data_usecase.dart'
     as _i33;
-import '../../features/2beauty/presentation/bloc/home/home_cubit.dart' as _i28;
+import '../../features/2beauty/presentation/bloc/home/home_cubit.dart' as _i37;
 import '../../features/2beauty/presentation/bloc/login/login_cubit.dart'
-    as _i37;
+    as _i38;
 import '../../features/2beauty/presentation/bloc/signUp/signup_cubit.dart'
     as _i34;
 import '../../features/2beauty/presentation/bloc/splash/splash_cubit.dart'
-    as _i38;
+    as _i39;
 import '../../features/2beauty/presentation/bloc/store/store_cubit.dart'
     as _i35;
 import '../platform/network_info.dart'
@@ -97,7 +97,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i15.PostServiceDataUsecase>(() => _i15.PostServiceDataUsecase());
   gh.factory<_i16.ProfileRepository>(() => _i17.ProfileRepositoryImp());
   gh.factory<_i18.ServiceRepository>(() => _i18.ServiceRepository());
-  gh.factory<_i19.SignUpRepository>(() => _i20.SignUpRepositoryImpl());
+  gh.factory<_i19.SignUpRepository>(() => _i20.SignUpRepositoryImpl(
+      get<_i9.LoginLocalDataSource>(), get<_i11.NetworkInfo>()));
   gh.factory<_i21.StoreRepository>(() => _i22.StoreRepositoryImpl());
   gh.factory<_i23.GetAllStoreDataUsecase>(
       () => _i23.GetAllStoreDataUsecase(get<_i21.StoreRepository>()));
@@ -109,13 +110,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i26.GetStoreDataUsecase(get<_i21.StoreRepository>()));
   gh.factory<_i27.GetUserDataUsecase>(
       () => _i27.GetUserDataUsecase(get<_i7.HomeRepository>()));
-  gh.factory<_i28.HomeCubit>(() => _i28.HomeCubit(
-      get<_i27.GetUserDataUsecase>(), get<_i23.GetAllStoreDataUsecase>()));
-  gh.factory<_i29.LoginRepository>(() => _i30.LoginRepositoryImpl(
+  gh.factory<_i28.LoginRepository>(() => _i29.LoginRepositoryImpl(
       loginLocalData: get<_i9.LoginLocalDataSource>(),
       networkInfo: get<_i11.NetworkInfo>()));
+  gh.factory<_i30.LogoutUserUsecase>(
+      () => _i30.LogoutUserUsecase(get<_i28.LoginRepository>()));
   gh.factory<_i31.PostLoginUsecase>(
-      () => _i31.PostLoginUsecase(get<_i29.LoginRepository>()));
+      () => _i31.PostLoginUsecase(get<_i28.LoginRepository>()));
   gh.factory<_i32.PostNewUserUsecase>(
       () => _i32.PostNewUserUsecase(get<_i19.SignUpRepository>()));
   gh.factory<_i33.PostStoreDataUsecase>(
@@ -125,10 +126,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i35.StoreCubit>(
       () => _i35.StoreCubit(get<_i26.GetStoreDataUsecase>()));
   gh.factory<_i36.GetLoginUsecase>(
-      () => _i36.GetLoginUsecase(get<_i29.LoginRepository>()));
-  gh.factory<_i37.LoginCubit>(
-      () => _i37.LoginCubit(get<_i31.PostLoginUsecase>()));
-  gh.factory<_i38.SplashCubit>(() => _i38.SplashCubit(
+      () => _i36.GetLoginUsecase(get<_i28.LoginRepository>()));
+  gh.factory<_i37.HomeCubit>(() => _i37.HomeCubit(
+      get<_i27.GetUserDataUsecase>(),
+      get<_i23.GetAllStoreDataUsecase>(),
+      get<_i30.LogoutUserUsecase>()));
+  gh.factory<_i38.LoginCubit>(
+      () => _i38.LoginCubit(get<_i31.PostLoginUsecase>()));
+  gh.factory<_i39.SplashCubit>(() => _i39.SplashCubit(
       get<_i31.PostLoginUsecase>(), get<_i36.GetLoginUsecase>()));
   return get;
 }

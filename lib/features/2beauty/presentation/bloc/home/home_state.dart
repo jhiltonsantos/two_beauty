@@ -27,6 +27,10 @@ class LoadedHomeState extends HomeState {
   const LoadedHomeState({required this.user, required this.stores});
 }
 
+class CloseAppHomeState extends HomeState {
+  const CloseAppHomeState();
+}
+
 @immutable
 class ErrorHomeState extends HomeState {
   final String message;

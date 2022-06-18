@@ -10,8 +10,11 @@ import 'package:two_beauty/core/connection/web_client.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
 import 'package:two_beauty/core/error/failures.dart';
+import 'package:two_beauty/core/platform/network_info.dart';
+import 'package:two_beauty/features/2beauty/data/datasources/login_local_datasource.dart';
 import 'package:two_beauty/features/2beauty/data/models/user_access_model.dart';
 import 'package:two_beauty/features/2beauty/data/models/user_model.dart';
+import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_access_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/repositories/sign_up_repository.dart';
@@ -19,19 +22,34 @@ import 'package:two_beauty/core/constants/connection_header.dart';
 
 @Injectable(as: SignUpRepository)
 class SignUpRepositoryImpl implements SignUpRepository {
+  final LoginLocalDataSource loginLocalData;
+  final NetworkInfo networkInfo;
   @override
   Uri urlController = Uri.parse(AppConstants.USER_CREATE);
 
   @override
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
+  SignUpRepositoryImpl(this.loginLocalData, this.networkInfo);
+
   @override
   Future<Either<Failure, UserAccessEntity>> postNewUser(
       UserEntity userEntity) async {
-    http.Response response = await requestPostUser(userEntity);
+    if (!await networkInfo.isConnected) {
+      return Left(ServerFailure());
+    }
+    return connectionNewUser(userEntity);
+  }
+
+  Future<Either<Failure, UserAccessEntity>> connectionNewUser(
+      UserEntity userData) async {
+    http.Response response = await requestPostUser(userData);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     if (response.statusCode != StatusCode.CREATED) {
       return Left(ServerFailure());
+    }
+    if (!await saveInCacheData(userData)) {
+      return Left(CacheFailure());
     }
     return Right(createSignup(response, preferences));
   }
@@ -62,5 +80,11 @@ class SignUpRepositoryImpl implements SignUpRepository {
     Map<String, dynamic> data = json.decode(response.body);
     prefs.setString('token', data["access"]);
     return UserAccessModel.fromJson(json.decode(response.body));
+  }
+
+  Future<bool> saveInCacheData(UserEntity userData) async {
+    LoginGetTokenEntity loginData = LoginGetTokenEntity(
+        username: userData.username, password: userData.password);
+    return await loginLocalData.isLoginDataOnDB(loginData);
   }
 }

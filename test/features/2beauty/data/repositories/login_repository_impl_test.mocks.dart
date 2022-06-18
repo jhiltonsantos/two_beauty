@@ -34,10 +34,10 @@ class MockLoginLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i4.Future<bool> addLoginDataOnDB(
+  _i4.Future<bool> isLoginDataOnDB(
           _i5.LoginGetTokenEntity? loginGetTokenEntity) =>
       (super.noSuchMethod(
-          Invocation.method(#addLoginDataOnDB, [loginGetTokenEntity]),
+          Invocation.method(#isLoginDataOnDB, [loginGetTokenEntity]),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   _i4.Future<_i2.Either<bool, _i5.LoginGetTokenEntity>> getLoginDataFromDB() =>

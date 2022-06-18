@@ -12,27 +12,37 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
   late Store store;
 
   @override
-  Future<bool> addLoginDataOnDB(LoginGetTokenEntity loginGetTokenEntity) async {
-    if (!await isAlreadyHaveData()) {
-      queryAddLogin(loginGetTokenEntity);
-    } else {
+  Future<bool> isLoginDataOnDB(LoginGetTokenEntity loginGetTokenEntity) async {
+    if (await isAlreadyHaveData()) {
       return true;
     }
+    queryAddLogin(loginGetTokenEntity);
     return isDataAfterQueryOk();
   }
 
   @override
   Future<Either<bool, LoginGetTokenEntity>> getLoginDataFromDB() async {
-    if (await isAlreadyHaveData()) {
-      List<LoginGetTokenEntity> data = await getDataFromLoginTable();
-      return Right(data[0]);
+    if (!await isAlreadyHaveData()) {
+      return const Left(false);
     }
-    return const Left(false);
+    List<LoginGetTokenEntity> data = await getDataFromLoginTable();
+    return Right(data.first);
   }
 
   @override
-  Future<bool> removeLoginDataFromDB() {
-    throw UnimplementedError();
+  Future<bool> removeLoginDataFromDB() async {
+    await removeDataFromLoginTable();
+    if (await isDataAfterQueryOk()) {
+      return false;
+    }
+    return true;
+  }
+
+  Future<void> removeDataFromLoginTable() async {
+    await initializedDBData();
+    final userTable = store.box<LoginGetTokenEntity>();
+    userTable.removeAll();
+    closeDBData();
   }
 
   Future<void> initializedDBData() async {

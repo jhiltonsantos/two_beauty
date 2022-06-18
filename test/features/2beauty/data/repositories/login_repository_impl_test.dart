@@ -44,11 +44,10 @@ void main() {
     test('Deve verificar se foi realizado o login', () async {
       when(repository.postLogin(loginData)).thenAnswer((_) async => const Right(
           UserAccessEntity(refresh: refreshData, access: accessData)));
-
     });
 
     test('Deve adicionar novo login em cache', () {
-      when(mockLoginLocalDataSource.addLoginDataOnDB(loginData))
+      when(mockLoginLocalDataSource.isLoginDataOnDB(loginData))
           .thenAnswer((_) async => true);
     });
   });
