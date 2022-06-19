@@ -32,11 +32,25 @@ void main() {
     final LoginGetTokenEntity loginData =
         LoginGetTokenEntity(username: 'Hilton', password: '12345');
 
-    test('Deve verificar se o aparelho está online', () async {
+    final LoginGetTokenEntity loginDataWrong =
+        LoginGetTokenEntity(username: 'Hilton', password: 'asdasdas');
+
+    test('Deve verificar se o aparelho está online, retornando verdadeiro',
+        () async {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
       final result = await mockNetworkInfo.isConnected;
       expect(result, true);
+      verify(mockNetworkInfo.isConnected);
+      verifyNoMoreInteractions(mockNetworkInfo);
+    });
+
+    test('Deve verificar se o aparelho está online, retornando falso',
+        () async {
+      when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+
+      final result = await mockNetworkInfo.isConnected;
+      expect(result, false);
       verify(mockNetworkInfo.isConnected);
       verifyNoMoreInteractions(mockNetworkInfo);
     });
@@ -46,9 +60,24 @@ void main() {
           UserAccessEntity(refresh: refreshData, access: accessData)));
     });
 
-    test('Deve adicionar novo login em cache', () {
+    test('Deve adicionar novo login em cache', () async {
       when(mockLoginLocalDataSource.isLoginDataOnDB(loginData))
-          .thenAnswer((_) async => true);
+          .thenAnswer((data) async => true);
+
+      final result = await mockLoginLocalDataSource.isLoginDataOnDB(loginData);
+      expect(result, true);
+      verify(mockLoginLocalDataSource.isLoginDataOnDB(loginData));
+      verifyNoMoreInteractions(mockLoginLocalDataSource);
+    });
+
+    test('Deve dar error ao tentar realizar login com dados errados de usuário', () async {
+      when(mockLoginLocalDataSource.isLoginDataOnDB(loginDataWrong))
+          .thenAnswer((_) async => false);
+
+      final result = await mockLoginLocalDataSource.isLoginDataOnDB(loginDataWrong);
+      expect(result, false);
+      verify(mockLoginLocalDataSource.isLoginDataOnDB(loginDataWrong));
+      verifyNoMoreInteractions(mockLoginLocalDataSource);
     });
   });
 }

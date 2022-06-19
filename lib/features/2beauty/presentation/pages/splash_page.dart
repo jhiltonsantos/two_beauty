@@ -1,17 +1,15 @@
+// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/routes/routes.dart';
-import 'package:two_beauty/features/2beauty/domain/entities/login_get_token_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_state.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/failure_dialog.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/sent_login_user_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/splash_widget.dart';
-import 'package:two_beauty/objectbox.g.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -21,10 +19,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  late Timer timer;
-  late Store store;
-  late LoginGetTokenEntity loginGetData;
-
   @override
   void initState() {
     super.initState();
@@ -43,6 +37,9 @@ class _SplashPageState extends State<SplashPage> {
         if (state is InitSplashState) {
           return const SplashWidget();
         }
+        if (state is LoadingSplashState) {
+          return const ProgressWidget();
+        }
         if (state is NoLoginSplashState) {
           startDelay();
           return const SplashWidget();
@@ -52,8 +49,15 @@ class _SplashPageState extends State<SplashPage> {
         }
         if (state is ErrorSplashState) {
           return Scaffold(
-              backgroundColor: ColorManager.white_200,
-              body: FailureDialog(message: state.message));
+              body: FailureDialog(
+                message: state.message,
+                function: () {
+                  BlocProvider.of<SplashCubit>(context)
+                      .emit(const LoadingSplashState());
+                  Future.delayed(const Duration(seconds: 5))
+                      .then((value) => initLogin());
+                },
+              ));
         }
         return const ErrorPage();
       },
@@ -65,7 +69,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void startDelay() {
-    timer = Timer(const Duration(seconds: 3),
+    Timer(const Duration(seconds: 3),
         () => Navigator.of(context).pushReplacementNamed(introRoute));
   }
 }

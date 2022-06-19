@@ -14,6 +14,11 @@ class InitSplashState extends SplashState {
 }
 
 @immutable
+class LoadingSplashState extends SplashState {
+  const LoadingSplashState();
+}
+
+@immutable
 class SentSplashState extends SplashState {
   const SentSplashState();
 }

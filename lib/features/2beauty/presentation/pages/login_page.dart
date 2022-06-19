@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
@@ -26,9 +28,7 @@ class LoginPage extends StatelessWidget {
           return const SentLoginUser();
         }
         if (state is ErrorLoginState) {
-          return Scaffold(
-              backgroundColor: ColorManager.white_200,
-              body: FailureDialog(message: state.message));
+          return ErrorLoginWidget(message: state.message);
         }
         return const ErrorPage();
       },
@@ -36,3 +36,23 @@ class LoginPage extends StatelessWidget {
   }
 }
 
+class ErrorLoginWidget extends StatelessWidget {
+  final String message;
+
+  const ErrorLoginWidget({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: ColorManager.white_200,
+        body: FailureDialog(
+          message: message,
+          function: () {
+            BlocProvider.of<LoginCubit>(context).emit(const LoadedLoginState());
+          },
+        ));
+  }
+}

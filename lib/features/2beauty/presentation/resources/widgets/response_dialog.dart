@@ -7,6 +7,7 @@ class ResponseDialog extends StatelessWidget {
   final String buttonText;
   final IconData? icon;
   final Color colorIcon;
+  final Function()? function;
 
   const ResponseDialog({
     Key? key,
@@ -14,7 +15,7 @@ class ResponseDialog extends StatelessWidget {
     this.message = "",
     required this.icon,
     this.buttonText = 'Continuar',
-    this.colorIcon = Colors.black,
+    this.colorIcon = Colors.black, this.function,
   }) : super(key: key);
 
   @override
@@ -57,11 +58,11 @@ class ResponseDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TextButton(
+          onPressed: function ?? () => Navigator.pop(context),
           child: Text(
             buttonText,
             style: TextStyles.subtitleInitApp(),
           ),
-          onPressed: () => Navigator.pop(context),
         )
       ],
     );
