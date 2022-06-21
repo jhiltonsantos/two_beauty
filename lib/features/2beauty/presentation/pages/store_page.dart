@@ -56,7 +56,7 @@ class StoreLoadedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.of(context).pushNamed(homeRoute);
+        Navigator.of(context).pushNamed(bottomNavyRoute);
         return false;
       },
       child: Scaffold(
@@ -69,7 +69,7 @@ class StoreLoadedWidget extends StatelessWidget {
               title: 'Detalhes do\nestabelecimento',
               fontSizeTitle: 24.0,
               leadingOnTap: () =>
-                  Navigator.of(context).pushReplacementNamed(homeRoute),
+                  Navigator.of(context).pushReplacementNamed(bottomNavyRoute),
               leadingIcon: Icons.arrow_back,
             ),
           ),
@@ -80,14 +80,15 @@ class StoreLoadedWidget extends StatelessWidget {
             CardInfo(store: store),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(children: [
-                TextLabelProfile(text: 'CEP', data: store.cep),
-                TextLabelProfile(text: 'Bairro', data: store.district),
-                TextLabelProfile(text: 'Rua', data: store.street),
-                TextLabelProfile(text: 'Número', data: store.number),
-              ],),
+              child: Column(
+                children: [
+                  TextLabelProfile(text: 'CEP', data: store.cep),
+                  TextLabelProfile(text: 'Bairro', data: store.district),
+                  TextLabelProfile(text: 'Rua', data: store.street),
+                  TextLabelProfile(text: 'Número', data: store.number),
+                ],
+              ),
             ),
-
             ButtonIntroApp(
                 styleButton: ButtonStyles.buttonPrimary(),
                 styleText: TextStyles.buttonApp(ColorManager.white_100),
@@ -116,7 +117,8 @@ class TextLabelProfile extends StatelessWidget {
             LabelFormItem(title: text, size: 14, color: ColorManager.grey_500),
             Padding(
               padding: const EdgeInsets.only(left: 20.0),
-              child: LabelForm(title: data, color: ColorManager.grey_300, size: 14.0),
+              child: LabelForm(
+                  title: data, color: ColorManager.grey_300, size: 14.0),
             ),
           ],
         ),

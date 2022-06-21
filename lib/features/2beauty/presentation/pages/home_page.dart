@@ -85,12 +85,6 @@ class HomeWidget extends StatelessWidget {
             ListAllStores(stores: stores),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            BlocProvider.of<HomeCubit>(context).logout();
-          },
-          child: const Icon(Icons.close),
-        ),
       ),
     );
   }

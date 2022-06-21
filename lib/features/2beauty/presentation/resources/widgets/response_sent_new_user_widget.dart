@@ -15,8 +15,8 @@ class _ResponseSentNewUserState extends State<ResponseSentNewUser> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1))
-        .then((_) => Navigator.of(context).pushReplacementNamed(homeRoute));
+    Future.delayed(const Duration(seconds: 1)).then(
+        (_) => Navigator.of(context).pushReplacementNamed(bottomNavyRoute));
   }
 
   @override

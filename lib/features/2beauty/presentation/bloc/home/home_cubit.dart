@@ -4,7 +4,6 @@ import 'package:two_beauty/core/usecase/usecase.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/store_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/user_get_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/usecases/home/get_user_data_usecase.dart';
-import 'package:two_beauty/features/2beauty/domain/usecases/home/logout_user_usecase.dart';
 import 'package:two_beauty/features/2beauty/domain/usecases/store/get_all_store_data_usecase.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/strings_manager.dart';
@@ -13,10 +12,8 @@ import 'package:two_beauty/features/2beauty/presentation/resources/strings_manag
 class HomeCubit extends Cubit<HomeState> {
   final GetUserDataUsecase _getUserDataUsecase;
   final GetAllStoreDataUsecase _getAllStoreDataUsecase;
-  final LogoutUserUsecase _logoutUserUsecase;
 
-  HomeCubit(this._getUserDataUsecase, this._getAllStoreDataUsecase,
-      this._logoutUserUsecase)
+  HomeCubit(this._getUserDataUsecase, this._getAllStoreDataUsecase)
       : super(const InitHomeState());
 
   Future<void> getHomeData(NoParams params) async {
@@ -43,13 +40,5 @@ class HomeCubit extends Cubit<HomeState> {
         (failure) => emit(const ErrorHomeState(HomeStrings.errorStoresData)),
         (listStores) => stores = listStores);
     return stores;
-  }
-
-  Future<void> logout() async {
-    final logout = await _logoutUserUsecase.call(NoParams());
-    logout.fold(
-      (failure) => emit(const InitHomeState()),
-      (success) => emit(const CloseAppHomeState()),
-    );
   }
 }

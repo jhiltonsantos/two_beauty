@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/injection/injection.dart';
 import 'package:two_beauty/core/routes/routes.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/bottom_navy_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
@@ -42,6 +44,14 @@ class RouteGenerator {
           builder: (_) => const IntroPage(),
           settings: const RouteSettings(name: introRoute),
         );
+
+      case bottomNavyRoute:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<BottomNavyCubit>(
+                  create: (_) => getIt(),
+                  child: const BottomNavyPage(),
+                ),
+            settings: const RouteSettings(name: bottomNavyRoute));
 
       case signupRoute:
         return MaterialPageRoute(
