@@ -10,6 +10,7 @@ import 'package:two_beauty/features/2beauty/presentation/pages/create_store_page
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/close_app_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/logout_modal.dart';
 
 class BottomNavyPage extends StatefulWidget {
   const BottomNavyPage({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class BottomNavyPage extends StatefulWidget {
 
 class _BottomNavyPageState extends State<BottomNavyPage> {
   int currentIndex = 0;
+  int previousIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,7 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
 
   void onTapBottomNavy(int index) {
     setState(() {
+      previousIndex = currentIndex;
       currentIndex = index;
 
       if (currentIndex == 0) {
@@ -75,7 +78,9 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
         BlocProvider.of<BottomNavyCubit>(context).toCreateStorePage();
       }
       if (currentIndex == 2) {
-        BlocProvider.of<BottomNavyCubit>(context).logout();
+        LogoutModal().call(context);
+        // TODO: Facilitar a compreenção do que o previousIndex faz
+        currentIndex = previousIndex;
       }
     });
   }
