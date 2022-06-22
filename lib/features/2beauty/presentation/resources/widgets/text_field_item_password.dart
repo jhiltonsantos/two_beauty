@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 
 class TextFieldItemPassword extends StatefulWidget {
@@ -57,16 +59,15 @@ class _TextFieldItemPasswordState extends State<TextFieldItemPassword> {
                     BorderSide(color: ColorManager.purple_200, width: 2.0)),
             hintText: widget.hintText ?? "",
             suffixIcon: widget.iconSufix
-                ? IconButton(
-                    hoverColor: Colors.transparent,
-                    splashRadius: 1.0,
-                    icon: Icon(
-                      passwordObscure ? Icons.visibility_off : Icons.visibility,
-                      color: ColorManager.purple_300,
+                ? InkWell(
+                    onTap: () =>
+                        setState(() => passwordObscure = !passwordObscure),
+                    child: SvgPicture.asset(
+                      passwordObscure
+                          ? ImageAssets.previewClosePassword
+                          : ImageAssets.previewOpenPassword,
+                      fit: BoxFit.scaleDown,
                     ),
-                    onPressed: () {
-                      setState(() => passwordObscure = !passwordObscure);
-                    },
                   )
                 : null),
       ),

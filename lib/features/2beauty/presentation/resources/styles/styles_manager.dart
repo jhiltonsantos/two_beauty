@@ -84,4 +84,12 @@ class TextStyles {
         fontSize: fontSize ?? 12,
         color: ColorManager.purple_300);
   }
+
+  static TextStyle logoutModal() {
+    return const TextStyle(
+      fontFamily: 'Epilogue_500',
+      fontSize: 18,
+      color: ColorManager.grey_600,
+    );
+  }
 }

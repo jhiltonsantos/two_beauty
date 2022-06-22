@@ -1,58 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:injectable/injectable.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
 
 @injectable
 class LogoutModal {
   call(BuildContext context) {
     showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
+        ),
         context: context,
         builder: (BuildContext _) {
-          return Row(
+          return Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const CircleAvatar(
-                      backgroundColor: ColorManager.white_300,
-                      child: Icon(Icons.arrow_back_outlined),
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    Text(
-                      'Continuar',
-                      style: TextStyles.subtitleInitApp(),
-                    )
-                  ],
+              Text(
+                'Fique mais um pouco. Deseja mesmo sair?',
+                style: TextStyles.logoutModal(),
+              ),
+              SizedBox(
+                height: 96.0,
+                width: 96.0,
+                child: SvgPicture.asset(
+                  ImageAssets.imageLogoutModal,
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  BlocProvider.of<BottomNavyCubit>(context).logout();
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const CircleAvatar(
-                      backgroundColor: ColorManager.red_200,
-                      child: Icon(Icons.logout),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 55.0,
+                    width: 155.0,
+                    child: ButtonIntroApp(
+                      onPressed: () =>
+                          BlocProvider.of<BottomNavyCubit>(context).logout(),
+                      styleButton: ButtonStyles.buttonPrimary(),
+                      styleText: TextStyles.buttonApp(ColorManager.white_100),
+                      text: 'Sim',
                     ),
-                    const SizedBox(height: 20.0),
-                    Text('Sair', style: TextStyles.subtitleInitApp())
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 55.0,
+                    width: 155.0,
+                    child: ButtonIntroApp(
+                      onPressed: () => Navigator.of(context).pop(),
+                      styleButton: ButtonStyles.buttonSecondary(),
+                      styleText: TextStyles.buttonApp(ColorManager.purple_200),
+                      text: 'Não',
+                    ),
+                  ),
+                ],
               ),
             ],
           );

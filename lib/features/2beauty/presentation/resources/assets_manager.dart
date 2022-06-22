@@ -13,6 +13,10 @@ class ImageAssets {
   static const String iconLocation = "$IMAGE_PATH/icon-location.svg";
   static const String iconAlarmClock = "$IMAGE_PATH/alarm-clock.svg";
   static const String iconPhone = "$IMAGE_PATH/phone-telephone.svg";
+  static const String iconCreateStore = '$IMAGE_PATH/create_store_icon.svg';
+  static const String imageLogoutModal = "$IMAGE_PATH/logout_modal_image.svg";
+  static const String previewOpenPassword = "$IMAGE_PATH/preview_open.svg";
+  static const String previewClosePassword = "$IMAGE_PATH/preview_close.svg";
 
   static const String iconLocal = "$IMAGE_PATH/local-two.png";
 
@@ -26,8 +30,4 @@ class ImageAssets {
   static const String introImage8 = "$IMAGE_PATH/intro8.jpg";
   static const String introImage9 = "$IMAGE_PATH/intro9.jpg";
   static const String introImage10 = "$IMAGE_PATH/intro10.jpg";
-}
-
-class ImageFlareAssets {
-  static const String loadingFlare = "$IMAGE_PATH/loading.flr";
 }

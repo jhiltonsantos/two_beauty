@@ -47,7 +47,7 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: onTapBottomNavy,
-          items: const [
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Inicio',
@@ -79,7 +79,6 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
       }
       if (currentIndex == 2) {
         LogoutModal().call(context);
-        // TODO: Facilitar a compreenção do que o previousIndex faz
         currentIndex = previousIndex;
       }
     });
