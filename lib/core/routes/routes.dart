@@ -9,3 +9,4 @@ const String profileAgenda = "/profileAgenda";
 const String logoutRoute = "/logout";
 const String closeAppRoute = "/close";
 const String bottomNavyRoute = "/bottomNavy";
+const String appointmentRoute = "/appointment";

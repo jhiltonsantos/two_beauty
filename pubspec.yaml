@@ -24,6 +24,8 @@ dependencies:
   objectbox_flutter_libs: ^1.5.0
   path_provider: ^2.0.11
   simple_connection_checker: ^0.2.1
+  date_picker_timeline: ^1.2.3
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

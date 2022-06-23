@@ -14,7 +14,6 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item_password.dart';
 
-
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
 
@@ -30,8 +29,8 @@ class LoginForm extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: AppBarWidget(
-            leadingOnTap: (() =>
-                Navigator.of(context).pushReplacementNamed(introRoute)),
+            leadingOnTap: () =>
+                Navigator.of(context).pushReplacementNamed(introRoute),
             title: LoginStrings.titleLogin,
             leadingIcon: Icons.arrow_back,
           ),
@@ -78,7 +77,8 @@ class LoginForm extends StatelessWidget {
                 final String password = passwordInputController.text;
 
                 if (user.isEmpty || password.isEmpty) {
-                  const ErrorLoginState("Faltando dados");
+                  BlocProvider.of<LoginCubit>(context)
+                      .emit(const ErrorLoginState("Faltando dados"));
                 }
                 final LoginGetTokenEntity loginGetTokenEntity =
                     LoginGetTokenEntity(username: user, password: password);

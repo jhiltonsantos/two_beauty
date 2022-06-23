@@ -11,11 +11,11 @@ import 'package:two_beauty/features/2beauty/data/models/agenda_get_model.dart';
 import 'package:two_beauty/features/2beauty/data/models/agenda_model.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_entity.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_get_entity.dart';
-import 'package:two_beauty/features/2beauty/domain/repositories/i_agenda_repository.dart';
+import 'package:two_beauty/features/2beauty/domain/repositories/appointment_repository.dart';
 import 'package:two_beauty/core/constants/connection_header.dart';
 
-@injectable
-class AgendaRepository implements IAgendaRepository {
+@Injectable(as: AppointmentRepository)
+class AppointmentRepositoryImpl implements AppointmentRepository {
   @override
   Uri urlController = Uri.parse(AppConstants.AGENDA_URL);
 
@@ -23,7 +23,7 @@ class AgendaRepository implements IAgendaRepository {
   ConnectionHeaderApi connectionHeaderApi = ConnectionHeaderApi();
 
   @override
-  Future<Either<Failure, List<AgendaGetEntity>>> getAllAgendaData() async {
+  Future<Either<Failure, List<AgendaGetEntity>>> getAllAppointmentData() async {
     http.Response response = await connectionHeaderApi.getHeader(urlController);
 
     if (response.statusCode != 200) {
@@ -39,7 +39,7 @@ class AgendaRepository implements IAgendaRepository {
   }
 
   @override
-  Future<Either<Failure, AgendaEntity>> postAgendaData(
+  Future<Either<Failure, AgendaEntity>> postAppointmentData(
       AgendaEntity agendaEntity) async {
     Map data = {
       'estabelecimento': agendaEntity.store,
