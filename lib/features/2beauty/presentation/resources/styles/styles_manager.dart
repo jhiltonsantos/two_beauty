@@ -92,4 +92,33 @@ class TextStyles {
       color: ColorManager.grey_600,
     );
   }
+
+  static TextStyle successModalTitle() {
+    return const TextStyle(
+      fontSize: 20,
+      fontFamily: 'Epilogue_600',
+      color: ColorManager.grey_600,
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.clip,
+    );
+  }
+
+  static TextStyle successModalSubtitle() {
+    return const TextStyle(
+      fontFamily: 'Epilogue_400',
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorManager.grey_400,
+      overflow: TextOverflow.clip,
+    );
+  }
+
+  static TextStyle labelBottomNavy() {
+    return const TextStyle(
+      fontFamily: 'Epilogue_600',
+      fontSize: 13,
+      fontWeight: FontWeight.w600,
+      overflow: TextOverflow.clip,
+    );
+  }
 }

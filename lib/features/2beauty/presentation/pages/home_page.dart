@@ -71,7 +71,7 @@ class HomeWidget extends StatelessWidget {
       },
       child: Scaffold(
         appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(160),
+            preferredSize: const Size.fromHeight(180),
             child: AppBarHomePage(user: user)),
         body: Column(
           children: [

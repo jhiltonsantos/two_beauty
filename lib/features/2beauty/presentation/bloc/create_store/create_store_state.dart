@@ -9,4 +9,11 @@ abstract class CreateStoreState extends Equatable {
 }
 
 @immutable
-class InitCreateStoreState extends CreateStoreState {}
+class InitCreateStoreState extends CreateStoreState {
+  const InitCreateStoreState();
+}
+
+@immutable
+class SentCreateStoreState extends CreateStoreState {
+  const SentCreateStoreState();
+}

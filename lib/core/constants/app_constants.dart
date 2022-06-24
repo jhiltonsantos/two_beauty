@@ -18,12 +18,6 @@ class AppConstants {
   static const String API_LOCATION_KEY =
       "AIzaSyD0qBxYechVt9ibozWktY8tfsdEQaIkgX4";
 
-  static String urlForReferenceImage(String photoReferenceId) {
-    if (photoReferenceId == ImageAssets.logoImage) {
-      return ImageAssets.logoImage;
-    }
-    return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=$photoReferenceId&key=$API_LOCATION_KEY";
-  }
 
   static String urlPlaceKeywordLocation(
       String keyword, double latitude, double longitude) {

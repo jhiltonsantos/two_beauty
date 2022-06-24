@@ -21,6 +21,7 @@ class IntroPage extends StatelessWidget {
         backgroundColor: ColorManager.white_200,
         body: SafeArea(
           child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Padding(
@@ -64,9 +65,8 @@ class IntroPage extends StatelessWidget {
                 child: Column(
                   children: [
                     ButtonIntroApp(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(signupRoute);
-                      },
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(signupRoute),
                       styleButton: ButtonStyles.buttonPrimary(),
                       text: InitialStrings.signupText,
                       styleText: TextStyles.buttonApp(ColorManager.white_100),

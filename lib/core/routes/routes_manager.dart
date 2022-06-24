@@ -13,6 +13,7 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubi
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/appointment_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/bottom_navy_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/create_store_intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/login_page.dart';
@@ -99,6 +100,13 @@ class RouteGenerator {
           );
         }
         return errorPage;
+
+      case registerStoreIntroRoute:
+        return MaterialPageRoute(
+          builder: (_) => const CreateStoreIntroPage(),
+          settings: const RouteSettings(name: registerStoreIntroRoute),
+        );
+
       case closeAppRoute:
         return MaterialPageRoute(builder: (_) => const CloseAppWidget());
 

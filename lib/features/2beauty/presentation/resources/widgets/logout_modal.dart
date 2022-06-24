@@ -24,9 +24,13 @@ class LogoutModal {
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                'Fique mais um pouco. Deseja mesmo sair?',
-                style: TextStyles.logoutModal(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  'Fique mais um pouco.\nDeseja mesmo sair?',
+                  style: TextStyles.logoutModal(),
+                  textAlign: TextAlign.center,
+                ),
               ),
               SizedBox(
                 height: 96.0,

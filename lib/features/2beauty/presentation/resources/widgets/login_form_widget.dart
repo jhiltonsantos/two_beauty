@@ -37,6 +37,7 @@ class LoginForm extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           Padding(
             padding: const EdgeInsets.only(top: 30.0, left: 24.0, right: 24.0),

@@ -20,11 +20,16 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_
 
 import '../../../../core/routes/routes.dart';
 
-class AppointmentPage extends StatelessWidget {
+class AppointmentPage extends StatefulWidget {
   final String id;
 
   const AppointmentPage({Key? key, required this.id}) : super(key: key);
 
+  @override
+  State<AppointmentPage> createState() => _AppointmentPageState();
+}
+
+class _AppointmentPageState extends State<AppointmentPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppointmentCubit, AppointmentState>(
@@ -33,14 +38,7 @@ class AppointmentPage extends StatelessWidget {
         return const ProgressWidget();
       }
       if (state is LoadedAppointmentState) {
-        return AppointmentFormWidget(id: id);
-      }
-      if (state is SentAppointmentState) {
-        return ErrorCardWidget(
-          message: state.appointmentData.date,
-          function: () => BlocProvider.of<AppointmentCubit>(context)
-              .emit(const LoadedAppointmentState()),
-        );
+        return AppointmentFormWidget(id: widget.id);
       }
       if (state is ErrorAppointmentState) {
         return ErrorCardWidget(
@@ -87,6 +85,7 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -160,7 +159,7 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
 
                   if (day.isEmpty || hour.isEmpty) {
                     BlocProvider.of<AppointmentCubit>(context)
-                        .emit(const ErrorAppointmentState("Faltando dados"));
+                        .emit(const LoadedAppointmentState());
                   }
                   final AgendaEntity appointmentData = AgendaEntity(
                     store: int.parse(widget.id),
@@ -170,7 +169,7 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
                   );
 
                   BlocProvider.of<AppointmentCubit>(context)
-                      .postAppointment(appointmentData);
+                      .postAppointment(appointmentData, context);
                 },
               ),
             ),

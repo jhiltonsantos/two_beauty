@@ -24,7 +24,7 @@ class PlaceModel extends PlaceEntity {
         longitude: location["lng"],
         placeId: json["place_id"],
         photoURL: photos.isEmpty
-            ? ImageAssets.logoImage
+            ? ImageAssets.iconStoreDefault
             : photos.first["photo_reference"].toString());
   }
 }

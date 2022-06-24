@@ -6,8 +6,10 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/create_store/create_store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/create_store_intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/create_store_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/close_app_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/logout_modal.dart';
@@ -37,7 +39,7 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
             return showHomePage();
           }
           if (state is MyStorePageLoadedState) {
-            return showCreateStore();
+            return const CreateStoreIntroPage();
           }
           if (state is LogoutPageLoadedState) {
             return const CloseAppWidget();
@@ -61,6 +63,8 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
               label: 'Sair',
             )
           ],
+          selectedLabelStyle: TextStyles.labelBottomNavy(),
+          unselectedLabelStyle: TextStyles.labelBottomNavy(),
         ),
       ),
     );
@@ -77,6 +81,7 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
       if (currentIndex == 1) {
         BlocProvider.of<BottomNavyCubit>(context).toCreateStorePage();
       }
+
       if (currentIndex == 2) {
         LogoutModal().call(context);
         currentIndex = previousIndex;
