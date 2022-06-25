@@ -8,6 +8,7 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_b
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_icons_widget.dart';
 
+// TODO: Criar page para tornar usuário um proprietário
 class CreateStoreIntroPage extends StatelessWidget {
   const CreateStoreIntroPage({Key? key}) : super(key: key);
 

@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:two_beauty/core/constants/app_constants.dart';
 import 'package:two_beauty/core/constants/connection_header.dart';
 import 'package:two_beauty/core/constants/status_code_constants.dart';
@@ -58,6 +59,8 @@ class StoreRepositoryImpl implements StoreRepository {
       'telefone': storeEntity.phone,
       'latitude': storeEntity.latitude,
       'longitude': storeEntity.longitude,
+      'data_cadastro': DateFormat("yyyy-MM-dd").format(DateTime.now()),
+      'proprietario': 1
     };
 
     http.Response response =
@@ -66,7 +69,6 @@ class StoreRepositoryImpl implements StoreRepository {
     if (response.statusCode == 201) {
       return Right(StoreModel.fromJson(json.decode(response.body)));
     } else {
-      // throw Exception('Falha ao criar estabelecimento');
       return Left(ServerFailure());
     }
   }

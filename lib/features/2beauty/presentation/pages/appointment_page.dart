@@ -4,6 +4,7 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:masked_text_field/masked_text_field.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_state.dart';
@@ -16,7 +17,6 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/error_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/label_form_item.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_widget.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/widgets/text_field_item.dart';
 
 import '../../../../core/routes/routes.dart';
 
@@ -136,11 +136,34 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(bottom: 12.0),
-                    child: LabelFormItem(title: 'Horários disponíveis'),
+                    child: LabelFormItem(title: 'Horário'),
                   ),
-                  TextFieldItem(
-                    controller: valueHour,
-                  )
+                  MaskedTextField(
+                    textFieldController: valueHour,
+                    inputDecoration: const InputDecoration(
+                      hintText: 'HH:MM',
+                      fillColor: ColorManager.white_100,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        borderSide: BorderSide(
+                            color: ColorManager.white_100, width: 0.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          borderSide: BorderSide(
+                              color: ColorManager.purple_200, width: 2.0)),
+                    ),
+                    autofocus: true,
+                    mask: 'xx:xx',
+                    maxLength: 5,
+                    keyboardType: TextInputType.number,
+                    onChange: (String value) {
+                    },
+                  ),
+
                 ],
               ),
             ),
@@ -176,6 +199,60 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SelectedHourWidget extends StatefulWidget {
+  const SelectedHourWidget({
+    Key? key,
+    required ScrollController scrollController,
+  })  : _scrollController = scrollController,
+        super(key: key);
+
+  final ScrollController _scrollController;
+
+  @override
+  State<SelectedHourWidget> createState() => _SelectedHourWidgetState();
+}
+
+class _SelectedHourWidgetState extends State<SelectedHourWidget> {
+  bool isSelected = false;
+  int valueHour = 8;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+            child: SizedBox(
+          height: 80,
+          width: 80,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              controller: widget._scrollController,
+              itemCount: 13,
+              itemBuilder: (context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: ListTile(
+                    title: Text('$index:00'),
+                    leading: Radio(
+                      value: index,
+                      groupValue: valueHour,
+                      activeColor: ColorManager.purple_200,
+                      onChanged: index == 5
+                          ? null
+                          : (int? value) {
+                              valueHour = value!;
+                            },
+                    ),
+                  ),
+                );
+              }),
+        )),
+      ],
     );
   }
 }

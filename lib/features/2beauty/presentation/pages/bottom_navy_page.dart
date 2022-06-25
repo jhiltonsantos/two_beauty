@@ -4,10 +4,8 @@ import 'package:two_beauty/core/injection/injection.dart';
 import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_state.dart';
-import 'package:two_beauty/features/2beauty/presentation/bloc/create_store/create_store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/create_store_intro_page.dart';
-import 'package:two_beauty/features/2beauty/presentation/pages/create_store_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/close_app_widget.dart';
@@ -96,10 +94,5 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
     );
   }
 
-  BlocProvider<CreateStoreCubit> showCreateStore() {
-    return BlocProvider<CreateStoreCubit>(
-      create: (_) => getIt(),
-      child: const CreateStorePage(),
-    );
-  }
+
 }

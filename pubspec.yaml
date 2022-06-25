@@ -26,6 +26,8 @@ dependencies:
   simple_connection_checker: ^0.2.1
   date_picker_timeline: ^1.2.3
   intl: ^0.17.0
+  search_cep: ^4.0.0+1
+  masked_text_field: ^1.0.0
 
 dev_dependencies:
   flutter_test:

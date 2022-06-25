@@ -1,6 +1,5 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 
 class AppConstants {
   static const API_URL = 'https://beauty-2.herokuapp.com';

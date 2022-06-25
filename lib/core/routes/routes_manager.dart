@@ -6,6 +6,7 @@ import 'package:two_beauty/core/injection/injection.dart';
 import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/bloc/create_store/create_store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/login/login_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/signUp/signup_cubit.dart';
@@ -13,6 +14,7 @@ import 'package:two_beauty/features/2beauty/presentation/bloc/splash/splash_cubi
 import 'package:two_beauty/features/2beauty/presentation/bloc/store/store_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/appointment_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/bottom_navy_page.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/create_store_address_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/create_store_intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/intro_page.dart';
@@ -96,7 +98,6 @@ class RouteGenerator {
               create: (_) => getIt(),
               child: AppointmentPage(id: args),
             ),
-
           );
         }
         return errorPage;
@@ -106,6 +107,18 @@ class RouteGenerator {
           builder: (_) => const CreateStoreIntroPage(),
           settings: const RouteSettings(name: registerStoreIntroRoute),
         );
+
+      case registerStoreRoute:
+        if (args is List) {
+          return MaterialPageRoute(
+            builder: (_) => BlocProvider<CreateStoreCubit>(
+              create: (_) => getIt(),
+              child: CreateStoreAddressPage(listArgs: args),
+            ),
+            settings: const RouteSettings(name: registerStoreRoute),
+          );
+        }
+        return errorPage;
 
       case closeAppRoute:
         return MaterialPageRoute(builder: (_) => const CloseAppWidget());

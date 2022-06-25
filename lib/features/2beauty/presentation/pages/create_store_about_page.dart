@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:masked_text_field/masked_text_field.dart';
 import 'package:two_beauty/core/routes/routes.dart';
-import 'package:two_beauty/features/2beauty/presentation/pages/create_store_address_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_decoration.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
@@ -41,8 +42,8 @@ class CreateStoreAboutPage extends StatelessWidget {
               child: AppBarWidget(
                 title: 'Sobre seu estabelecimento',
                 leadingIcon: Icons.arrow_back,
-                leadingOnTap: () => Navigator.of(context)
-                    .pushReplacementNamed(bottomNavyRoute),
+                leadingOnTap: () =>
+                    Navigator.of(context).pushReplacementNamed(bottomNavyRoute),
               ),
             ),
           ),
@@ -73,10 +74,20 @@ class CreateStoreAboutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const LabelFormItem(title: 'CNPJ'),
-                      TextFieldItem(
-                        controller: storeCNPJInputController,
-                        hintText: 'Ex: xx.xxx.xxx/xxxx-xx',
-                      )
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: MaskedTextField(
+                          textFieldController: storeCNPJInputController,
+                          inputDecoration:
+                              DecorationStyle.inputDecorationTextField(
+                                  "Ex: xx.xxx.xxx/xxxx-xx"),
+                          autofocus: true,
+                          mask: 'xx.xxx.xxx/xxxx-xx',
+                          maxLength: 18,
+                          keyboardType: TextInputType.number,
+                          onChange: (String value) {},
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -87,10 +98,20 @@ class CreateStoreAboutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const LabelFormItem(title: 'Telefone'),
-                      TextFieldItem(
-                        controller: storePhoneInputController,
-                        hintText: 'Ex: (86)9995028103',
-                      )
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: MaskedTextField(
+                          textFieldController: storePhoneInputController,
+                          inputDecoration:
+                              DecorationStyle.inputDecorationTextField(
+                                  "Ex: (xx) xxxxx-xxxx"),
+                          autofocus: true,
+                          mask: '(xx) xxxxx-xxxx',
+                          maxLength: 15,
+                          keyboardType: TextInputType.number,
+                          onChange: (String value) {},
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -101,10 +122,19 @@ class CreateStoreAboutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const LabelFormItem(title: 'Horário de abertura'),
-                      TextFieldItem(
-                        controller: storeOpenHourInputController,
-                        hintText: 'Ex: 09:00',
-                      )
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: MaskedTextField(
+                          textFieldController: storeOpenHourInputController,
+                          inputDecoration:
+                              DecorationStyle.inputDecorationTextField("Ex: xx:xx"),
+                          autofocus: true,
+                          mask: 'xx:xx',
+                          maxLength: 5,
+                          keyboardType: TextInputType.number,
+                          onChange: (String value) {},
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -115,10 +145,19 @@ class CreateStoreAboutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const LabelFormItem(title: 'Horário de encerramento'),
-                      TextFieldItem(
-                        controller: storeCloseHourInputController,
-                        hintText: 'Ex: 19:00',
-                      )
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        child: MaskedTextField(
+                          textFieldController: storeCloseHourInputController,
+                          inputDecoration:
+                              DecorationStyle.inputDecorationTextField("Ex: xx:xx"),
+                          autofocus: true,
+                          mask: 'xx:xx',
+                          maxLength: 5,
+                          keyboardType: TextInputType.number,
+                          onChange: (String value) {},
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -145,16 +184,15 @@ class CreateStoreAboutPage extends StatelessWidget {
                             backgroundColor: ColorManager.white_200,
                             body: FailureDialog(message: 'Faltando dados'));
                       } else {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => CreateStoreAddressPage(
-                                      name: name,
-                                      cnpj: cnpj,
-                                      phone: phone,
-                                      openHour: openHour,
-                                      closeHour: closeHour,
-                                    )));
+                        Navigator.of(context).pushReplacementNamed(
+                            registerStoreRoute,
+                            arguments: [
+                              name,
+                              cnpj,
+                              phone,
+                              openHour,
+                              closeHour
+                            ]);
                       }
                     },
                     styleButton: ButtonStyles.buttonPrimary(),

@@ -9,11 +9,21 @@ abstract class CreateStoreState extends Equatable {
 }
 
 @immutable
-class InitCreateStoreState extends CreateStoreState {
-  const InitCreateStoreState();
+class LoadedCreateStoreState extends CreateStoreState {
+  const LoadedCreateStoreState();
 }
 
 @immutable
 class SentCreateStoreState extends CreateStoreState {
   const SentCreateStoreState();
+}
+
+@immutable
+class ErrorCreateStoreState extends CreateStoreState {
+  final String message;
+
+  const ErrorCreateStoreState(this.message);
+
+  @override
+  List<Object> get props => [message];
 }

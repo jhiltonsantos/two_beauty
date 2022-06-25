@@ -22,6 +22,7 @@ class _TextFieldItemState extends State<TextFieldItem> {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: TextField(
+
           keyboardType: widget.textInputType ?? TextInputType.text,
           expands: false,
           controller: widget.controller,
