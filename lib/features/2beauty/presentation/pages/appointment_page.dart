@@ -1,16 +1,15 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
 import 'package:date_picker_timeline/date_picker_timeline.dart';
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:select_form_field/select_form_field.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
-import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_decoration.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
@@ -71,6 +70,22 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
   @override
   Widget build(BuildContext context) {
     TextEditingController valueHour = TextEditingController();
+
+    List<Map<String, dynamic>> hoursOpen = [
+      {'value': "08:00"},
+      {'value': "09:00"},
+      {'value': "10:00"},
+      {'value': "11:00"},
+      {'value': "12:00"},
+      {'value': "13:00"},
+      {'value': "14:00"},
+      {'value': "15:00"},
+      {'value': "16:00"},
+      {'value': "17:00"},
+      {'value': "18:00"},
+      {'value': "19:00"},
+      {'value': "20:00"},
+    ];
 
     return Scaffold(
       appBar: PreferredSize(
@@ -137,21 +152,16 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(bottom: 12.0),
-                    child: LabelFormItem(title: 'Horário'),
+                    child: LabelFormItem(title: 'Horário disponíveis'),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: DateTimePicker(
-                      scrollPhysics: const BouncingScrollPhysics(),
-                      decoration:
-                          DecorationStyle.inputDecorationTextField("Ex: xx:xx"),
-                      dateMask: "xx:xx",
-                      type: DateTimePickerType.time,
-                      initialValue: "",
-                      onChanged: (value) {
-                        valueHour.text = value;
-                      },
-                    ),
+                  SelectFormField(
+                    type: SelectFormFieldType.dropdown,
+                    initialValue: hoursOpen[0][0],
+                    labelText: 'Selecione um horário',
+                    items: hoursOpen,
+                    onChanged: (value) {
+                      valueHour.text = value;
+                    },
                   ),
                 ],
               ),
