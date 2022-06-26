@@ -27,7 +27,7 @@ class HomeRepositoryImpl implements HomeRepository {
     if (response.statusCode != StatusCode.OK) {
       return Left(ServerFailure());
     }
-    return Right(getUsername(response));
+    return Right(getData(response));
   }
 
   // FUNCTIONS FOR getUserData()
@@ -35,7 +35,7 @@ class HomeRepositoryImpl implements HomeRepository {
     return await connectionHeaderApi.getHeader(urlController);
   }
 
-  UserGetEntity getUsername(http.Response response) {
+  UserGetEntity getData(http.Response response) {
     Map<String, dynamic> map = json.decode(response.body);
     final UserGetEntity user = UserGetModel.fromJson(map);
     return user;

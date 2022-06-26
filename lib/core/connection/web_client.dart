@@ -5,4 +5,4 @@ import 'package:two_beauty/core/interceptors/data_intercpetor.dart';
 
 final http.Client client = InterceptedClient.build(
     interceptors: [DataInterceptor()],
-    requestTimeout: const Duration(seconds: 10));
+    requestTimeout: const Duration(seconds: 20));

@@ -5,6 +5,7 @@ import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/bottom_navy/bottom_navy_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/home/home_cubit.dart';
+import 'package:two_beauty/features/2beauty/presentation/pages/create_owner_intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/create_store_intro_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/pages/home_page.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
@@ -38,6 +39,9 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
           }
           if (state is MyStorePageLoadedState) {
             return const CreateStoreIntroPage();
+          }
+          if (state is CreateOwnerIntroState) {
+            return const CreateOwnerIntroPage();
           }
           if (state is LogoutPageLoadedState) {
             return const CloseAppWidget();
@@ -77,7 +81,7 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
         BlocProvider.of<BottomNavyCubit>(context).toHomePage();
       }
       if (currentIndex == 1) {
-        BlocProvider.of<BottomNavyCubit>(context).toCreateStorePage();
+        BlocProvider.of<BottomNavyCubit>(context).getOwnerUser();
       }
 
       if (currentIndex == 2) {
@@ -93,6 +97,4 @@ class _BottomNavyPageState extends State<BottomNavyPage> {
       child: const HomePage(),
     );
   }
-
-
 }

@@ -57,8 +57,8 @@ class StoreRepositoryImpl implements StoreRepository {
       'horario_inicio': storeEntity.openHour,
       'horario_final': storeEntity.closeHour,
       'telefone': storeEntity.phone,
-      'latitude': storeEntity.latitude,
-      'longitude': storeEntity.longitude,
+      'latitude': '798844554',
+      'longitude': '-23212',
       'data_cadastro': DateFormat("yyyy-MM-dd").format(DateTime.now()),
       'proprietario': 1
     };

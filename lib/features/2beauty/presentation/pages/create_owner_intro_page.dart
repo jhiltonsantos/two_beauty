@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:two_beauty/features/2beauty/presentation/pages/create_store_about_page.dart';
+import 'package:two_beauty/core/routes/routes.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/assets_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
@@ -8,9 +8,8 @@ import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_b
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/progress_icons_widget.dart';
 
-
-class CreateStoreIntroPage extends StatelessWidget {
-  const CreateStoreIntroPage({Key? key}) : super(key: key);
+class CreateOwnerIntroPage extends StatelessWidget {
+  const CreateOwnerIntroPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,9 @@ class CreateStoreIntroPage extends StatelessWidget {
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(180),
           child: AppBarCreateStoreWidget(
-            title: 'Vamos criar seu negócio',
-            subtitle: 'Precisaremos de alguns dados seus. Não vai durar dois minutos.',
+            title: 'Tornar um proprietário',
+            subtitle:
+                'Precisamos de alguns dados seus antes de cadastrar seu negócio.',
           ),
         ),
         body: SingleChildScrollView(
@@ -38,22 +38,19 @@ class CreateStoreIntroPage extends StatelessWidget {
                       width: 327.0,
                       decoration: BoxDecoration(
                           image: const DecorationImage(
-                            image: AssetImage(ImageAssets.introImage6),
+                            image: AssetImage(ImageAssets.introImage9),
                             fit: BoxFit.cover,
                           ),
                           borderRadius: BorderRadius.circular(8.0)),
                     ),
                   ),
                 ),
-                const ProgressIconsWidget(first: true),
+                const ProgressIconsCreateOwnerWidget(first: true),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 10.0),
                   child: ButtonIntroApp(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const CreateStoreAboutPage()));
+                      Navigator.of(context).pushNamed(ownerFormRoute);
                     },
                     styleButton: ButtonStyles.buttonPrimary(),
                     styleText: TextStyles.buttonApp(ColorManager.white_100),

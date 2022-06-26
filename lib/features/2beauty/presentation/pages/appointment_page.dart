@@ -1,15 +1,16 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:masked_text_field/masked_text_field.dart';
 import 'package:two_beauty/features/2beauty/domain/entities/agenda_entity.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_cubit.dart';
 import 'package:two_beauty/features/2beauty/presentation/bloc/appointment/appointment_state.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/colors_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_button.dart';
+import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_decoration.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/app_bar_widget.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/widgets/button_intro_widget.dart';
@@ -138,32 +139,20 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
                     padding: EdgeInsets.only(bottom: 12.0),
                     child: LabelFormItem(title: 'Horário'),
                   ),
-                  MaskedTextField(
-                    textFieldController: valueHour,
-                    inputDecoration: const InputDecoration(
-                      hintText: 'HH:MM',
-                      fillColor: ColorManager.white_100,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        borderSide: BorderSide(
-                            color: ColorManager.white_100, width: 0.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          borderSide: BorderSide(
-                              color: ColorManager.purple_200, width: 2.0)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: DateTimePicker(
+                      scrollPhysics: const BouncingScrollPhysics(),
+                      decoration:
+                          DecorationStyle.inputDecorationTextField("Ex: xx:xx"),
+                      dateMask: "xx:xx",
+                      type: DateTimePickerType.time,
+                      initialValue: "",
+                      onChanged: (value) {
+                        valueHour.text = value;
+                      },
                     ),
-                    autofocus: true,
-                    mask: 'xx:xx',
-                    maxLength: 5,
-                    keyboardType: TextInputType.number,
-                    onChange: (String value) {
-                    },
                   ),
-
                 ],
               ),
             ),

@@ -21,7 +21,7 @@ class ProgressIconsWidget extends StatelessWidget {
         CircleAvatar(
           radius: 4,
           backgroundColor:
-          first == true ? ColorManager.purple_200 : ColorManager.purple_100,
+              first == true ? ColorManager.purple_200 : ColorManager.purple_100,
         ),
         const SizedBox(width: 12),
         CircleAvatar(
@@ -34,8 +34,40 @@ class ProgressIconsWidget extends StatelessWidget {
         CircleAvatar(
           radius: 4,
           backgroundColor:
-          third == true ? ColorManager.purple_200 : ColorManager.purple_100,
+              third == true ? ColorManager.purple_200 : ColorManager.purple_100,
         ),
+      ],
+    );
+  }
+}
+
+class ProgressIconsCreateOwnerWidget extends StatelessWidget {
+  final bool? first;
+  final bool? second;
+
+  const ProgressIconsCreateOwnerWidget({
+    Key? key,
+    this.first = false,
+    this.second = false,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(
+          radius: 4,
+          backgroundColor:
+              first == true ? ColorManager.purple_200 : ColorManager.purple_100,
+        ),
+        const SizedBox(width: 12),
+        CircleAvatar(
+          radius: 4,
+          backgroundColor: second == true
+              ? ColorManager.purple_200
+              : ColorManager.purple_100,
+        )
       ],
     );
   }

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles_manager.dart';
 
 class AppBarCreateStoreWidget extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
   const AppBarCreateStoreWidget({
-    Key? key,
+    Key? key, required this.title, required this.subtitle,
   }) : super(key: key);
 
   @override
@@ -15,13 +18,13 @@ class AppBarCreateStoreWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Vamos criar seu negócio',
+            title,
             style: TextStyles.titleApp(),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              'Precisaremos de alguns dados seus. Não vai durar dois minutos.',
+              subtitle,
               style: TextStyles.subtitleInitApp(),
             ),
           )

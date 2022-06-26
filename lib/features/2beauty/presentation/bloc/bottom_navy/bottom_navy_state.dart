@@ -31,6 +31,21 @@ class MyStorePageLoadedState extends BottomNavyState {
 }
 
 @immutable
+class CreateOwnerIntroState extends BottomNavyState {
+  const CreateOwnerIntroState();
+}
+
+@immutable
+class ErrorPageState extends BottomNavyState {
+  final String message;
+
+  const ErrorPageState(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+@immutable
 class LogoutPageLoadedState extends BottomNavyState {
   const LogoutPageLoadedState();
 }

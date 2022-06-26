@@ -11,3 +11,4 @@ const String logoutRoute = "/logout";
 const String closeAppRoute = "/close";
 const String bottomNavyRoute = "/bottomNavy";
 const String appointmentRoute = "/appointment";
+const String ownerFormRoute = "/ownerForm";

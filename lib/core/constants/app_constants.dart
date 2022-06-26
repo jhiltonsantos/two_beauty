@@ -13,6 +13,7 @@ class AppConstants {
   static const USER_GET_NAME = '$API_URL/user/get/';
   static const AGENDA_URL = '$API_URL/horario/';
   static const OWNER_POST_URL = '$API_URL/user/proprietario/create/';
+  static const OWNER_GET_URL = '$API_URL/user/proprietario/';
 
   static const String API_LOCATION_KEY =
       "AIzaSyD0qBxYechVt9ibozWktY8tfsdEQaIkgX4";

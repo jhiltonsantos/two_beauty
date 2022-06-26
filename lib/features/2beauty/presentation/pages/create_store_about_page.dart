@@ -1,3 +1,4 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:masked_text_field/masked_text_field.dart';
 import 'package:two_beauty/core/routes/routes.dart';
@@ -124,15 +125,16 @@ class CreateStoreAboutPage extends StatelessWidget {
                       const LabelFormItem(title: 'Horário de abertura'),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: MaskedTextField(
-                          textFieldController: storeOpenHourInputController,
-                          inputDecoration:
-                              DecorationStyle.inputDecorationTextField("Ex: xx:xx"),
-                          autofocus: true,
-                          mask: 'xx:xx',
-                          maxLength: 5,
-                          keyboardType: TextInputType.number,
-                          onChange: (String value) {},
+                        child: DateTimePicker(
+                          scrollPhysics: const BouncingScrollPhysics(),
+                          decoration: DecorationStyle.inputDecorationTextField(
+                              "Ex: xx:xx"),
+                          dateMask: "xx:xx",
+                          cancelText: "Cancelar",
+                          type: DateTimePickerType.time,
+                          initialValue: "",
+                          onChanged: (value) =>
+                              storeOpenHourInputController.text = value,
                         ),
                       ),
                     ],
@@ -147,15 +149,16 @@ class CreateStoreAboutPage extends StatelessWidget {
                       const LabelFormItem(title: 'Horário de encerramento'),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0),
-                        child: MaskedTextField(
-                          textFieldController: storeCloseHourInputController,
-                          inputDecoration:
-                              DecorationStyle.inputDecorationTextField("Ex: xx:xx"),
-                          autofocus: true,
-                          mask: 'xx:xx',
-                          maxLength: 5,
-                          keyboardType: TextInputType.number,
-                          onChange: (String value) {},
+                        child: DateTimePicker(
+                          scrollPhysics: const BouncingScrollPhysics(),
+                          decoration: DecorationStyle.inputDecorationTextField(
+                              "Ex: xx:xx"),
+                          dateMask: "xx:xx",
+                          cancelText: "Cancelar",
+                          type: DateTimePickerType.time,
+                          initialValue: "",
+                          onChanged: (value) =>
+                              storeCloseHourInputController.text = value,
                         ),
                       ),
                     ],
