@@ -131,8 +131,8 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
                         });
                       },
                       initialSelectedDate: DateTime.now(),
-                      width: 60,
-                      height: 80,
+                      width: 70,
+                      height: 90,
                       locale: "pt_BR",
                       daysCount: 15,
                       selectionColor: ColorManager.purple_100,

@@ -62,6 +62,7 @@ class CreateStoreAboutPage extends StatelessWidget {
                     children: [
                       const LabelFormItem(title: 'Nome'),
                       TextFieldItem(
+                        autofocus: true,
                         controller: storeNameInputController,
                         hintText: 'Ex: Barbearia Alves',
                       )
@@ -82,7 +83,6 @@ class CreateStoreAboutPage extends StatelessWidget {
                           inputDecoration:
                               DecorationStyle.inputDecorationTextField(
                                   "Ex: xx.xxx.xxx/xxxx-xx"),
-                          autofocus: true,
                           mask: 'xx.xxx.xxx/xxxx-xx',
                           maxLength: 18,
                           keyboardType: TextInputType.number,
@@ -106,7 +106,6 @@ class CreateStoreAboutPage extends StatelessWidget {
                           inputDecoration:
                               DecorationStyle.inputDecorationTextField(
                                   "Ex: (xx) xxxxx-xxxx"),
-                          autofocus: true,
                           mask: '(xx) xxxxx-xxxx',
                           maxLength: 15,
                           keyboardType: TextInputType.number,

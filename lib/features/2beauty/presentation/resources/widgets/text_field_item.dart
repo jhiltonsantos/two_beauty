@@ -5,11 +5,14 @@ class TextFieldItem extends StatefulWidget {
   final TextEditingController controller;
   final String? hintText;
   final TextInputType? textInputType;
+  final bool? autofocus;
+
   const TextFieldItem({
     Key? key,
     required this.controller,
     this.textInputType,
     this.hintText,
+    this.autofocus,
   }) : super(key: key);
 
   @override
@@ -22,8 +25,8 @@ class _TextFieldItemState extends State<TextFieldItem> {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: TextField(
-
           keyboardType: widget.textInputType ?? TextInputType.text,
+          autofocus: widget.autofocus ?? false,
           expands: false,
           controller: widget.controller,
           style: const TextStyle(fontSize: 16.0, fontFamily: "Epilogue_400"),

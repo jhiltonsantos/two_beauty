@@ -57,6 +57,7 @@ class SignupForm extends StatelessWidget {
               children: [
                 const LabelFormItem(title: SignUpStrings.userNameTextField),
                 TextFieldItem(
+                  autofocus: true,
                   controller: userInputController,
                   hintText: SignUpStrings.userNameInputField,
                 )

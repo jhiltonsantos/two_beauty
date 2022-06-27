@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:two_beauty/core/routes/routes.dart';
@@ -47,6 +49,7 @@ class LoginForm extends StatelessWidget {
               children: [
                 const LabelFormItem(title: SignUpStrings.userNameTextField),
                 TextFieldItem(
+                  autofocus: true,
                   controller: userInputController,
                 )
               ],
