@@ -1,4 +1,4 @@
-<h1><img src="https://raw.githubusercontent.com/jhiltonsantos/2beauty-app/main/assets/images/logo.png" alt="drawing" width="50" height="50"/> 2Beauty App </h1>
+<h1>2Beauty App </h1>
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge) ![GitHub Org's stars](https://img.shields.io/github/stars/jhiltonsantos/2beauty-app?style=social) 
 
