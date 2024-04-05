@@ -12,12 +12,12 @@ class ProgressWidget extends StatelessWidget {
         Navigator.of(context).pushNamed(homeRoute);
         return false;
       },
-      child: Scaffold(
+      child: const Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               CircularProgressIndicator(
                 color: ColorManager.purple_300,
               ),

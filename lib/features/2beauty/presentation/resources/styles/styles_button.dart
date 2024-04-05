@@ -5,8 +5,7 @@ import 'package:two_beauty/features/2beauty/presentation/resources/styles/styles
 class ButtonStyles {
   static ButtonStyle buttonPrimary() {
     return ElevatedButton.styleFrom(
-      fixedSize: const Size(327, 52),
-      primary: ColorManager.purple_200,
+      fixedSize: const Size(327, 52), backgroundColor: ColorManager.purple_200,
       textStyle: TextStyles.buttonApp(ColorManager.white_100),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -16,9 +15,7 @@ class ButtonStyles {
 
   static ButtonStyle buttonSecondary() {
     return ElevatedButton.styleFrom(
-      fixedSize: const Size(327, 52),
-      onPrimary: ColorManager.purple_200,
-      primary: ColorManager.white_100,
+      foregroundColor: ColorManager.purple_200, backgroundColor: ColorManager.white_100, fixedSize: const Size(327, 52),
       shape: RoundedRectangleBorder(
         side: const BorderSide(color: ColorManager.purple_200, width: 1.0),
         borderRadius: BorderRadius.circular(10),

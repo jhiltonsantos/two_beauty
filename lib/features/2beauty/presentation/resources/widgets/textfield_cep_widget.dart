@@ -43,8 +43,7 @@ class TextFieldCEPWidget extends StatelessWidget {
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            fixedSize: const Size(40, 40),
-            primary: ColorManager.purple_200,
+            fixedSize: const Size(40, 40), backgroundColor: ColorManager.purple_200,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
             ),

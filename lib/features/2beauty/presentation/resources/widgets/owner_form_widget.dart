@@ -138,7 +138,7 @@ class OwnerFormWidget extends StatelessWidget {
                     }
 
                     String birthDateFormatted =
-                        Jiffy(birthDate, "dd/MM/yyyy").format("yyyy-MM-dd");
+                        Jiffy.parse(birthDate).format(pattern: "yyyy-MM-dd");
 
                     final OwnerEntity createOwner = OwnerEntity(
                         cpf: cpf, phone: phone, birthday: birthDateFormatted);

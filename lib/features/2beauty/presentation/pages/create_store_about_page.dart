@@ -1,4 +1,3 @@
-import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:masked_text_field/masked_text_field.dart';
 import 'package:two_beauty/core/routes/routes.dart';
@@ -115,50 +114,28 @@ class CreateStoreAboutPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const LabelFormItem(title: 'Horário de abertura'),
+                      LabelFormItem(title: 'Horário de abertura'),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: DateTimePicker(
-                          scrollPhysics: const BouncingScrollPhysics(),
-                          decoration: DecorationStyle.inputDecorationTextField(
-                              "Ex: xx:xx"),
-                          dateMask: "xx:xx",
-                          cancelText: "Cancelar",
-                          type: DateTimePickerType.time,
-                          initialValue: "",
-                          onChanged: (value) =>
-                              storeOpenHourInputController.text = value,
-                        ),
+                        padding: EdgeInsets.only(top: 10.0),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const LabelFormItem(title: 'Horário de encerramento'),
+                      LabelFormItem(title: 'Horário de encerramento'),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: DateTimePicker(
-                          scrollPhysics: const BouncingScrollPhysics(),
-                          decoration: DecorationStyle.inputDecorationTextField(
-                              "Ex: xx:xx"),
-                          dateMask: "xx:xx",
-                          cancelText: "Cancelar",
-                          type: DateTimePickerType.time,
-                          initialValue: "",
-                          onChanged: (value) =>
-                              storeCloseHourInputController.text = value,
-                        ),
+                        padding: EdgeInsets.only(top: 10.0),
                       ),
                     ],
                   ),

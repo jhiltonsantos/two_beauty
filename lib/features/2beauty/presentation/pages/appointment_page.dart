@@ -1,6 +1,4 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
-
-import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -113,33 +111,14 @@ class _AppointmentFormWidgetState extends State<AppointmentFormWidget> {
                 style: TextStyles.subtitleInitApp(),
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 30.0, left: 24.0, right: 24.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 30.0, left: 24.0, right: 24.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const LabelFormItem(title: 'Dias disponíveis'),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
-                    child: DatePicker(
-                      DateTime.now(),
-                      onDateChange: (date) {
-                        setState(() {
-                          selectedDay = date;
-                        });
-                      },
-                      initialSelectedDate: DateTime.now(),
-                      width: 70,
-                      height: 90,
-                      locale: "pt_BR",
-                      daysCount: 15,
-                      selectionColor: ColorManager.purple_100,
-                      selectedTextColor: ColorManager.purple_200,
-                      deactivatedColor: ColorManager.red_200,
-                    ),
-                  ),
+                  LabelFormItem(title: 'Dias disponíveis'),
+                  Padding(padding: EdgeInsets.only(top: 12.0)),
                 ],
               ),
             ),
